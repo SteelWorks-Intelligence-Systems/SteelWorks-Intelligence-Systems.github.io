@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://steelworksintelligence.com/sitemap.xml
+Sitemap: https://steelworksintelligence.com/sitemap-local.xml
