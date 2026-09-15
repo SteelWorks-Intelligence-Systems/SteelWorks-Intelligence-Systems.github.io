@@ -187,11 +187,8 @@ document.querySelectorAll('.reveal').forEach(el => sReveal.observe(el));
     const href = a.getAttribute('href') || '';
     const label = cleanText(a.textContent);
     const external = /^https?:\/\//i.test(href) && !href.includes(location.hostname);
-    const isGumroad = /gumroad\.com/i.test(href);
     const isCta = a.classList.contains('btn-primary') || a.classList.contains('hero-cta') || label.match(/\b(get|start|request|view|buy|access|intake|audit)\b/i);
-    if (isGumroad) {
-      track('gumroad_click', { href, label });
-    } else if (isCta || external) {
+    if (isCta || external) {
       track('cta_click', { href, label });
     }
   }, { capture: true });

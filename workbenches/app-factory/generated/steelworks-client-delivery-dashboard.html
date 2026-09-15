@@ -34,7 +34,7 @@
 <meta name="twitter:title" content="SteelWorks Client Delivery Dashboard | SteelWorks App Factory" />
  <meta name="twitter:description" content="A SteelWorks app factory build with proof-led claims, CTA, and local verification." />
  <meta name="twitter:image" content="https://steelworksintelligence.com/assets/brand/banner.png" />
-<!-- page-owner: internal --></head>
+</head>
 <body>
  <main>
 
@@ -123,7 +123,7 @@ Skip to content</a>
  document.getElementById('stateMessage').className = 'status';
  }
  document.getElementById('statusFilter').addEventListener('change', render);
- document.getElementById('saveNote').addEventListener('click', => {
+ document.getElementById('saveNote').addEventListener('click',  => {
  const note = document.getElementById('operatorNote').value.trim;
  if (!note) {
  document.getElementById('stateMessage').textContent = 'A note is required before saving.';
@@ -134,7 +134,7 @@ Skip to content</a>
  writeState(state);
  render;
  });
- document.getElementById('resetData').addEventListener('click', => {
+ document.getElementById('resetData').addEventListener('click',  => {
  localStorage.removeItem(storageKey);
  state = readState;
  document.getElementById('operatorNote').value = state.note || '';

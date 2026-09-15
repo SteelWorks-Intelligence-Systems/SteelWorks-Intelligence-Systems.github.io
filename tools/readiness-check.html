@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<!-- page-owner: steelsignal -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Answer Readiness Check — score any page in one round trip</title>
 <meta name="description" content="Paste a URL and get the ten-check AI-answer readiness score SteelWorks computes for its own pages — indexability, title, description, h1, canonical, structured data, answer schema, internal links, visible content, freshness — with the fix for each miss.">
@@ -151,7 +150,7 @@ Skip to content</a>
  <figure class="flush"><img src="/assets/img/brand/readiness-scorecard.svg" alt="Four real AI Search Readiness audit scores, drawn from the audit log" loading="lazy" width="1200" height="750"><figcaption class="fine">The same ten checks, run on real sites. Redrawn from the audit log on every deploy.</figcaption></figure></section>
 
 <script>
-(function {
+(function  {
  var WORKER = "https://swi-readiness.macsmacpro.workers.dev";
  var form = document.getElementById("checkform"), status = document.getElementById("status");
  var result = document.getElementById("result");
@@ -163,7 +162,7 @@ Skip to content</a>
  if (!url) return;
  status.textContent = "Fetching and scoring…";
  result.hidden = true;
- var ctrl = new AbortController; var t = setTimeout(function { ctrl.abort; }, 20000);
+ var ctrl = new AbortController; var t = setTimeout(function  { ctrl.abort; }, 20000);
  fetch(WORKER + "/score?url=" + encodeURIComponent(url), { signal: ctrl.signal }).then(function (r) { return r.json.then(function (j) { return [r.status, j]; }); }).then(function (pair) {
  clearTimeout(t);
  var st = pair[0], j = pair[1];

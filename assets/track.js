@@ -30,9 +30,7 @@
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a');
     if (!a || !a.href) return;
-    if (/gumroad\.com/.test(a.href)) {
-      send('gumroad_click', { href: a.href.slice(0, 300) });
-    } else if (a.classList.contains('btn') || a.classList.contains('nav-cta')) {
+    if (a.classList.contains('btn') || a.classList.contains('nav-cta')) {
       send('cta_click', { href: a.href.slice(0, 300) });
     }
   }, true);

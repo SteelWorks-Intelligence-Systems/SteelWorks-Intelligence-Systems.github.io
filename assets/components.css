@@ -290,9 +290,9 @@ figcaption.fine { padding-top: 0.75rem; }
 
 /* ==========================================================================
    2026-09-11 — shared card system, resource library, product template, shell v2.
-   Root cause of the "pages all out of whack" report: six generators wrote
-   website/products/ with six templates and no shared card. One card, one grid,
-   one product page, one header/footer — all defined HERE and nowhere else.
+   Root cause of the "pages all out of whack" report: multiple generators wrote
+   page trees with their own templates and no shared card. One card, one grid,
+   one header/footer — all defined HERE and nowhere else.
    Citations: style-systems.csv#4 brutalism (square, no shadow), ux-guidelines.csv
    (44px targets, visible focus), motion-presets.csv#7 stagger.
    ========================================================================== */
