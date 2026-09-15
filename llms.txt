@@ -6,7 +6,7 @@ Primary site: https://steelworksintelligence.com/
 Founder: Matthew Steger
 Brand: SteelWorks Intelligence
 Platform: OpenClaw
-Last updated: 2026-09-14
+Last updated: 2026-09-15
 
 ## Core Pages
 - Full Stack Funnel OS: https://steelworksintelligence.com/funnel.html
