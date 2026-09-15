@@ -11,15 +11,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="stylesheet" href="/assets/components.css">
 <!--
-  design-knowledge: style-systems.csv#4 Brutalism + #1 Minimalism & Swiss Style
-  design-knowledge: font-pairings.csv#9 Developer Mono (JetBrains Mono + IBM Plex Sans)
-  design-knowledge: palettes.csv#81 neutral direction, chromatics re-derived in oklch
-  design-knowledge: motion-presets.csv#5 scroll reveal 400-600ms, #1 hover 150-200ms
-  design-knowledge: ux-guidelines.csv focus visibility, 44px targets, reduced motion
-  2026-09-11: the eight markets from the mission statement. The page states which
-  vertical is BUILT (security — we measure ourselves against NIST AI RMF weekly
-  and publish it) and which are method-ready. Claiming a vertical we have not
-  built would be the exact failure our own gates exist to prevent.
+ design-knowledge: style-systems.csv#4 Brutalism + #1 Minimalism & Swiss Style
+ design-knowledge: font-pairings.csv#9 Developer Mono (JetBrains Mono + IBM Plex Sans)
+ design-knowledge: palettes.csv#81 neutral direction, chromatics re-derived in oklch
+ design-knowledge: motion-presets.csv#5 scroll reveal 400-600ms, #1 hover 150-200ms
+ design-knowledge: ux-guidelines.csv focus visibility, 44px targets, reduced motion
+ 2026-09-11: the eight markets from the mission statement. The page states which
+ vertical is BUILT (security — we measure ourselves against NIST AI RMF weekly
+ and publish it) and which are method-ready. Claiming a vertical we have not
+ built would be the exact failure our own gates exist to prevent.
 -->
 <link rel="canonical" href="https://steelworksintelligence.com/verticals.html">
 <meta property="og:type" content="website">
@@ -30,264 +30,204 @@
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Niche markets — SteelWorks Intelligence Systems",
-  "url": "https://steelworksintelligence.com/verticals.html",
-  "description": "The eight markets SteelWorks builds structural AI systems for, and the four requirements a vertical system must meet before it ships.",
-  "dateModified": "2026-09-11",
-  "isPartOf": {"@type": "WebSite", "name": "SteelWorks Intelligence Systems", "url": "https://steelworksintelligence.com/"},
-  "publisher": {"@type": "Organization", "name": "SteelWorks Intelligence Systems"}
-}
-</script>
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "Niche markets — SteelWorks Intelligence Systems",
+ "url": "https://steelworksintelligence.com/verticals.html",
+ "description": "The eight markets SteelWorks builds structural AI systems for, and the four requirements a vertical system must meet before it ships.",
+ "dateModified": "2026-09-11",
+ "isPartOf": {"@type": "WebSite", "name": "SteelWorks Intelligence Systems", "url": "https://steelworksintelligence.com/"},
+ "publisher": {"@type": "Organization", "name": "SteelWorks Intelligence Systems"}
+}</script>
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question", "name": "Which vertical have you actually built?",
-     "acceptedAnswer": {"@type": "Answer", "text": "Security. We run the four steps on our own operation: the corpus is our system and its controls, the evaluation set is a 25-control NIST AI RMF scorecard, the regulatory envelope is that framework, and the reference org chart is a governance unit with eight specialists. It is measured weekly and published, including the controls where we score zero."}},
-    {"@type": "Question", "name": "What does method-ready mean?",
-     "acceptedAnswer": {"@type": "Answer", "text": "That the four steps are defined and proven, not that the vertical is built. We will not describe a market as delivered until a system in it has been assessed, measured and handed over. Saying which is which is the point."}},
-    {"@type": "Question", "name": "Why does the regulated envelope matter so much?",
-     "acceptedAnswer": {"@type": "Answer", "text": "Because it decides the shape of the org chart. Where a regulator requires a named human approver, that becomes an approval gate an agent cannot pass. Where records must be retained, that becomes a logging control. The compliance requirement is not paperwork bolted on afterwards; it is the structure."}},
-    {"@type": "Question", "name": "Do I need to be in one of these eight markets?",
-     "acceptedAnswer": {"@type": "Answer", "text": "No. These are where the operational depth and the regulatory weight make a structural system pay back fastest. The method works for any business whose operations are complex enough to need an org chart."}}
-  ]
-}
-</script>
-</head>
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+ {"@type": "Question", "name": "Which vertical have you actually built?",
+ "acceptedAnswer": {"@type": "Answer", "text": "Security. We run the four steps on our own operation: the corpus is our system and its controls, the evaluation set is a 25-control NIST AI RMF scorecard, the regulatory envelope is that framework, and the reference org chart is a governance unit with eight specialists. It is measured weekly and published, including the controls where we score zero."}},
+ {"@type": "Question", "name": "What does method-ready mean?",
+ "acceptedAnswer": {"@type": "Answer", "text": "That the four steps are defined and proven, not that the vertical is built. We will not describe a market as delivered until a system in it has been assessed, measured and handed over. Saying which is which is the point."}},
+ {"@type": "Question", "name": "Why does the regulated envelope matter so much?",
+ "acceptedAnswer": {"@type": "Answer", "text": "Because it decides the shape of the org chart. Where a regulator requires a named human approver, that becomes an approval gate an agent cannot pass. Where records must be retained, that becomes a logging control. The compliance requirement is not paperwork bolted on afterwards; it is the structure."}},
+ {"@type": "Question", "name": "Do I need to be in one of these eight markets?",
+ "acceptedAnswer": {"@type": "Answer", "text": "No. These are where the operational depth and the regulatory weight make a structural system pay back fastest. The method works for any business whose operations are complex enough to need an org chart."}}
+ ]
+}</script></head>
 <body>
 
 <!-- steelworks:header -->
 <a class="skip-link" href="#main">
 Skip to content</a>
 <header class="site-header">
-  <div class="shell">
-    <a class="brand" href="/index.html">
-      <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-terminal-2"></use></svg>
-      SteelWorks
-    </a>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="/systems.html">Systems</a>
-      <a href="/verticals.html">Verticals</a>
-      <a href="/assessments.html">Assessments</a>
-      <a href="/services.html">Engagements</a>
-      <a href="/contact.html">Contact</a>
-      <a class="btn" href="/assessments.html">Start an assessment</a>
-    </nav>
-  </div>
-</header>
+ <div class="shell">
+ <a class="brand" href="/index.html">
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-terminal-2"></use></svg>
+ SteelWorks</a>
+ <nav class="site-nav" aria-label="Primary">
+ <a href="/systems.html">Systems</a>
+ <a href="/verticals.html">Verticals</a>
+ <a href="/assessments.html">Assessments</a>
+ <a href="/services.html">Engagements</a>
+ <a href="/contact.html">Contact</a>
+ <a class="btn" href="/assessments.html">Start an assessment</a></nav></div></header>
 <!-- /steelworks:header -->
 
 <main id="main">
 
-  <section class="section hero">
-    <div class="shell">
-      <p class="eyebrow reveal">Niche markets</p>
-      <h1 class="reveal">Eight markets where an org chart beats a chatbot.</h1>
-      <p class="lede reveal">Energy, oil and gas, distribution, security, financial, healthcare, retail and
-        marketing. What these have in common is operational depth and regulatory weight &mdash; the two
-        conditions under which a general-purpose assistant stops being useful and a structured system
-        starts paying for itself. We build into them with the same four-step method, and we say plainly
-        which ones we have built and which we have not.</p>
-      <div class="cluster reveal">
-        <a class="btn" href="#method">
-          The four requirements
-          <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-arrow-down"></use></svg>
-        </a>
-        <a class="btn btn-ghost" href="/systems.html">
-          How the systems are built
-          <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-arrow-right"></use></svg>
-        </a>
-      </div>
-    </div>
-  </section>
+ <section class="section hero">
+ <div class="shell">
+ <p class="eyebrow reveal">Niche markets</p>
+ <h1 class="reveal">Eight markets where an org chart beats a chatbot.</h1>
+ <p class="lede reveal">Energy, oil and gas, distribution, security, financial, healthcare, retail and
+ marketing. What these have in common is operational depth and regulatory weight &mdash; the two
+ conditions under which a general-purpose assistant stops being useful and a structured system
+ starts paying for itself. We build into them with the same four-step method, and we say plainly
+ which ones we have built and which we have not.</p>
+ <div class="cluster reveal">
+ <a class="btn" href="#method">
+ The four requirements
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-arrow-down"></use></svg></a>
+ <a class="btn btn-ghost" href="/systems.html">
+ How the systems are built
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-arrow-right"></use></svg></a></div></div></section>
 
-  <section class="section" id="method">
-    <div class="shell">
-      <p class="eyebrow reveal">The method</p>
-      <h2 class="reveal">Four things a vertical system needs before it ships</h2>
-      <p class="reveal">A system that has read your industry's documents is not a vertical system. It needs
-        to be measured in your domain, constrained by your regulator, and shaped like your operation.
-        Skip any of the four and what you have is a general assistant wearing your industry's vocabulary.</p>
-      <figure class="reveal">
-        <img src="/assets/img/brand/vertical-matrix.svg" width="1200" height="720" loading="lazy"
-             alt="Eight niche markets against four requirements — domain corpus, evaluation set, regulatory envelope and reference org chart — with security marked built and the rest method-ready">
-        <figcaption class="fine">Built means measured and published. Method-ready means the steps are proven, not that the vertical is delivered.</figcaption>
-      </figure>
-    </div>
-  </section>
+ <section class="section" id="method">
+ <div class="shell">
+ <p class="eyebrow reveal">The method</p>
+ <h2 class="reveal">Four things a vertical system needs before it ships</h2>
+ <p class="reveal">A system that has read your industry's documents is not a vertical system. It needs
+ to be measured in your domain, constrained by your regulator, and shaped like your operation.
+ Skip any of the four and what you have is a general assistant wearing your industry's vocabulary.</p>
+ <figure class="reveal">
+ <img src="/assets/img/brand/vertical-matrix.svg" width="1200" height="720" loading="lazy"
+ alt="Eight niche markets against four requirements — domain corpus, evaluation set, regulatory envelope and reference org chart — with security marked built and the rest method-ready">
+ <figcaption class="fine">Built means measured and published. Method-ready means the steps are proven, not that the vertical is delivered.</figcaption></figure></div></section>
 
-  <section class="section" id="requirements">
-    <div class="shell">
-      <div class="pillar-list stagger">
-        <article class="pillar reveal" style="--i:0">
-          <div class="pillar-head"><span class="metric">01</span><h3>Domain corpus</h3></div>
-          <div class="pillar-body">
-            <p>The documents, schemas, procedures and history the system reasons over &mdash; your permits,
-              your manifests, your policies, your tickets. Assembled, versioned and access-controlled, so
-              an agent's answer can be traced to the source it came from rather than to a model's memory.</p>
-          </div>
-        </article>
-        <article class="pillar reveal" style="--i:1">
-          <div class="pillar-head"><span class="metric">02</span><h3>Evaluation set</h3></div>
-          <div class="pillar-body">
-            <p>Questions from your domain with known-good answers. Without it, "the strongest model for the
-              task" is a vendor's claim. With it, model selection is a measurement you can repeat &mdash; and
-              re-run every time a new model ships, which is roughly monthly.</p>
-          </div>
-        </article>
-        <article class="pillar reveal" style="--i:2">
-          <div class="pillar-head"><span class="metric">03</span><h3>Regulatory envelope</h3></div>
-          <div class="pillar-body">
-            <p>What your regulator, your auditor and your insurer require. This is not paperwork added at
-              the end &mdash; it is the structure. A rule that says a licensed human must approve becomes an
-              approval gate no agent can pass. A retention rule becomes a logging control.</p>
-          </div>
-        </article>
-        <article class="pillar reveal" style="--i:3">
-          <div class="pillar-head"><span class="metric">04</span><h3>Reference org chart</h3></div>
-          <div class="pillar-body">
-            <p>The unit, role, decision-right and escalation design for that industry's operation. It is the
-              deliverable clients keep even if they never run another agent: a written account of who
-              decides what, and what must never be decided automatically.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+ <section class="section" id="requirements">
+ <div class="shell">
+ <div class="pillar-list stagger">
+ <article class="pillar reveal" style="--i:0">
+ <div class="pillar-head"><span class="metric">01</span><h3>Domain corpus</h3></div>
+ <div class="pillar-body">
+ <p>The documents, schemas, procedures and history the system reasons over &mdash; your permits,
+ your manifests, your policies, your tickets. Assembled, versioned and access-controlled, so
+ an agent's answer can be traced to the source it came from rather than to a model's memory.</p></div></article>
+ <article class="pillar reveal" style="--i:1">
+ <div class="pillar-head"><span class="metric">02</span><h3>Evaluation set</h3></div>
+ <div class="pillar-body">
+ <p>Questions from your domain with known-good answers. Without it, "the strongest model for the
+ task" is a vendor's claim. With it, model selection is a measurement you can repeat &mdash; and
+ re-run every time a new model ships, which is roughly monthly.</p></div></article>
+ <article class="pillar reveal" style="--i:2">
+ <div class="pillar-head"><span class="metric">03</span><h3>Regulatory envelope</h3></div>
+ <div class="pillar-body">
+ <p>What your regulator, your auditor and your insurer require. This is not paperwork added at
+ the end &mdash; it is the structure. A rule that says a licensed human must approve becomes an
+ approval gate no agent can pass. A retention rule becomes a logging control.</p></div></article>
+ <article class="pillar reveal" style="--i:3">
+ <div class="pillar-head"><span class="metric">04</span><h3>Reference org chart</h3></div>
+ <div class="pillar-body">
+ <p>The unit, role, decision-right and escalation design for that industry's operation. It is the
+ deliverable clients keep even if they never run another agent: a written account of who
+ decides what, and what must never be decided automatically.</p></div></article></div></div></section>
 
-  <section class="section" id="markets">
-    <div class="shell">
-      <p class="eyebrow reveal">What the envelope adds</p>
-      <h2 class="reveal">Same method, different constraints</h2>
-      <div class="reveal scroll-x">
-        <table>
-          <thead>
-            <tr><th>Market</th><th>Where the operational depth is</th><th>What the envelope adds to the chart</th><th>Status</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Security</strong></td><td>Alert triage, evidence handling, control testing, incident response</td><td>Framework scoring, evidence retention, a named accountable owner per control</td><td class="mono">built &amp; published</td></tr>
-            <tr><td><strong>Energy</strong></td><td>Outage and maintenance scheduling, permit and compliance filing, asset records</td><td>Safety cases, separation between operational technology and business systems</td><td class="mono">method ready</td></tr>
-            <tr><td><strong>Oil &amp; gas</strong></td><td>Field reporting, vendor and lease administration, HSE documentation</td><td>Incident reporting duties, contractor accountability, records that survive audit</td><td class="mono">method ready</td></tr>
-            <tr><td><strong>Distribution</strong></td><td>Order, inventory and exception handling across systems that do not talk</td><td>Traceability, customs and origin documentation, carrier liability lines</td><td class="mono">method ready</td></tr>
-            <tr><td><strong>Financial</strong></td><td>Reconciliation, reporting cycles, client servicing, document review</td><td>Supervision requirements, records retention, an auditable decision trail</td><td class="mono">method ready</td></tr>
-            <tr><td><strong>Healthcare</strong></td><td>Intake, prior authorisation, coding, documentation backlog</td><td>Protected health information handling, minimum-necessary access, a clinician gate on clinical judgement</td><td class="mono">method ready</td></tr>
-            <tr><td><strong>Retail</strong></td><td>Merchandising, pricing, supplier and returns operations</td><td>Consumer protection rules, payment data separation, advertising substantiation</td><td class="mono">method ready</td></tr>
-            <tr><td><strong>Marketing</strong></td><td>Research, production, publication and measurement at volume</td><td>Claim substantiation, disclosure duties, brand and legal approval gates</td><td class="mono">method ready</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="fine pad-t reveal">Status is stated per market on purpose. "Built and published" means a
-        system exists in that vertical, is measured, and the measurement is public &mdash; for security, that
-        is our own weekly scorecard. Everywhere else the method is proven and the vertical is not yet
-        delivered, and we would rather write that down than let a logo grid imply otherwise.</p>
-    </div>
-  </section>
+ <section class="section" id="markets">
+ <div class="shell">
+ <p class="eyebrow reveal">What the envelope adds</p>
+ <h2 class="reveal">Same method, different constraints</h2>
+ <div class="reveal scroll-x">
+ <table>
+ <thead>
+ <tr><th>Market</th><th>Where the operational depth is</th><th>What the envelope adds to the chart</th><th>Status</th></tr></thead>
+ <tbody>
+ <tr><td><strong>Security</strong></td><td>Alert triage, evidence handling, control testing, incident response</td><td>Framework scoring, evidence retention, a named accountable owner per control</td><td class="mono">built &amp; published</td></tr>
+ <tr><td><strong>Energy</strong></td><td>Outage and maintenance scheduling, permit and compliance filing, asset records</td><td>Safety cases, separation between operational technology and business systems</td><td class="mono">method ready</td></tr>
+ <tr><td><strong>Oil &amp; gas</strong></td><td>Field reporting, vendor and lease administration, HSE documentation</td><td>Incident reporting duties, contractor accountability, records that survive audit</td><td class="mono">method ready</td></tr>
+ <tr><td><strong>Distribution</strong></td><td>Order, inventory and exception handling across systems that do not talk</td><td>Traceability, customs and origin documentation, carrier liability lines</td><td class="mono">method ready</td></tr>
+ <tr><td><strong>Financial</strong></td><td>Reconciliation, reporting cycles, client servicing, document review</td><td>Supervision requirements, records retention, an auditable decision trail</td><td class="mono">method ready</td></tr>
+ <tr><td><strong>Healthcare</strong></td><td>Intake, prior authorisation, coding, documentation backlog</td><td>Protected health information handling, minimum-necessary access, a clinician gate on clinical judgement</td><td class="mono">method ready</td></tr>
+ <tr><td><strong>Retail</strong></td><td>Merchandising, pricing, supplier and returns operations</td><td>Consumer protection rules, payment data separation, advertising substantiation</td><td class="mono">method ready</td></tr>
+ <tr><td><strong>Marketing</strong></td><td>Research, production, publication and measurement at volume</td><td>Claim substantiation, disclosure duties, brand and legal approval gates</td><td class="mono">method ready</td></tr></tbody></table></div>
+ <p class="fine pad-t reveal">Status is stated per market on purpose. "Built and published" means a
+ system exists in that vertical, is measured, and the measurement is public &mdash; for security, that
+ is our own weekly scorecard. Everywhere else the method is proven and the vertical is not yet
+ delivered, and we would rather write that down than let a logo grid imply otherwise.</p></div></section>
 
-  <section class="section" id="security-proof">
-    <div class="shell grid grid-2">
-      <div class="reveal">
-        <p class="eyebrow">The one we built</p>
-        <h2>Security, measured on ourselves</h2>
-        <p>We did not pick security as a vertical because it sells. We picked it because we had to solve
-          it to run an agent fleet safely, and solving it produced all four requirements: a corpus of
-          controls and evidence, a 25-control evaluation set, a regulatory envelope in the NIST AI Risk
-          Management Framework, and a governance unit with eight specialists and named owners.</p>
-        <p>The result is measured weekly and published in full &mdash; including where we score zero. That
-          scorecard is both our proof and the instrument we run on clients.</p>
-        <p class="cluster pad-t">
-          <a class="btn" href="/services/ai-security-audit.html">
-            See the audit and our scorecard
-            <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-shield-check"></use></svg>
-          </a>
-        </p>
-      </div>
-      <figure class="reveal">
-        <img src="/assets/img/brand/control-map.svg" width="1200" height="880" loading="lazy"
-             alt="Twenty-five NIST AI RMF controls across Govern, Map, Measure and Manage, coloured by our own measured score">
-        <figcaption class="fine">The security vertical, built on ourselves and re-measured every week.</figcaption>
-      </figure>
-    </div>
-  </section>
+ <section class="section" id="security-proof">
+ <div class="shell grid grid-2">
+ <div class="reveal">
+ <p class="eyebrow">The one we built</p>
+ <h2>Security, measured on ourselves</h2>
+ <p>We did not pick security as a vertical because it sells. We picked it because we had to solve
+ it to run an agent fleet safely, and solving it produced all four requirements: a corpus of
+ controls and evidence, a 25-control evaluation set, a regulatory envelope in the NIST AI Risk
+ Management Framework, and a governance unit with eight specialists and named owners.</p>
+ <p>The result is measured weekly and published in full &mdash; including where we score zero. That
+ scorecard is both our proof and the instrument we run on clients.</p>
+ <p class="cluster pad-t">
+ <a class="btn" href="/services/ai-security-audit.html">
+ See the audit and our scorecard
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-shield-check"></use></svg></a></p></div>
+ <figure class="reveal">
+ <img src="/assets/img/brand/control-map.svg" width="1200" height="880" loading="lazy"
+ alt="Twenty-five NIST AI RMF controls across Govern, Map, Measure and Manage, coloured by our own measured score">
+ <figcaption class="fine">The security vertical, built on ourselves and re-measured every week.</figcaption></figure></div></section>
 
-  <section class="section" id="start">
-    <div class="shell">
-      <hr class="rule">
-      <div class="stack pad-t">
-        <p class="eyebrow reveal">Your market</p>
-        <h2 class="reveal">Tell us the operation and we will scope the four steps against it.</h2>
-        <p class="reveal">Leave your company and the process that costs you the most. You get a written
-          reply naming what the corpus, the evaluation set and the envelope would have to cover &mdash; and
-          whether a structural system is worth it for you at all.</p>
-        <form class="capture reveal" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
-          <label class="visually-hidden" for="website">Your company website</label>
-          <input id="website" name="website" type="text" required placeholder="yourcompany.com" autocomplete="url">
-          <label class="visually-hidden" for="email">Work email</label>
-          <input id="email" name="email" type="email" required placeholder="you@yourcompany.com" autocomplete="email">
-          <label class="visually-hidden" for="note">Your market and the operation</label>
-          <textarea id="note" name="note" class="capture-msg" placeholder="Your market, and the operation that costs you the most"></textarea>
-          <input type="hidden" name="source" value="site_verticals">
-          <button class="btn" type="submit">
-            Scope my market
-            <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-mail"></use></svg>
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-</main>
+ <section class="section" id="start">
+ <div class="shell">
+ <hr class="rule">
+ <div class="stack pad-t">
+ <p class="eyebrow reveal">Your market</p>
+ <h2 class="reveal">Tell us the operation and we will scope the four steps against it.</h2>
+ <p class="reveal">Leave your company and the process that costs you the most. You get a written
+ reply naming what the corpus, the evaluation set and the envelope would have to cover &mdash; and
+ whether a structural system is worth it for you at all.</p>
+ <form class="capture reveal" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
+ <label class="visually-hidden" for="website">Your company website</label>
+ <input id="website" name="website" type="text" required placeholder="yourcompany.com" autocomplete="url">
+ <label class="visually-hidden" for="email">Work email</label>
+ <input id="email" name="email" type="email" required placeholder="you@yourcompany.com" autocomplete="email">
+ <label class="visually-hidden" for="note">Your market and the operation</label>
+ <textarea id="note" name="note" class="capture-msg" placeholder="Your market, and the operation that costs you the most"></textarea>
+ <input type="hidden" name="source" value="site_verticals">
+ <button class="btn" type="submit">
+ Scope my market
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-mail"></use></svg></button></form></div></div></section></main>
 
 <!-- steelworks:footer -->
 <footer class="site-footer">
-  <div class="shell">
-    <hr class="rule">
-    <div class="footer-grid">
-      <div>
-        <h2>What we build</h2>
-        <ul>
-          <li><a href="/systems.html">Structural AI systems</a></li>
-          <li><a href="/systems.html#architecture">The four layers</a></li>
-          <li><a href="/systems.html#hierarchy">Hierarchy &amp; org charts</a></li>
-          <li><a href="/services/ai-security-audit.html">Security &amp; governance</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Where we build it</h2>
-        <ul>
-          <li><a href="/verticals.html">The eight markets</a></li>
-          <li><a href="/verticals.html#method">The vertical method</a></li>
-          <li><a href="/systems.html#models">Model selection</a></li>
-          <li><a href="/systems.html#proof">Run on ourselves</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>How you start</h2>
-        <ul>
-          <li><a href="/assessments.html">Assessments</a></li>
-          <li><a href="/services/ai-security-audit.html">AI Security &amp; Risk Audit</a></li>
-          <li><a href="/services.html">Engagements</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Company</h2>
-        <ul>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI RMF</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-meta">
-      <p class="mono flush">SteelWorks Intelligence Systems. United States. Built and operated by an autonomous agent fleet. <!--STATS:STAMP-->Live-derived from fleet state · verified 2026-09-15<!--/STATS:STAMP--></p>
-      <p class="mono flush"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
-    </div>
-  </div>
-</footer>
-<!-- /steelworks:footer -->
-
-</body>
-</html>
+ <div class="shell">
+ <hr class="rule">
+ <div class="footer-grid">
+ <div>
+ <h2>What we build</h2>
+ <ul>
+ <li><a href="/systems.html">Structural AI systems</a></li>
+ <li><a href="/systems.html#architecture">The four layers</a></li>
+ <li><a href="/systems.html#hierarchy">Hierarchy &amp; org charts</a></li>
+ <li><a href="/services/ai-security-audit.html">Security &amp; governance</a></li></ul></div>
+ <div>
+ <h2>Where we build it</h2>
+ <ul>
+ <li><a href="/verticals.html">The eight markets</a></li>
+ <li><a href="/verticals.html#method">The vertical method</a></li>
+ <li><a href="/systems.html#models">Model selection</a></li>
+ <li><a href="/systems.html#proof">Run on ourselves</a></li></ul></div>
+ <div>
+ <h2>How you start</h2>
+ <ul>
+ <li><a href="/assessments.html">Assessments</a></li>
+ <li><a href="/services/ai-security-audit.html">AI Security &amp; Risk Audit</a></li>
+ <li><a href="/services.html">Engagements</a></li>
+ <li><a href="/contact.html">Contact</a></li></ul></div>
+ <div>
+ <h2>Company</h2>
+ <ul>
+ <li><a href="/about.html">About</a></li>
+ <li><a href="/press.html">Press</a></li>
+ <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI RMF</a></li></ul></div></div>
+ <div class="footer-meta">
+ <p class="mono flush">SteelWorks Intelligence Systems. United States. Built and operated by an autonomous agent fleet. <!--STATS:STAMP-->Live-derived from fleet state · verified 2026-09-15<!--/STATS:STAMP--></p>
+ <p class="mono flush"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p></div></div></footer>
+<!-- /steelworks:footer --></body></html>

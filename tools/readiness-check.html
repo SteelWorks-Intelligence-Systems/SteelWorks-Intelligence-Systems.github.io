@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- page-owner: steelsignal -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Answer Readiness Check — score any page in one round trip</title>
 <meta name="description" content="Paste a URL and get the ten-check AI-answer readiness score SteelWorks computes for its own pages — indexability, title, description, h1, canonical, structured data, answer schema, internal links, visible content, freshness — with the fix for each miss.">
@@ -11,13 +12,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="stylesheet" href="/assets/components.css">
 <!--
-  design-knowledge: style-systems.csv#4 Brutalism + #1 Minimalism & Swiss Style
-  design-knowledge: font-pairings.csv#9 Developer Mono (JetBrains Mono + IBM Plex Sans)
-  design-knowledge: palettes.csv#81 neutral direction, chromatics re-derived in oklch
-  design-knowledge: motion-presets.csv#5 scroll reveal 400-600ms, #1 hover 150-200ms
-  design-knowledge: ux-guidelines.csv focus visibility, 44px targets, reduced motion
-  design-knowledge: huashu design-styles.md:31 oklch convergence (2 chromatics, 150 deg apart)
-  Decisions of record: data/org/web-design-decisions.md
+ design-knowledge: style-systems.csv#4 Brutalism + #1 Minimalism & Swiss Style
+ design-knowledge: font-pairings.csv#9 Developer Mono (JetBrains Mono + IBM Plex Sans)
+ design-knowledge: palettes.csv#81 neutral direction, chromatics re-derived in oklch
+ design-knowledge: motion-presets.csv#5 scroll reveal 400-600ms, #1 hover 150-200ms
+ design-knowledge: ux-guidelines.csv focus visibility, 44px targets, reduced motion
+ design-knowledge: huashu design-styles.md:31 oklch convergence (2 chromatics, 150 deg apart)
+ Decisions of record: data/org/web-design-decisions.md
 -->
 <link rel="canonical" href="https://steelworksintelligence.com/tools/readiness-check.html">
 <meta property="og:title" content="AI Answer Readiness Check — score any page in one round trip">
@@ -28,234 +29,198 @@
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "AI Answer Readiness Check \u2014 score any page in one round trip",
-  "description": "Paste a URL and get the ten-check AI-answer readiness score SteelWorks computes for its own pages \u2014 indexability, title, description, h1, canonical, structured data, answer schema, internal links, visible content, freshness \u2014 with the fix for each miss.",
-  "url": "https://steelworksintelligence.com/tools/readiness-check.html",
-  "dateModified": "2026-09-15",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "SteelWorks Intelligence",
-    "url": "https://steelworksintelligence.com"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "SteelWorks Intelligence LLC",
-    "url": "https://steelworksintelligence.com"
-  }
-}
-</script>
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "AI Answer Readiness Check \u2014 score any page in one round trip",
+ "description": "Paste a URL and get the ten-check AI-answer readiness score SteelWorks computes for its own pages \u2014 indexability, title, description, h1, canonical, structured data, answer schema, internal links, visible content, freshness \u2014 with the fix for each miss.",
+ "url": "https://steelworksintelligence.com/tools/readiness-check.html",
+ "dateModified": "2026-09-15",
+ "isPartOf": {
+ "@type": "WebSite",
+ "name": "SteelWorks Intelligence",
+ "url": "https://steelworksintelligence.com"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "SteelWorks Intelligence LLC",
+ "url": "https://steelworksintelligence.com"
+ }
+}</script>
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "AI Answer Readiness Check",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "url": "https://steelworksintelligence.com/tools/readiness-check.html",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "SteelWorks Intelligence LLC",
-    "url": "https://steelworksintelligence.com"
-  }
-}
-</script>
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "AI Answer Readiness Check",
+ "applicationCategory": "BusinessApplication",
+ "operatingSystem": "Web",
+ "url": "https://steelworksintelligence.com/tools/readiness-check.html",
+ "offers": {
+ "@type": "Offer",
+ "price": "0",
+ "priceCurrency": "USD"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "SteelWorks Intelligence LLC",
+ "url": "https://steelworksintelligence.com"
+ }
+}</script>
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What does the check look at?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ten things an answer engine needs before it can cite a page: it may be indexed, it has a real title and description, one h1, a canonical URL, structured data, FAQ or HowTo schema, three or more internal links, five hundred or more visible words, and a visible freshness date."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my page stored?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The page is fetched once, scored in memory and discarded. Only the score is returned to your browser."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference from the $97 audit?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "This checks one page's on-page readiness. The audit measures whether AI answers actually cite you across a query set, scores entity and offsite signals over a stated window, and delivers the prioritised fix list."
-      }
-    }
-  ]
-}
-</script>
-</head>
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+ {
+ "@type": "Question",
+ "name": "What does the check look at?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Ten things an answer engine needs before it can cite a page: it may be indexed, it has a real title and description, one h1, a canonical URL, structured data, FAQ or HowTo schema, three or more internal links, five hundred or more visible words, and a visible freshness date."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "Is my page stored?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "No. The page is fetched once, scored in memory and discarded. Only the score is returned to your browser."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "What is the difference from the audit?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "This checks one page's on-page readiness. The audit measures whether AI answers actually cite you across a query set, scores entity and offsite signals over a stated window, and delivers the prioritised fix list."
+ }
+ }
+ ]
+}</script></head>
 <body>
 <!-- steelworks:header -->
 <a class="skip-link" href="#main">
 Skip to content</a>
 <header class="site-header">
-  <div class="shell">
-    <a class="brand" href="/index.html">
-      <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-terminal-2"></use></svg>
-      SteelWorks
-    </a>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="/systems.html">Systems</a>
-      <a href="/verticals.html">Verticals</a>
-      <a href="/assessments.html">Assessments</a>
-      <a href="/services.html">Engagements</a>
-      <a href="/contact.html">Contact</a>
-      <a class="btn" href="/assessments.html">Start an assessment</a>
-    </nav>
-  </div>
-</header>
+ <div class="shell">
+ <a class="brand" href="/index.html">
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-terminal-2"></use></svg>
+ SteelWorks</a>
+ <nav class="site-nav" aria-label="Primary">
+ <a href="/systems.html">Systems</a>
+ <a href="/verticals.html">Verticals</a>
+ <a href="/assessments.html">Assessments</a>
+ <a href="/services.html">Engagements</a>
+ <a href="/contact.html">Contact</a>
+ <a class="btn" href="/assessments.html">Start an assessment</a></nav></div></header>
 <!-- /steelworks:header -->
 <main id="main" class="shell">
 
 <section class="section reveal">
-  <p class="eyebrow">Apps · client demo · free, no account</p>
-  <h1>AI Answer Readiness Check</h1>
-  <p class="lede">Paste any page. Get the same ten-check score we run on our own site every morning, and the fix for every miss.</p>
-  <form class="capture" id="checkform" action="https://swi-readiness.macsmacpro.workers.dev/score" method="get">
-    <label class="visually-hidden" for="url">Page URL</label>
-    <input id="url" name="url" type="url" required placeholder="https://example.com/your-page" autocomplete="url" inputmode="url">
-    <button class="btn" type="submit">Score it <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-bolt"></use></svg></button>
-    <p class="capture-msg fine" id="status">One page per check · 10-second fetch budget · nothing stored.</p>
-  </form>
-</section>
+ <p class="eyebrow">Apps · client demo · free, no account</p>
+ <h1>AI Answer Readiness Check</h1>
+ <p class="lede">Paste any page. Get the same ten-check score we run on our own site every morning, and the fix for every miss.</p>
+ <form class="capture" id="checkform" action="https://swi-readiness.macsmacpro.workers.dev/score" method="get">
+ <label class="visually-hidden" for="url">Page URL</label>
+ <input id="url" name="url" type="url" required placeholder="https://example.com/your-page" autocomplete="url" inputmode="url">
+ <button class="btn" type="submit">Score it <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-bolt"></use></svg></button>
+ <p class="capture-msg fine" id="status">One page per check · 10-second fetch budget · nothing stored.</p></form></section>
 
 <section class="section reveal" id="result" hidden>
-  <div class="grid grid-2">
-    <div class="card">
-      <p class="eyebrow">Score</p>
-      <span class="metric" id="score">—</span>
-      <p class="mono" id="scored-url"></p>
-    </div>
-    <div class="card">
-      <p class="eyebrow">Method</p>
-      <p>Ten checks, weights fixed, identical to <a href="/tools/readiness-console.html">the console we run on ourselves</a>. A miss subtracts its weight from 100.</p>
-    </div>
-  </div>
-  <h2>Misses and fixes</h2>
-  <ol class="stack" id="issues"></ol>
-  <h2>What the page exposed</h2>
-  <div style="overflow-x:auto"><table><tbody id="meta"></tbody></table></div>
-  <p class="receipt" id="receipt"></p>
-</section>
+ <div class="grid grid-2">
+ <div class="card">
+ <p class="eyebrow">Score</p>
+ <span class="metric" id="score">—</span>
+ <p class="mono" id="scored-url"></p></div>
+ <div class="card">
+ <p class="eyebrow">Method</p>
+ <p>Ten checks, weights fixed, identical to <a href="/tools/readiness-console.html">the console we run on ourselves</a>. A miss subtracts its weight from 100.</p></div></div>
+ <h2>Misses and fixes</h2>
+ <ol class="stack" id="issues"></ol>
+ <h2>What the page exposed</h2>
+ <div style="overflow-x:auto"><table><tbody id="meta"></tbody></table></div>
+ <p class="receipt" id="receipt"></p></section>
 
 <section class="section reveal">
-  <h2>Where this stops and the audit starts</h2>
-  <div class="grid grid-2">
-    <div class="card"><svg class="ti ti-lg" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-check"></use></svg>
-      <h3>This check</h3><p>One page. On-page readiness. Instant, free, repeatable.</p></div>
-    <div class="card"><svg class="ti ti-lg" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-shield-check"></use></svg>
-      <h3>The audit ($97)</h3><p>Whether AI answers cite you across your query set, entity and offsite signals over a stated window, and the prioritised fix list.</p>
-      <p><a class="btn" href="https://steelworksintelligence.com/contact.html" target="_blank" rel="noopener noreferrer">Get the audit <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-arrow-up-right"></use></svg></a></p></div>
-  </div>
-  <figure class="flush"><img src="/assets/img/brand/readiness-scorecard.svg" alt="Four real AI Search Readiness audit scores, drawn from the audit log" loading="lazy" width="1200" height="750"><figcaption class="fine">The same ten checks, run on real sites. Redrawn from the audit log on every deploy.</figcaption></figure>
-</section>
+ <h2>Where this stops and the audit starts</h2>
+ <div class="grid grid-2">
+ <div class="card"><svg class="ti ti-lg" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-check"></use></svg>
+ <h3>This check</h3><p>One page. On-page readiness. Instant, free, repeatable.</p></div>
+ <div class="card"><svg class="ti ti-lg" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-shield-check"></use></svg>
+ <h3>The audit</h3><p>Whether AI answers cite you across your query set, entity and offsite signals over a stated window, and the prioritised fix list.</p>
+ <p><a class="btn" href="https://steelworksintelligence.com/contact.html" target="_blank" rel="noopener noreferrer">Get the audit <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-arrow-up-right"></use></svg></a></p></div></div>
+ <figure class="flush"><img src="/assets/img/brand/readiness-scorecard.svg" alt="Four real AI Search Readiness audit scores, drawn from the audit log" loading="lazy" width="1200" height="750"><figcaption class="fine">The same ten checks, run on real sites. Redrawn from the audit log on every deploy.</figcaption></figure></section>
 
 <script>
-(function () {
-  var WORKER = "https://swi-readiness.macsmacpro.workers.dev";
-  var form = document.getElementById("checkform"), status = document.getElementById("status");
-  var result = document.getElementById("result");
-  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
-  function row(k, v) { return "<tr><th>" + esc(k) + "</th><td>" + esc(v) + "</td></tr>"; }
-  form.addEventListener("submit", function (ev) {
-    ev.preventDefault();
-    var url = document.getElementById("url").value.trim();
-    if (!url) return;
-    status.textContent = "Fetching and scoring…";
-    result.hidden = true;
-    var ctrl = new AbortController(); var t = setTimeout(function () { ctrl.abort(); }, 20000);
-    fetch(WORKER + "/score?url=" + encodeURIComponent(url), { signal: ctrl.signal })
-      .then(function (r) { return r.json().then(function (j) { return [r.status, j]; }); })
-      .then(function (pair) {
-        clearTimeout(t);
-        var st = pair[0], j = pair[1];
-        if (st !== 200 || j.error) { status.textContent = "Could not score that page: " + (j.error || ("HTTP " + st)); return; }
-        document.getElementById("score").textContent = j.score + "/100";
-        document.getElementById("scored-url").textContent = j.url;
-        var issues = document.getElementById("issues"); issues.innerHTML = "";
-        if (!j.issues.length) issues.innerHTML = "<li>No misses. This page clears every check.</li>";
-        j.issues.forEach(function (i) { issues.innerHTML += "<li><strong>" + esc(i.label) + "</strong> <span class=\"mono\">−" + i.points + "</span><br>" + esc(i.fix) + "</li>"; });
-        var m = j.meta, meta = document.getElementById("meta");
-        meta.innerHTML = row("title", m.title || "(none)") + row("description", m.description ? m.description.length + " chars" : "(none)") +
-          row("h1 count", m.h1.length) + row("canonical", m.canonical ? "yes" : "no") + row("structured data blocks", m.schema_count) +
-          row("FAQ / HowTo schema", (m.faq_schema || m.howto_schema) ? "yes" : "no") + row("internal links", m.internal_links) +
-          row("visible words", m.visible_words) + row("freshness signal", m.updated_signal ? "yes" : "no") + row("indexable", m.robots_index ? "yes" : "NO");
-        document.getElementById("receipt").textContent = "Fetched " + j.fetched_at + " · " + j.bytes + " bytes" + (j.truncated ? " (scored the first 2 MB)" : "") + " · " + j.method;
-        result.hidden = false; status.textContent = "Done. Score another page any time.";
-        result.scrollIntoView({ behavior: "smooth", block: "start" });
-      })
-      .catch(function (e) {
-        clearTimeout(t);
-        status.textContent = (e && e.name === "AbortError") ? "Timed out after 20 s." :
-          "The checker backend is not reachable from here (" + WORKER + "). If this is the demo before deploy, that is expected — the page says so rather than inventing a score.";
-      });
-  });
-})();
-</script>
-
-</main>
+(function {
+ var WORKER = "https://swi-readiness.macsmacpro.workers.dev";
+ var form = document.getElementById("checkform"), status = document.getElementById("status");
+ var result = document.getElementById("result");
+ function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+ function row(k, v) { return "<tr><th>" + esc(k) + "</th><td>" + esc(v) + "</td></tr>"; }
+ form.addEventListener("submit", function (ev) {
+ ev.preventDefault;
+ var url = document.getElementById("url").value.trim;
+ if (!url) return;
+ status.textContent = "Fetching and scoring…";
+ result.hidden = true;
+ var ctrl = new AbortController; var t = setTimeout(function { ctrl.abort; }, 20000);
+ fetch(WORKER + "/score?url=" + encodeURIComponent(url), { signal: ctrl.signal }).then(function (r) { return r.json.then(function (j) { return [r.status, j]; }); }).then(function (pair) {
+ clearTimeout(t);
+ var st = pair[0], j = pair[1];
+ if (st !== 200 || j.error) { status.textContent = "Could not score that page: " + (j.error || ("HTTP " + st)); return; }
+ document.getElementById("score").textContent = j.score + "/100";
+ document.getElementById("scored-url").textContent = j.url;
+ var issues = document.getElementById("issues"); issues.innerHTML = "";
+ if (!j.issues.length) issues.innerHTML = "<li>No misses. This page clears every check.</li>";
+ j.issues.forEach(function (i) { issues.innerHTML += "<li><strong>" + esc(i.label) + "</strong> <span class=\"mono\">−" + i.points + "</span><br>" + esc(i.fix) + "</li>"; });
+ var m = j.meta, meta = document.getElementById("meta");
+ meta.innerHTML = row("title", m.title || "(none)") + row("description", m.description ? m.description.length + " chars" : "(none)") +
+ row("h1 count", m.h1.length) + row("canonical", m.canonical ? "yes" : "no") + row("structured data blocks", m.schema_count) +
+ row("FAQ / HowTo schema", (m.faq_schema || m.howto_schema) ? "yes" : "no") + row("internal links", m.internal_links) +
+ row("visible words", m.visible_words) + row("freshness signal", m.updated_signal ? "yes" : "no") + row("indexable", m.robots_index ? "yes" : "NO");
+ document.getElementById("receipt").textContent = "Fetched " + j.fetched_at + " · " + j.bytes + " bytes" + (j.truncated ? " (scored the first 2 MB)" : "") + " · " + j.method;
+ result.hidden = false; status.textContent = "Done. Score another page any time.";
+ result.scrollIntoView({ behavior: "smooth", block: "start" });
+ }).catch(function (e) {
+ clearTimeout(t);
+ status.textContent = (e && e.name === "AbortError") ? "Timed out after 20 s." :
+ "The checker backend is not reachable from here (" + WORKER + "). If this is the demo before deploy, that is expected — the page says so rather than inventing a score.";
+ });
+ });
+});</script></main>
 <!-- steelworks:footer -->
 <footer class="site-footer">
-  <div class="shell">
-    <hr class="rule">
-    <div class="footer-grid">
-      <div>
-        <h2>What we build</h2>
-        <ul>
-          <li><a href="/systems.html">Structural AI systems</a></li>
-          <li><a href="/systems.html#architecture">The four layers</a></li>
-          <li><a href="/systems.html#hierarchy">Hierarchy &amp; org charts</a></li>
-          <li><a href="/services/ai-security-audit.html">Security &amp; governance</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Where we build it</h2>
-        <ul>
-          <li><a href="/verticals.html">The eight markets</a></li>
-          <li><a href="/verticals.html#method">The vertical method</a></li>
-          <li><a href="/systems.html#models">Model selection</a></li>
-          <li><a href="/systems.html#proof">Run on ourselves</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>How you start</h2>
-        <ul>
-          <li><a href="/assessments.html">Assessments</a></li>
-          <li><a href="/services/ai-security-audit.html">AI Security &amp; Risk Audit</a></li>
-          <li><a href="/services.html">Engagements</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Company</h2>
-        <ul>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI RMF</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-meta">
-      <p class="mono flush">SteelWorks Intelligence Systems. United States. Built and operated by an autonomous agent fleet. <!--STATS:STAMP-->Live-derived from fleet state · verified 2026-09-15<!--/STATS:STAMP--></p>
-      <p class="mono flush"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
-    </div>
-  </div>
-</footer>
-<!-- /steelworks:footer -->
-</body>
-</html>
+ <div class="shell">
+ <hr class="rule">
+ <div class="footer-grid">
+ <div>
+ <h2>What we build</h2>
+ <ul>
+ <li><a href="/systems.html">Structural AI systems</a></li>
+ <li><a href="/systems.html#architecture">The four layers</a></li>
+ <li><a href="/systems.html#hierarchy">Hierarchy &amp; org charts</a></li>
+ <li><a href="/services/ai-security-audit.html">Security &amp; governance</a></li></ul></div>
+ <div>
+ <h2>Where we build it</h2>
+ <ul>
+ <li><a href="/verticals.html">The eight markets</a></li>
+ <li><a href="/verticals.html#method">The vertical method</a></li>
+ <li><a href="/systems.html#models">Model selection</a></li>
+ <li><a href="/systems.html#proof">Run on ourselves</a></li></ul></div>
+ <div>
+ <h2>How you start</h2>
+ <ul>
+ <li><a href="/assessments.html">Assessments</a></li>
+ <li><a href="/services/ai-security-audit.html">AI Security &amp; Risk Audit</a></li>
+ <li><a href="/services.html">Engagements</a></li>
+ <li><a href="/contact.html">Contact</a></li></ul></div>
+ <div>
+ <h2>Company</h2>
+ <ul>
+ <li><a href="/about.html">About</a></li>
+ <li><a href="/press.html">Press</a></li>
+ <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI RMF</a></li></ul></div></div>
+ <div class="footer-meta">
+ <p class="mono flush">SteelWorks Intelligence Systems. United States. Built and operated by an autonomous agent fleet. <!--STATS:STAMP-->Live-derived from fleet state · verified 2026-09-15<!--/STATS:STAMP--></p>
+ <p class="mono flush"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p></div></div></footer>
+<!-- /steelworks:footer --></body></html>

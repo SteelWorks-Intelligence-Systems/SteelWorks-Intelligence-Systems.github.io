@@ -1,149 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="robots" content="noindex,follow">
+ <meta name="robots" content="noindex,follow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Task Console | OpenClaw Workbenches</title>
-  <meta name="description" content="Live output of the free-first competitive workbench OS — static, local, agent-readable, no paid APIs.">
+ <meta name="description" content="Live output of the competitive workbench OS — static, local, agent-readable, no paid APIs.">
 <link rel="icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="stylesheet" href="/assets/components.css">
 <!--
-  design-knowledge: style-systems.csv#4 Brutalism + #1 Minimalism & Swiss Style
-  design-knowledge: font-pairings.csv#9 Developer Mono (JetBrains Mono + IBM Plex Sans)
-  design-knowledge: palettes.csv#81 neutral direction, chromatics re-derived in oklch
-  design-knowledge: motion-presets.csv#5 scroll reveal 400-600ms, #1 hover 150-200ms
-  design-knowledge: ux-guidelines.csv focus visibility, 44px targets, reduced motion
-  design-knowledge: huashu design-styles.md:31 oklch convergence (2 chromatics, 150 deg apart)
-  Decisions of record: data/org/web-design-decisions.md
+ design-knowledge: style-systems.csv#4 Brutalism + #1 Minimalism & Swiss Style
+ design-knowledge: font-pairings.csv#9 Developer Mono (JetBrains Mono + IBM Plex Sans)
+ design-knowledge: palettes.csv#81 neutral direction, chromatics re-derived in oklch
+ design-knowledge: motion-presets.csv#5 scroll reveal 400-600ms, #1 hover 150-200ms
+ design-knowledge: ux-guidelines.csv focus visibility, 44px targets, reduced motion
+ design-knowledge: huashu design-styles.md:31 oklch convergence (2 chromatics, 150 deg apart)
+ Decisions of record: data/org/web-design-decisions.md
 -->
-  <link rel="canonical" href="https://steelworksintelligence.com/workbenches/task-console.html" />
+ <link rel="canonical" href="https://steelworksintelligence.com/workbenches/task-console.html" />
 <meta property="og:type" content="website" />
-  <meta property="og:title" content="Task Console | OpenClaw Workbenches" />
-  <meta property="og:description" content="Live output of the free-first competitive workbench OS — static, local, agent-readable, no paid APIs." />
-  <meta property="og:url" content="https://steelworksintelligence.com/workbenches/task-console.html" />
-  <meta property="og:image" content="https://steelworksintelligence.com/assets/brand/banner.png" />
-  <meta property="og:site_name" content="SteelWorks Intelligence Systems" />
-  <meta name="twitter:card" content="summary_large_image" />
+ <meta property="og:title" content="Task Console | OpenClaw Workbenches" />
+ <meta property="og:description" content="Live output of the competitive workbench OS — static, local, agent-readable, no paid APIs." />
+ <meta property="og:url" content="https://steelworksintelligence.com/workbenches/task-console.html" />
+ <meta property="og:image" content="https://steelworksintelligence.com/assets/brand/banner.png" />
+ <meta property="og:site_name" content="SteelWorks Intelligence Systems" />
+ <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Task Console | OpenClaw Workbenches" />
-  <meta name="twitter:description" content="Live output of the free-first competitive workbench OS — static, local, agent-readable, no paid APIs.">
-  <meta name="twitter:image" content="https://steelworksintelligence.com/assets/brand/banner.png" />
-<!-- page-owner: internal -->
-</head>
+ <meta name="twitter:description" content="Live output of the competitive workbench OS — static, local, agent-readable, no paid APIs.">
+ <meta name="twitter:image" content="https://steelworksintelligence.com/assets/brand/banner.png" />
+<!-- page-owner: internal --></head>
 <body>
 
 <!-- steelworks:header -->
 <a class="skip-link" href="#main">
 Skip to content</a>
 <header class="site-header">
-  <div class="shell">
-    <a class="brand" href="/index.html">
-      <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-terminal-2"></use></svg>
-      SteelWorks
-    </a>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="/systems.html">Systems</a>
-      <a href="/verticals.html">Verticals</a>
-      <a href="/assessments.html">Assessments</a>
-      <a href="/services.html">Engagements</a>
-      <a href="/contact.html">Contact</a>
-      <a class="btn" href="/assessments.html">Start an assessment</a>
-    </nav>
-  </div>
-</header>
+ <div class="shell">
+ <a class="brand" href="/index.html">
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-terminal-2"></use></svg>
+ SteelWorks</a>
+ <nav class="site-nav" aria-label="Primary">
+ <a href="/systems.html">Systems</a>
+ <a href="/verticals.html">Verticals</a>
+ <a href="/assessments.html">Assessments</a>
+ <a href="/services.html">Engagements</a>
+ <a href="/contact.html">Contact</a>
+ <a class="btn" href="/assessments.html">Start an assessment</a></nav></div></header>
 <!-- /steelworks:header -->
 
 <main id="main">
 
-  <section class="section">
-    <div class="shell">
-      <p class="eyebrow reveal">SteelWorks &middot; Workbench</p>
-      <h1 class="reveal">Task Console</h1>
-      <p class="lede reveal">Live output of the free-first competitive workbench OS &mdash;
-      static, local, agent-readable, no paid APIs.</p>
-      <p class="reveal"><a href="/workbenches/">Workbench index</a></p>
-    </div>
-  </section>
-  <section class="section">
-    <div class="shell">
-      <figure class="reveal flush">
-        <img src="/assets/img/brand/cards/workbenches-task-console-html.svg" width="1200" height="750" alt="Task Console — SteelWorks workbench" loading="lazy">
-      </figure>
-    </div>
-  </section>
-  <section class="section">
-    <div class="shell stack">
-<section class="grid grid-3 reveal"><div class="card"><div class='metric'>64</div><div class='muted'>Tasks</div></div><div class="card"><div class='metric'>54</div><div class='muted'>Complete</div></div><div class="card"><div class='metric'>10</div><div class='muted'>Queued Or Active</div></div><div class="card"><div class='metric'>54</div><div class='muted'>Artifact Backed Tasks</div></div></div><h2 class="reveal">Task Replay Index</h2><table><thead><tr><th>ID</th><th>Agent</th><th>Priority</th><th>Status</th><th>Task</th></tr></thead><tbody><tr><td>47e2ea4f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for LinkedIn guide</td></tr><tr><td>46579dfd</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Twitter/X guide</td></tr><tr><td>8317d850</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>6c0ec5dc</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>4c8d8b66</td><td>marketing</td><td>high</td><td>skipped_duplicate</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>e02ae49f</td><td>marketing</td><td>high</td><td>skipped_duplicate</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>6baebd2b</td><td>marketing</td><td>high</td><td>skipped_duplicate</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>1e4d13a4</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for Create Gumroad product for &#x27;Reddit&#x27;</td></tr><tr><td>d8d6908c</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for Create Gumroad product for &#x27;Pinterest&#x27;</td></tr><tr><td>1aa2cf05</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>c17715d9</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>cb31c350</td><td>marketing</td><td>high</td><td>complete</td><td>Build validation landing page, offer, SEO page, and campaign assets for Zapier</td></tr><tr><td>4d18428c</td><td>marketing</td><td>high</td><td>complete</td><td>Build validation landing page, lead capture, and proof-of-work demo for Developer workflow kit for Zapier</td></tr><tr><td>39c73f71</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for Launch Developer workflow kit for Zapier for technical founder or operator</td></tr><tr><td>cb31c350</td><td>marketing</td><td>high</td><td>skipped_duplicate</td><td>Build validation landing page, offer, SEO page, and campaign assets for Zapier</td></tr><tr><td>31cb143a</td><td>marketing</td><td>high</td><td>complete</td><td>Build validation landing page, lead capture, and proof-of-work demo for AI Search Website OS</td></tr><tr><td>bf4f411b</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for Launch AI Search Website OS for SMBs</td></tr><tr><td>d1d08224</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for High Engagement Topic Without Product The Ai Seo Agency guide</td></tr><tr><td>e6af775f</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for High-engagement topic without product: &#x27;The AI SEO Agency&#x27;</td></tr><tr><td>62857951</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>3df3cac6</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>8480c8d3</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>2321595f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>d231b177</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>433daba1</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>64cff5c6</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>3a42c84f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>0c438f3d</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>fc8caffe</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>c1268916</td><td>builder</td><td>low</td><td>failed</td><td>RSI-L2: performance pruning lane — implement the DESIGNED spec: weighted-decay failure score from gateway sqlite (READ-ONLY), own state in pruning_state.json, trusted-&gt;probation-&gt;disabled machine, auto-disable non-guarded / report-only guarded. Full design: data/bridge/transcripts/pruning-lane-design.jsonl + data/journal/llm-bridge-journal.jsonl entry</td></tr><tr><td>cd1214c0</td><td>builder</td><td>low</td><td>failed</td><td>RSI-L2: skill-writer lane — agents draft skills from repeated task patterns, register via tool_layer behind existing write gates</td></tr><tr><td>d9dee81d</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>7c3f842d</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>2abcc221</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>c5913363</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>52f56f2f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>f9ccecaa</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>c30fe036</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>5a5f12fb</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>21917b21</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>7dd42a86</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>fb589963</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>84a8d17f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>1ef0e698</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>bb7f838b</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>4a8eaaa5</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>69e84311</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>0735e508</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>5278d4bc</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>95caf03f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>14b52efb</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>2e13f1fd</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>df413289</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>88b5896e</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>a854b3dc</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>c1f6df55</td><td>builder</td><td>normal</td><td>complete</td><td>Add Gumroad buy button and ConvertKit email capture to ~/openclaw/website/investor.html</td></tr><tr><td>5f03e200</td><td>builder</td><td>normal</td><td>complete</td><td>Add Gumroad buy button and ConvertKit email capture to ~/openclaw/website/free-ai-business-stack.html</td></tr><tr><td>932c12c6</td><td>builder</td><td>normal</td><td>complete</td><td>Add Gumroad buy button and ConvertKit email capture to ~/openclaw/website/about.html</td></tr><tr><td>30b1e31f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>1a7f5136</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>3a006573b2-1</td><td>marketing</td><td>high</td><td>queued</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>3a006573b2-2</td><td>seo</td><td>normal</td><td>queued</td><td>Create SEO campaign page and internal CTA path for Create Gumroad product for &#x27;Pinterest&#x27;</td></tr><tr><td>c2821c1a83-1</td><td>marketing</td><td>high</td><td>queued</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>c2821c1a83-2</td><td>seo</td><td>normal</td><td>queued</td><td>Create SEO campaign page and internal CTA path for Create Gumroad product for &#x27;Reddit&#x27;</td></tr></tbody></table>
-    </div>
-  </section>
-  <section class="section">
-    <div class="shell">
-      <hr class="rule">
-      <div class="stack pad-t">
-        <h2 class="reveal">Get the free stack.</h2>
-        <form class="capture reveal" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
-          <label class="visually-hidden" for="email">Email address</label>
-          <input id="email" name="email" type="email" required placeholder="you@company.com" autocomplete="email">
-          <button class="btn" type="submit">Send it</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-</main>
+ <section class="section">
+ <div class="shell">
+ <p class="eyebrow reveal">SteelWorks &middot; Workbench</p>
+ <h1 class="reveal">Task Console</h1>
+ <p class="lede reveal">Live output of the competitive workbench OS &mdash;
+ static, local, agent-readable, no paid APIs.</p>
+ <p class="reveal"><a href="/workbenches/">Workbench index</a></p></div></section>
+ <section class="section">
+ <div class="shell">
+ <figure class="reveal flush">
+ <img src="/assets/img/brand/cards/workbenches-task-console-html.svg" width="1200" height="750" alt="Task Console — SteelWorks workbench" loading="lazy"></figure></div></section>
+ <section class="section">
+ <div class="shell stack">
+<section class="grid grid-3 reveal"><div class="card"><div class='metric'>64</div><div class='muted'>Tasks</div></div><div class="card"><div class='metric'>54</div><div class='muted'>Complete</div></div><div class="card"><div class='metric'>10</div><div class='muted'>Queued Or Active</div></div><div class="card"><div class='metric'>54</div><div class='muted'>Artifact Backed Tasks</div></div></div><h2 class="reveal">Task Replay Index</h2><table><thead><tr><th>ID</th><th>Agent</th><th>Priority</th><th>Status</th><th>Task</th></tr></thead><tbody><tr><td>47e2ea4f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for LinkedIn guide</td></tr><tr><td>46579dfd</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Twitter/X guide</td></tr><tr><td>8317d850</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>6c0ec5dc</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>4c8d8b66</td><td>marketing</td><td>high</td><td>skipped_duplicate</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>e02ae49f</td><td>marketing</td><td>high</td><td>skipped_duplicate</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>6baebd2b</td><td>marketing</td><td>high</td><td>skipped_duplicate</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>1e4d13a4</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for Create Gumroad product for &#x27;Reddit&#x27;</td></tr><tr><td>d8d6908c</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for Create Gumroad product for &#x27;Pinterest&#x27;</td></tr><tr><td>1aa2cf05</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>c17715d9</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>cb31c350</td><td>marketing</td><td>high</td><td>complete</td><td>Build validation landing page, offer, SEO page, and campaign assets for Zapier</td></tr><tr><td>4d18428c</td><td>marketing</td><td>high</td><td>complete</td><td>Build validation landing page, lead capture, and proof-of-work demo for Developer workflow kit for Zapier</td></tr><tr><td>39c73f71</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for Launch Developer workflow kit for Zapier for technical founder or operator</td></tr><tr><td>cb31c350</td><td>marketing</td><td>high</td><td>skipped_duplicate</td><td>Build validation landing page, offer, SEO page, and campaign assets for Zapier</td></tr><tr><td>31cb143a</td><td>marketing</td><td>high</td><td>complete</td><td>Build validation landing page, lead capture, and proof-of-work demo for AI Search Website OS</td></tr><tr><td>bf4f411b</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for Launch AI Search Website OS for SMBs</td></tr><tr><td>d1d08224</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for High Engagement Topic Without Product The Ai Seo Agency guide</td></tr><tr><td>e6af775f</td><td>seo</td><td>normal</td><td>complete</td><td>Create SEO campaign page and internal CTA path for High-engagement topic without product: &#x27;The AI SEO Agency&#x27;</td></tr><tr><td>62857951</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>3df3cac6</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>8480c8d3</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>2321595f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>d231b177</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>433daba1</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>64cff5c6</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>3a42c84f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>0c438f3d</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>fc8caffe</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>c1268916</td><td>builder</td><td>low</td><td>failed</td><td>RSI-L2: performance pruning lane — implement the DESIGNED spec: weighted-decay failure score from gateway sqlite (READ-ONLY), own state in pruning_state.json, trusted-&gt;probation-&gt;disabled machine, auto-disable non-guarded / report-only guarded. Full design: data/bridge/transcripts/pruning-lane-design.jsonl + data/journal/llm-bridge-journal.jsonl entry</td></tr><tr><td>cd1214c0</td><td>builder</td><td>low</td><td>failed</td><td>RSI-L2: skill-writer lane — agents draft skills from repeated task patterns, register via tool_layer behind existing write gates</td></tr><tr><td>d9dee81d</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>7c3f842d</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>2abcc221</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>c5913363</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>52f56f2f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>f9ccecaa</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>c30fe036</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>5a5f12fb</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>21917b21</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>7dd42a86</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>fb589963</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>84a8d17f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>1ef0e698</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>bb7f838b</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>4a8eaaa5</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>69e84311</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>0735e508</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>5278d4bc</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>95caf03f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>14b52efb</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>2e13f1fd</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>df413289</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>88b5896e</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>a854b3dc</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>30b1e31f</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>1a7f5136</td><td>marketing</td><td>high</td><td>complete</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>3a006573b2-1</td><td>marketing</td><td>high</td><td>queued</td><td>Build Gumroad landing page for Pinterest guide</td></tr><tr><td>3a006573b2-2</td><td>seo</td><td>normal</td><td>queued</td><td>Create SEO campaign page and internal CTA path for Create Gumroad product for &#x27;Pinterest&#x27;</td></tr><tr><td>c2821c1a83-1</td><td>marketing</td><td>high</td><td>queued</td><td>Build Gumroad landing page for Reddit guide</td></tr><tr><td>c2821c1a83-2</td><td>seo</td><td>normal</td><td>queued</td><td>Create SEO campaign page and internal CTA path for Create Gumroad product for &#x27;Reddit&#x27;</td></tr></tbody></table></div></section>
+ <section class="section">
+ <div class="shell">
+ <hr class="rule">
+ <div class="stack pad-t">
+ <h2 class="reveal">Get the free stack.</h2>
+ <form class="capture reveal" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
+ <label class="visually-hidden" for="email">Email address</label>
+ <input id="email" name="email" type="email" required placeholder="you@company.com" autocomplete="email">
+ <button class="btn" type="submit">Send it</button></form></div></div></section></main>
 
 <!-- steelworks:footer -->
 <footer class="site-footer">
-  <div class="shell">
-    <hr class="rule">
-    <div class="footer-grid">
-      <div>
-        <h2>What we build</h2>
-        <ul>
-          <li><a href="/systems.html">Structural AI systems</a></li>
-          <li><a href="/systems.html#architecture">The four layers</a></li>
-          <li><a href="/systems.html#hierarchy">Hierarchy &amp; org charts</a></li>
-          <li><a href="/services/ai-security-audit.html">Security &amp; governance</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Where we build it</h2>
-        <ul>
-          <li><a href="/verticals.html">The eight markets</a></li>
-          <li><a href="/verticals.html#method">The vertical method</a></li>
-          <li><a href="/systems.html#models">Model selection</a></li>
-          <li><a href="/systems.html#proof">Run on ourselves</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>How you start</h2>
-        <ul>
-          <li><a href="/assessments.html">Assessments</a></li>
-          <li><a href="/services/ai-security-audit.html">AI Security &amp; Risk Audit</a></li>
-          <li><a href="/services.html">Engagements</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Company</h2>
-        <ul>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI RMF</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-meta">
-      <p class="mono flush">SteelWorks Intelligence Systems. United States. Built and operated by an autonomous agent fleet. <!--STATS:STAMP-->Live-derived from fleet state · verified 2026-09-15<!--/STATS:STAMP--></p>
-      <p class="mono flush"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
-    </div>
-  </div>
-</footer>
+ <div class="shell">
+ <hr class="rule">
+ <div class="footer-grid">
+ <div>
+ <h2>What we build</h2>
+ <ul>
+ <li><a href="/systems.html">Structural AI systems</a></li>
+ <li><a href="/systems.html#architecture">The four layers</a></li>
+ <li><a href="/systems.html#hierarchy">Hierarchy &amp; org charts</a></li>
+ <li><a href="/services/ai-security-audit.html">Security &amp; governance</a></li></ul></div>
+ <div>
+ <h2>Where we build it</h2>
+ <ul>
+ <li><a href="/verticals.html">The eight markets</a></li>
+ <li><a href="/verticals.html#method">The vertical method</a></li>
+ <li><a href="/systems.html#models">Model selection</a></li>
+ <li><a href="/systems.html#proof">Run on ourselves</a></li></ul></div>
+ <div>
+ <h2>How you start</h2>
+ <ul>
+ <li><a href="/assessments.html">Assessments</a></li>
+ <li><a href="/services/ai-security-audit.html">AI Security &amp; Risk Audit</a></li>
+ <li><a href="/services.html">Engagements</a></li>
+ <li><a href="/contact.html">Contact</a></li></ul></div>
+ <div>
+ <h2>Company</h2>
+ <ul>
+ <li><a href="/about.html">About</a></li>
+ <li><a href="/press.html">Press</a></li>
+ <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI RMF</a></li></ul></div></div>
+ <div class="footer-meta">
+ <p class="mono flush">SteelWorks Intelligence Systems. United States. Built and operated by an autonomous agent fleet. <!--STATS:STAMP-->Live-derived from fleet state · verified 2026-09-15<!--/STATS:STAMP--></p>
+ <p class="mono flush"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p></div></div></footer>
 <!-- /steelworks:footer -->
 
-<script src="/assets/capture.js" defer></script>
-</body>
-</html>
+<script src="/assets/capture.js" defer></script></body></html>
