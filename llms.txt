@@ -18,7 +18,7 @@ Last updated: 2026-09-15
 - AI Search Readiness Package: https://steelworksintelligence.com/products/ai-search-readiness.html
 
 ## Entity Facts
-- SteelWorks Intelligence is a founder-led AI automation business based in Acworth, Georgia.
+- SteelWorks Intelligence is a founder-led AI automation business operating remotely across the United States.
 - SteelWorks AI Search Agency is the AI SEO service line under SteelWorks Intelligence.
 - The market-facing hook is "The AI SEO Agency" and the productized fulfillment system is AI Search Website OS.
 - The service improves entity clarity, answer-ready pages, schema, source hubs, local trust, lead capture, and monthly AI-search visibility reporting.
