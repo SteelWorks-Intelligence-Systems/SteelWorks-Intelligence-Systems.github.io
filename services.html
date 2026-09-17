@@ -258,7 +258,7 @@ Skip to content</a>
  <p>Tell us what the operation is and where it breaks. You get a written reply from a principal,
  not a sequence from a marketing system.</p></div>
  <div class="reveal">
- <form class="capture" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
+ <form aria-describedby="form-consent-1" class="capture" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
  <label class="visually-hidden" for="svc-name">Your name</label>
  <input id="svc-name" name="name" type="text" required placeholder="Your name" autocomplete="name">
  <label class="visually-hidden" for="svc-email">Work email address</label>
@@ -277,7 +277,8 @@ Skip to content</a>
  <label class="visually-hidden" for="svc-message">What is the operation, and where does it break?</label>
  <textarea id="svc-message" name="message" placeholder="What is the operation, and where does it break?"></textarea>
  <input type="hidden" name="source" value="capabilities_inquiry">
- <button class="btn" type="submit">Send <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-mail"></use></svg></button></form></div></div></section></main>
+ <button class="btn" type="submit">Send <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-mail"></use></svg></button>
+<p class="fine" id="form-consent-1" data-consent-notice>By submitting this form you agree to our <a href="/privacy.html">Privacy Policy</a>. We use what you enter only to reply to your enquiry, and we do not set cookies or sell your details.</p></form></div></div></section></main>
 
 <!-- steelworks:footer -->
 <footer class="site-footer">

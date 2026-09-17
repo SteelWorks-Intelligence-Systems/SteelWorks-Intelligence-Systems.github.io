@@ -196,7 +196,7 @@ Skip to content</a>
  <p class="reveal">Leave your company, your market, and what you already run &mdash; agents, copilots,
  automations, or nothing yet. You get a written reply naming which assessment fits, what it would
  cover, and the price, before any work starts.</p>
- <form class="capture reveal" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
+ <form aria-describedby="form-consent-1" class="capture reveal" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
  <label class="visually-hidden" for="as-website">Your company website</label>
  <input id="as-website" name="website" type="text" required placeholder="yourcompany.com" autocomplete="url">
  <label class="visually-hidden" for="as-email">Work email</label>
@@ -212,7 +212,8 @@ Skip to content</a>
  <input type="hidden" name="source" value="site_assessments">
  <button class="btn" type="submit">
  Request scoping
- <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-mail"></use></svg></button></form></div></div></section></main>
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-mail"></use></svg></button>
+<p class="fine" id="form-consent-1" data-consent-notice>By submitting this form you agree to our <a href="/privacy.html">Privacy Policy</a>. We use what you enter only to reply to your enquiry, and we do not set cookies or sell your details.</p></form></div></div></section></main>
 
 <!-- steelworks:footer -->
 <footer class="site-footer">

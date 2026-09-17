@@ -93,7 +93,7 @@ Skip to content</a>
  <img src="/assets/img/brand/ops-clock.svg" width="800" height="600" loading="lazy"
  alt="Scheduled jobs per hour of the day, drawn from the live cron store"></div>
  <div class="reveal">
- <form class="capture" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
+ <form aria-describedby="form-consent-1" class="capture" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
  <label class="visually-hidden" for="ob-business">Business name</label>
  <input id="ob-business" name="business" type="text" required placeholder="Business name" autocomplete="organization">
  <label class="visually-hidden" for="ob-website">Website</label>
@@ -127,7 +127,8 @@ Skip to content</a>
  <label class="visually-hidden" for="ob-order">Order number (from your receipt)</label>
  <input id="ob-order" name="order" type="text" placeholder="Order number from your receipt (optional)">
  <input type="hidden" name="source" value="onboarding:retainer">
- <button class="btn" type="submit">Start my retainer <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-rocket"></use></svg></button></form></div></div></section></main>
+ <button class="btn" type="submit">Start my retainer <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-rocket"></use></svg></button>
+<p class="fine" id="form-consent-1" data-consent-notice>By submitting this form you agree to our <a href="/privacy.html">Privacy Policy</a>. We use what you enter only to reply to your enquiry, and we do not set cookies or sell your details.</p></form></div></div></section></main>
 
 <!-- steelworks:footer -->
 <footer class="site-footer">

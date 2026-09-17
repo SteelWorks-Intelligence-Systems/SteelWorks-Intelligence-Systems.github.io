@@ -143,7 +143,7 @@ Skip to content</a>
  <p class="reveal">Leave your company and the operation that costs you the most time. You get a
  written reply with the shape of the system that would carry it &mdash; or an honest note that you do
  not need one.</p>
- <form class="capture reveal" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
+ <form aria-describedby="form-consent-1" class="capture reveal" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
  <label class="visually-hidden" for="ab-website">Your company website</label>
  <input id="ab-website" name="website" type="text" required placeholder="yourcompany.com" autocomplete="url">
  <label class="visually-hidden" for="ab-email">Work email</label>
@@ -153,7 +153,8 @@ Skip to content</a>
  <input type="hidden" name="source" value="site_about">
  <button class="btn" type="submit">
  Send it over
- <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-mail"></use></svg></button></form></div></div></section></main>
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-mail"></use></svg></button>
+<p class="fine" id="form-consent-1" data-consent-notice>By submitting this form you agree to our <a href="/privacy.html">Privacy Policy</a>. We use what you enter only to reply to your enquiry, and we do not set cookies or sell your details.</p></form></div></div></section></main>
 
 <!-- steelworks:footer -->
 <footer class="site-footer">
