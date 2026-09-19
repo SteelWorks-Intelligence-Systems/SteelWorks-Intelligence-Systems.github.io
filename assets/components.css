@@ -1,0 +1,440 @@
+/* ==========================================================================
+   SteelWorks — components.css
+   THE SINGLE SOURCE. Every page derives from this file. No page-local custom
+   properties, no inline colour. The web excellence gate enforces both.
+
+   Derived from data/org/design-knowledge, cited per decision in
+   data/org/web-design-decisions.md:
+     style-systems.csv#4 Brutalism  +  #1 Minimalism & Swiss Style
+     font-pairings.csv#9 "Developer Mono" — JetBrains Mono + IBM Plex Sans
+     palettes.csv#81 (neutral direction; chromatics moved off the AI-default slate)
+     motion-presets.csv#1,#2 hover micro-interaction · #4,#5 scroll reveal
+                       #7,#8 stagger list
+     ux-guidelines.csv — reduced motion, focus visibility, target sizing
+     vendor/huashu-design/references/design-styles.md:31 — oklch convergence
+   ========================================================================== */
+
+/* --- tokens --------------------------------------------------------------
+   huashu rule: 2–3 chromatic + ONE neutral set written as a lightness
+   sequence. Chromatic hues 150° apart (rule asks >=60°). The previous site
+   had two blues ~15° apart — one hue pretending to be two.                */
+:root {
+  /* neutral ramp — oklch lightness sequence */
+  --ink-900: oklch(0.15 0.02  250);   /* page ground            */
+  --ink-700: oklch(0.28 0.02  250);   /* raised surface         */
+  --ink-500: oklch(0.45 0.015 250);   /* borders, rules         */
+  --ink-300: oklch(0.72 0.01  250);   /* secondary text         */
+  --ink-100: oklch(0.95 0.005 250);   /* primary text           */
+
+  /* chromatics — exactly two */
+  --signal:  oklch(0.78 0.16   75);   /* amber: CTA, receipt accent */
+  --signal-ink: oklch(0.15 0.02 250); /* text ON signal             */
+  --link:    oklch(0.70 0.12  225);   /* cyan: links, informational */
+
+  /* type */
+  --font-display: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+
+  /* swiss grid + rhythm */
+  --measure: 68ch;
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+  --shell: 72rem;
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0:  clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1:  clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);
+  --step-2:  clamp(1.8rem, 1.5rem + 1.5vw, 2.75rem);
+  --step-3:  clamp(2.4rem, 1.8rem + 3vw, 4rem);
+
+  /* motion — motion-presets.csv durations, not invented */
+  --dur-hover: 180ms;   /* #1 subtle hover 150–200ms */
+  --dur-reveal: 420ms;  /* #5 standard scroll reveal 400–600ms */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* --- reset ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ink-900);
+  color: var(--ink-100);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  text-wrap: pretty;            /* huashu README:248 */
+}
+img, svg, video { max-width: 100%; height: auto; display: block; }
+
+/* --- type ----------------------------------------------------------------- */
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0 0 0.5em;
+}
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+p  { max-width: var(--measure); margin: 0 0 1em; }
+.mono, code, kbd, .metric { font-family: var(--font-display); }
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--signal);
+  margin: 0 0 0.75rem;
+}
+.lede { font-size: var(--step-1); color: var(--ink-300); }
+a { color: var(--link); text-underline-offset: 0.2em; }
+a:hover { color: var(--ink-100); }
+
+/* --- layout: swiss grid ---------------------------------------------------- */
+.shell { width: min(100% - (var(--gutter) * 2), var(--shell)); margin-inline: auto; }
+.section { padding-block: clamp(3rem, 8vw, 6rem); }
+.grid { display: grid; gap: var(--gutter); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.rule { border: 0; border-top: 1px solid var(--ink-500); margin: 0; }
+
+/* --- icons: Tabler, locked non-default configuration ----------------------
+   stroke 1.5 (not the 2 default), butt caps + miter joins = square terminals
+   matching the mono/receipt identity. Monochrome, inherits currentColor.   */
+.ti {
+  display: inline-block;            /* the reset makes svg block; an icon sits in the line */
+  width: 1.25em; height: 1.25em;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  fill: none;
+  flex: none;
+  vertical-align: -0.2em;
+}
+.ti-lg { width: 2rem; height: 2rem; }
+
+/* --- shell: header / nav / footer ------------------------------------------ */
+.site-header {
+  border-bottom: 1px solid var(--ink-500);
+  background: var(--ink-900);
+  position: sticky; top: 0; z-index: 10;
+}
+.site-header .shell {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--gutter); padding-block: 1rem;
+}
+.brand {
+  font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em;
+  color: var(--ink-100); text-decoration: none; display: inline-flex;
+  align-items: center; gap: 0.5rem;
+}
+.brand .ti { color: var(--signal); }
+.site-nav { display: flex; gap: 1.5rem; align-items: center; }
+.site-nav a {
+  font-family: var(--font-display); font-size: var(--step--1);
+  color: var(--ink-300); text-decoration: none;
+  transition: color var(--dur-hover) var(--ease);
+}
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--ink-100); }
+.site-footer {
+  border-top: 1px solid var(--ink-500);
+  padding-block: 3rem; margin-top: 4rem; color: var(--ink-300);
+  font-size: var(--step--1);
+}
+.site-footer .shell { display: grid; gap: 1.5rem; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+.footer-links a { color: var(--ink-300); text-decoration: none; }
+.footer-links a:hover { color: var(--ink-100); }
+
+/* --- buttons / CTA --------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-display); font-weight: 700; font-size: var(--step-0);
+  padding: 0.85rem 1.4rem;
+  min-height: 44px;                       /* ux-guidelines: target size */
+  border: 1px solid var(--signal);
+  background: var(--signal); color: var(--signal-ink);
+  text-decoration: none; cursor: pointer;
+  transition: transform var(--dur-hover) var(--ease),
+              background var(--dur-hover) var(--ease);
+}
+.btn:hover { transform: translateY(-2px); color: var(--signal-ink); }
+.btn:active { transform: translateY(0); }
+.btn-ghost { background: transparent; color: var(--ink-100); border-color: var(--ink-500); }
+.btn-ghost:hover { border-color: var(--ink-100); color: var(--ink-100); }
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--signal); outline-offset: 3px;   /* ux-guidelines */
+}
+
+/* --- cards / surfaces ------------------------------------------------------ */
+.card {
+  background: var(--ink-700);
+  border: 1px solid var(--ink-500);
+  padding: var(--gutter);
+  /* brutalist: square corners, no soft shadow — style-systems.csv#4.
+     huashu README:248 names "rounded corners + left border accent" an AI tell. */
+}
+.card h3 { margin-top: 0; }
+.card .ti { color: var(--signal); }
+.metric { font-size: var(--step-2); color: var(--signal); display: block; }
+.muted { color: var(--ink-300); }
+table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--ink-500); vertical-align: top; }
+th { font-family: var(--font-display); font-weight: 700; }
+.receipt {
+  font-family: var(--font-display); font-size: var(--step--1);
+  border: 1px dashed var(--ink-500); padding: var(--gutter);
+  background: color-mix(in oklch, var(--ink-700) 60%, transparent);
+}
+.receipt dl { display: grid; grid-template-columns: 1fr auto; gap: 0.4rem 1rem; margin: 0; }
+.receipt dt { color: var(--ink-300); }
+.receipt dd { margin: 0; text-align: right; }
+/* proof rows: a business line with its findings underneath, score at right.
+   2026-09-02 — the home page now shows real audit results.               */
+.receipt dt small { display: block; color: var(--ink-300); opacity: 0.8; margin-top: 0.15rem; }
+.receipt dt strong { color: var(--ink-100); font-weight: 600; }
+.receipt dd.score { font-size: var(--step-1); color: var(--signal); align-self: start; }
+
+/* --- forms (capture) ------------------------------------------------------- */
+.capture { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.capture input[type="email"],
+.capture input[type="text"],
+.capture input[type="url"] {
+  flex: 1 1 16rem; min-height: 44px; padding: 0.75rem 1rem;
+  font-family: var(--font-body); font-size: var(--step-0);
+  background: var(--ink-900); color: var(--ink-100);
+  border: 1px solid var(--ink-500);
+}
+.capture input::placeholder { color: var(--ink-300); }
+/* services inquiry form (2026-09-02): same field treatment for select/textarea */
+.capture select, .capture textarea {
+  flex: 1 1 16rem; min-height: 44px; padding: 0.75rem 1rem;
+  font-family: var(--font-body); font-size: var(--step-0);
+  background: var(--ink-900); color: var(--ink-100);
+  border: 1px solid var(--ink-500);
+}
+.capture textarea { flex-basis: 100%; min-height: 6rem; resize: vertical; }
+.capture .capture-msg { flex-basis: 100%; }
+
+/* --- motion: CSS scroll-driven, zero JS -----------------------------------
+   motion-presets.csv#5 scroll reveal (400–600ms) and #7 stagger list.
+   The site had ZERO motion before this program.                           */
+@keyframes reveal {
+  from { opacity: 0.001; transform: translateY(1.25rem); }
+  to   { opacity: 1; transform: none; }
+}
+/* CONTENT MUST NEVER BE HIDDEN BY DECORATION.
+   First version used `animation-range: entry 10% cover 32%`. Measured in a real
+   browser: of the .reveal elements scrolled INTO view, 2 of 4 were still at
+   opacity < 0.5 — the range had not been crossed, so the `both` fill held the
+   from-state and the copy stayed invisible. A full-page screenshot showed most of
+   the page as blank black. Decoration that can permanently hide content is a
+   defect, not a style choice.
+   The range now completes while the element is still entering, so anything on
+   screen is legible, and `reveal` starts from 0.001 rather than 0 so a stalled
+   timeline degrades to "faint" rather than "gone". */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal var(--dur-reveal) var(--ease) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 75%;
+  }
+}
+@supports not (animation-timeline: view()) {
+  .reveal { animation: reveal var(--dur-reveal) var(--ease) both; }
+}
+.stagger > * { animation-delay: calc(var(--i, 0) * 70ms); }
+
+/* ux-guidelines.csv — accessibility. Motion is decoration; it must be optional. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { animation: none; opacity: 1; transform: none; }
+}
+
+/* --- utilities ------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+.skip-link {
+  position: absolute; left: 0; top: -3rem; background: var(--signal);
+  color: var(--signal-ink); padding: 0.6rem 1rem; z-index: 100;
+  font-family: var(--font-display);
+}
+.skip-link:focus { top: 0; }
+.stack > * + * { margin-top: var(--gutter); }
+.cluster { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+
+/* Utilities that exist because the gate refused inline colour on real pages.
+   Every one of these replaced a style="color:…" a page author would otherwise
+   have written by hand — which is how 192 pages drift apart. */
+.flush { margin: 0; }
+.pad-t { padding-top: var(--gutter); }
+
+/* Generated supporting figures are rendered at 512x384 (the resolution that made
+   171 images take under an hour instead of 13). `max-width:100%` alone let them
+   stretch to ~1060px in a wide shell — a 2x upscale that reads visibly soft and
+   swallowed the viewport. Cap at native width and keep them left-aligned as
+   supporting evidence rather than hero art. */
+figure img { max-width: min(100%, 32rem); }
+figure.hero img { max-width: 100%; }
+.fine { font-family: var(--font-display); font-size: var(--step--1); color: var(--ink-300); }
+figcaption.fine { padding-top: 0.75rem; }
+
+/* ==========================================================================
+   2026-09-11 — shared card system, resource library, product template, shell v2.
+   Root cause of the "pages all out of whack" report: multiple generators wrote
+   page trees with their own templates and no shared card. One card, one grid,
+   one header/footer — all defined HERE and nowhere else.
+   Citations: style-systems.csv#4 brutalism (square, no shadow), ux-guidelines.csv
+   (44px targets, visible focus), motion-presets.csv#7 stagger.
+   ========================================================================== */
+
+/* --- resource grid + card ---------------------------------------------------- */
+.rgrid {
+  display: grid; gap: var(--gutter);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  align-items: stretch;
+}
+.rcard {
+  display: flex; flex-direction: column; min-width: 0;
+  background: var(--ink-700); border: 1px solid var(--ink-500);
+  transition: border-color var(--dur-hover) var(--ease), transform var(--dur-hover) var(--ease);
+}
+.rcard:hover { border-color: var(--ink-300); transform: translateY(-2px); }
+.rcard-visual { display: block; background: var(--ink-900); border-bottom: 1px solid var(--ink-500); }
+.rcard-visual img { width: 100%; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.rcard-body { display: flex; flex-direction: column; gap: 0.5rem; padding: var(--gutter); flex: 1 1 auto; }
+.rcard-body h3 { font-size: calc(var(--step-0) * 1.1); margin: 0; }
+.rcard-body p { margin: 0; color: var(--ink-300); font-size: var(--step--1); max-width: none; }
+.rcard-tag {
+  display: inline-flex; align-items: center; gap: 0.4rem; margin: 0;
+  font-family: var(--font-display); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--signal);
+}
+.rcard-tag .ti { width: 1em; height: 1em; }
+.rcard-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap;
+  padding: 0 var(--gutter) var(--gutter);
+}
+.price { font-family: var(--font-display); font-weight: 700; color: var(--ink-100); }
+.btn-sm { padding: 0.5rem 0.9rem; font-size: var(--step--1); min-height: 40px; }
+
+/* --- page intro / breadcrumb ------------------------------------------------ */
+.page-intro { padding-bottom: clamp(2rem, 5vw, 3rem); }
+.page-intro .cluster { padding-top: 0.5rem; }
+.crumbs {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  padding-top: var(--gutter); font-family: var(--font-display); font-size: var(--step--1);
+}
+.crumbs a { display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; }
+
+/* --- product template ------------------------------------------------------- */
+.product-hero {
+  display: grid; gap: var(--gutter); align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+}
+.product-hero-copy { min-width: 0; }
+.product-visual { margin: 0; border: 1px solid var(--ink-500); background: var(--ink-900); }
+.product-visual img { width: 100%; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.product-hero h1 { font-size: var(--step-2); }
+.product-body { align-items: start; }
+.product-body h3 { font-size: var(--step-0); margin-top: 1.5em; }
+.library > .section { padding-block: clamp(2rem, 5vw, 3.5rem); }
+.product-body h2 { font-size: var(--step-1); }
+.product-body ul, .product-body ol { padding-left: 1.2rem; }
+.stack-tight { margin: 0 0 1em; padding-left: 1.2rem; }
+.stack-tight > * + * { margin-top: 0.35rem; }
+
+/* --- disclosure (FAQ, collapsed catalogue sections) -------------------------- */
+details { border: 1px solid var(--ink-500); padding: 0.9rem var(--gutter); background: color-mix(in oklch, var(--ink-700) 60%, transparent); }
+details + details { margin-top: 0.5rem; }
+summary {
+  cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: baseline;
+  font-family: var(--font-display); min-height: 24px;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "+"; color: var(--signal); font-weight: 700; flex: none; }
+details[open] > summary::before { content: "\2013"; }
+details > :not(summary) { margin-top: 0.75rem; }
+details > p:last-child { margin-bottom: 0; }
+summary .eyebrow { margin: 0; }
+
+/* --- figures inside a two-column grid must fill the column ---------------------
+   The home page proof section put a <figure> beside a tall receipt; the figure
+   sat at the top with dead space beneath it (operator screenshot, 2026-09-11).
+   A figure that shares a row stretches to the row and covers it.            */
+/* 2026-09-11 (later the same day): the imagery is now DATA — scorecards, the fleet
+   map, the ops clock — and a cover-crop cut the numbers off. A data visual is shown
+   whole, at column width, centred on the row; the caption sits under it as a bar. */
+.grid-2 > figure { margin: 0; align-self: center; display: block; }
+.grid-2 > figure img { width: 100%; max-width: 100%; height: auto; object-fit: contain; border: 1px solid var(--ink-500); }
+.grid-2 > figure figcaption {
+  padding: 0.6rem var(--gutter); border: 1px solid var(--ink-500); border-top: 0;
+  background: color-mix(in oklch, var(--ink-700) 60%, transparent);
+}
+
+/* --- home: hero, pillars, offers ---------------------------------------------- */
+.hero { padding-block: clamp(3.5rem, 9vw, 7rem) clamp(2.5rem, 6vw, 4rem); }
+.hero h1 { max-width: 22ch; }
+.hero .lede { max-width: var(--measure); }
+.hero .cluster { padding-top: 0.5rem; }
+.pillars { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.pillars .card { display: flex; flex-direction: column; gap: 0.5rem; }
+.pillars .card p { margin: 0; color: var(--ink-300); font-size: var(--step--1); max-width: none; }
+.pillars .card h3 { font-size: calc(var(--step-0) * 1.1); margin: 0; }
+.pillars .card a.more { margin-top: auto; padding-top: 0.5rem; font-family: var(--font-display); font-size: var(--step--1); text-decoration: none; display: inline-flex; gap: 0.35rem; align-items: center; }
+.offer { display: flex; flex-direction: column; gap: 0.5rem; }
+.offer .price { font-size: var(--step-1); color: var(--signal); }
+.offer p { max-width: none; }
+.offer .cluster { margin-top: auto; padding-top: 0.75rem; }
+.facts { display: grid; gap: var(--gutter); grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); }
+.facts .metric { font-size: var(--step-2); }
+.facts p { margin: 0; color: var(--ink-300); font-size: var(--step--1); max-width: none; }
+
+/* --- shell v2: nav CTA + grouped footer ------------------------------------------ */
+.site-nav .btn { padding: 0.5rem 0.9rem; min-height: 40px; font-size: var(--step--1); color: var(--signal-ink); }
+.site-nav .btn:hover { color: var(--signal-ink); }
+.footer-grid { display: grid; gap: var(--gutter); grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+.footer-grid h2 { font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-100); margin: 0 0 0.6rem; }
+.footer-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+.footer-grid a { color: var(--ink-300); text-decoration: none; }
+.footer-grid a:hover { color: var(--ink-100); }
+.footer-meta { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid var(--ink-500); }
+@media (max-width: 40rem) {
+  .site-header .shell { flex-wrap: wrap; row-gap: 0.75rem; }
+  .site-nav { flex-wrap: wrap; gap: 0.75rem 1rem; width: 100%; }
+}
+
+/* --- home: pillar rows (Swiss numbered rows, not an icon-card grid) -----------
+   design_antipattern_audit HARD-fails three or more identical icon+heading cards;
+   the four pillars are rows: number and heading left, copy and link right.  */
+.pillar-list { border-top: 1px solid var(--ink-500); }
+.pillar {
+  display: grid; gap: var(--gutter); padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--ink-500);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+@media (min-width: 48rem) { .pillar { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); } }
+.pillar-head { display: flex; gap: 1rem; align-items: baseline; }
+.pillar-head .metric { font-size: var(--step-1); flex: none; }
+.pillar-head h3 { margin: 0; font-size: var(--step-1); }
+.pillar-body p { margin: 0 0 0.75rem; max-width: none; color: var(--ink-300); }
+.pillar-body a.more, .pillars .card a.more {
+  font-family: var(--font-display); font-size: var(--step--1); text-decoration: none;
+  display: inline-flex; gap: 0.35rem; align-items: center;
+}
+.receipt dd a { color: var(--link); }
+/* an icon inside a filled button takes the button's ink, never the card accent —
+   .card .ti painted amber-on-amber and the arrow vanished (home, 2026-09-11). */
+.card .btn .ti, .btn .ti { color: currentColor; }
+.hero .fine { margin-top: 1.25rem; }
+
+.scroll-x { overflow-x: auto; }   /* tables wider than a phone scroll inside their box, never the page */

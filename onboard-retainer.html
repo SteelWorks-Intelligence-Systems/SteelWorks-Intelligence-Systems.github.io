@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>Retainer onboarding — tell the system about your business — SteelWorks Intelligence</title>
+<meta name="description" content="Post-purchase onboarding for the AI Visibility Retainer: your business, your website, your five keywords and how we may access your listings. Five minutes, once — then the monthly audit, rank checks, dated post and report run on their own.">
+<link rel="icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="/assets/components.css">
+<!--
+ design-knowledge: style-systems.csv#21 Conversion-Optimized — one form, one purpose
+ 2026-09-03 client automation Phase 1: the post-purchase onboarding form writes the client
+ record (data/clients/<slug>.json) that client_ops_runner reads every day.
+-->
+
+ <meta property="og:type" content="website" />
+ <meta property="og:title" content="Retainer onboarding — tell the system about your business — SteelWorks Intelligence" />
+ <meta property="og:description" content="Post-purchase onboarding for the AI Visibility Retainer: your business, your website, your five keywords and how we may access your listings. Five minutes, once — then the monthly audit, rank checks, dated post and report run on their own." />
+ <meta property="og:url" content="https://steelworksintelligence.com/onboard-retainer.html" />
+ <meta property="og:image" content="https://steelworksintelligence.com/assets/brand/banner.png" />
+ <meta property="og:site_name" content="SteelWorks Intelligence Systems" />
+ <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Retainer onboarding — tell the system about your business — SteelWorks Intelligence" />
+ <meta name="twitter:description" content="Post-purchase onboarding for the AI Visibility Retainer: your business, your website, your five keywords and how we may access your listings. Five minutes, once — then the monthly audit, rank checks, dated post and report run on their own." />
+ <meta name="twitter:image" content="https://steelworksintelligence.com/assets/brand/banner.png" />
+<link rel="canonical" href="https://steelworksintelligence.com/onboard-retainer.html">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "Retainer onboarding — tell the system about your business — SteelWorks Intelligence",
+ "description": "Post-purchase onboarding for the AI Visibility Retainer: your business, your website, your five keywords and how we may access your listings. Five minutes, once — then the monthly audit, rank checks, dated post and report run on their own.",
+ "url": "https://steelworksintelligence.com/onboard-retainer.html",
+ "dateModified": "2026-09-11",
+ "isPartOf": {
+ "@type": "WebSite",
+ "name": "SteelWorks Intelligence",
+ "url": "https://steelworksintelligence.com/"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "SteelWorks Intelligence LLC",
+ "url": "https://steelworksintelligence.com/"
+ }
+}</script></head>
+<body>
+
+<!-- steelworks:header -->
+<a class="skip-link" href="#main">
+Skip to content</a>
+<header class="site-header">
+ <div class="shell">
+ <a class="brand" href="/index.html">
+ <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-terminal-2"></use></svg>
+ SteelWorks</a>
+ <nav class="site-nav" aria-label="Primary">
+ <a href="/systems.html">Systems</a>
+ <a href="/verticals.html">Verticals</a>
+ <a href="/assessments.html">Assessments</a>
+ <a href="/services.html">Engagements</a>
+ <a href="/contact.html">Contact</a>
+ <a class="btn" href="/assessments.html">Start an assessment</a></nav></div></header>
+<!-- /steelworks:header -->
+
+<main id="main">
+
+ <section class="section">
+ <div class="shell">
+ <p class="eyebrow reveal">Retainer onboarding</p>
+ <h1 class="reveal">Five minutes, once. Then it runs on its own.</h1>
+ <p class="lede reveal">You bought the AI Visibility Retainer. This page tells our system who you are so
+ the monthly audit, the weekly rank checks, the dated post and the monthly report can start
+ &mdash; nothing runs until this is filled in. <strong>No passwords, ever.</strong> Listings
+ access is a manager invite you send from your own Google account.</p></div></section>
+
+ <section class="section" id="onboard">
+ <div class="shell grid grid-2">
+ <div class="reveal">
+ <h2>What we do with each answer</h2>
+ <p><strong>Website</strong> &mdash; audited on five legs every month; the score trend is the
+ first line of your report.</p>
+ <p><strong>Five keywords</strong> &mdash; checked weekly against the live results; position
+ history is on every report.</p>
+ <p><strong>City, niche, locations</strong> &mdash; what the dated monthly post and the
+ listings refresh are written around.</p>
+ <p><strong>Google Business Profile</strong> &mdash; add <em>admin@steelworksintelligence.com</em>
+ as a manager (Business Profile &rarr; Settings &rarr; People &amp; access). Until then,
+ listing fixes come to you as instructions instead of being applied.</p>
+ <p class="fine">Questions? <a href="mailto:admin@steelworksintelligence.com">admin@steelworksintelligence.com</a></p>
+ <img src="/assets/img/brand/ops-clock.svg" width="800" height="600" loading="lazy"
+ alt="Scheduled jobs per hour of the day, drawn from the live cron store"></div>
+ <div class="reveal">
+ <form aria-describedby="form-consent-1" class="capture" action="https://swi-leads.macsmacpro.workers.dev/api/lead" method="post">
+ <label class="visually-hidden" for="ob-business">Business name</label>
+ <input id="ob-business" name="business" type="text" required placeholder="Business name" autocomplete="organization">
+ <label class="visually-hidden" for="ob-website">Website</label>
+ <input id="ob-website" name="website" type="text" required placeholder="yourbusiness.com" autocomplete="url">
+ <label class="visually-hidden" for="ob-name">Your name</label>
+ <input id="ob-name" name="name" type="text" required placeholder="Your name" autocomplete="name">
+ <label class="visually-hidden" for="ob-email">Email</label>
+ <input id="ob-email" name="email" type="email" required placeholder="you@yourbusiness.com" autocomplete="email">
+ <label class="visually-hidden" for="ob-city">City</label>
+ <input id="ob-city" name="city" type="text" required placeholder="City" autocomplete="address-level2">
+ <label class="visually-hidden" for="ob-state">State</label>
+ <input id="ob-state" name="state" type="text" required placeholder="State (e.g. GA)" autocomplete="address-level1">
+ <label class="visually-hidden" for="ob-niche">What the business does</label>
+ <input id="ob-niche" name="niche" type="text" required placeholder="What you do (e.g. HVAC repair)">
+ <label class="visually-hidden" for="ob-locations">Number of locations</label>
+ <input id="ob-locations" name="locations" type="number" min="1" max="50" value="1" placeholder="Locations">
+ <label class="visually-hidden" for="ob-keywords">Five searches you want to be found for</label>
+ <textarea id="ob-keywords" name="keywords" required placeholder="Five searches you want to be found for, one per line (e.g. hvac repair marietta)"></textarea>
+ <label class="visually-hidden" for="ob-gbp">Google Business Profile access</label>
+ <select id="ob-gbp" name="gbp" required>
+ <option value="">Google Business Profile access</option>
+ <option value="manager-invite-sent">I sent the manager invite</option>
+ <option value="will-send">I will send it this week</option>
+ <option value="none">We do not have a profile yet</option></select>
+ <label class="visually-hidden" for="ob-site-access">Site access for the monthly post</label>
+ <select id="ob-site-access" name="site_access" required>
+ <option value="">How should we deliver the monthly post?</option>
+ <option value="files">Send me the post as a file, I publish it</option>
+ <option value="wordpress-app-password">WordPress &mdash; I will share an application password by email</option>
+ <option value="none">Decide later</option></select>
+ <label class="visually-hidden" for="ob-order">Order number (from your receipt)</label>
+ <input id="ob-order" name="order" type="text" placeholder="Order number from your receipt (optional)">
+ <input type="hidden" name="source" value="onboarding:retainer">
+ <button class="btn" type="submit">Start my retainer <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-rocket"></use></svg></button>
+<p class="fine" id="form-consent-1" data-consent-notice>By submitting this form you agree to our <a href="/privacy.html">Privacy Policy</a>. We use what you enter only to reply to your enquiry, and we do not set cookies or sell your details.</p></form></div></div></section></main>
+
+<!-- steelworks:footer -->
+<footer class="site-footer">
+ <div class="shell">
+ <hr class="rule">
+ <div class="footer-grid">
+ <div>
+ <h2>What we build</h2>
+ <ul>
+ <li><a href="/systems.html">Structural AI systems</a></li>
+ <li><a href="/systems.html#architecture">The four layers</a></li>
+ <li><a href="/systems.html#hierarchy">Hierarchy &amp; org charts</a></li>
+ <li><a href="/services/ai-security-audit.html">Security &amp; governance</a></li></ul></div>
+ <div>
+ <h2>Where we build it</h2>
+ <ul>
+ <li><a href="/verticals.html">The eight markets</a></li>
+ <li><a href="/verticals.html#method">The vertical method</a></li>
+ <li><a href="/systems.html#models">Model selection</a></li>
+ <li><a href="/systems.html#proof">Run on ourselves</a></li></ul></div>
+ <div>
+ <h2>How you start</h2>
+ <ul>
+ <li><a href="/assessments.html">Assessments</a></li>
+ <li><a href="/services/ai-security-audit.html">AI Security &amp; Risk Audit</a></li>
+ <li><a href="/services.html">Engagements</a></li>
+ <li><a href="/contact.html">Contact</a></li></ul></div>
+ <div>
+ <h2>Company</h2>
+ <ul>
+ <li><a href="/about.html">About</a></li>
+ <li><a href="/press.html">Press</a></li>
+ <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI RMF</a></li></ul></div></div>
+ <div class="footer-meta">
+ <p class="mono flush">SteelWorks Intelligence Systems. United States. Built and operated by an autonomous agent fleet. <!--STATS:STAMP-->Live-derived from fleet state · verified 2026-09-15<!--/STATS:STAMP--></p>
+ <p class="mono flush"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p></div></div></footer>
+<!-- /steelworks:footer -->
+
+<script src="/assets/capture.js" defer></script></body></html>
