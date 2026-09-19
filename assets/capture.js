@@ -19,6 +19,62 @@
   "use strict";
   var ENDPOINT = "https://leads.steelworksintelligence.com/api/lead";
   var FALLBACK = "admin@steelworksintelligence.com";
+  var TURNSTILE_SITEKEY = "0x4AAAAAAE9PHEQZpbgDuX5n";
+
+  /* Bot controls (2026-09-19): a hidden field no person fills, a render
+     timestamp, and an invisible Turnstile challenge whose token rides along in
+     the payload. The Worker (leads.steelworksintelligence.com) enforces the
+     rest: origin allowlist, rate limits, disposable/role/no-MX addresses. */
+  var tsReady = null;
+  function loadTurnstile() {
+    if (tsReady) { return tsReady; }
+    tsReady = new Promise(function (resolve) {
+      if (window.turnstile) { return resolve(window.turnstile); }
+      var s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      s.async = true; s.defer = true;
+      s.onload = function () { resolve(window.turnstile || null); };
+      s.onerror = function () { resolve(null); };
+      document.head.appendChild(s);
+    });
+    return tsReady;
+  }
+  function arm(form) {
+    if (form.dataset.armed) { return; }
+    form.dataset.armed = "1";
+    var hp = document.createElement("input");
+    hp.type = "text"; hp.name = "company_url"; hp.tabIndex = -1; hp.autocomplete = "off";
+    hp.setAttribute("aria-hidden", "true");
+    hp.style.cssText = "position:absolute;left:-9999px;top:-9999px;height:0;width:0;opacity:0";
+    form.appendChild(hp);
+    var t = document.createElement("input");
+    t.type = "hidden"; t.name = "_t"; t.value = String(Date.now());
+    form.appendChild(t);
+    var box = document.createElement("div");
+    box.className = "cf-turnstile";
+    form.appendChild(box);
+    loadTurnstile().then(function (ts) {
+      if (!ts) { return; }
+      try {
+        form._tsId = ts.render(box, {
+          sitekey: TURNSTILE_SITEKEY, execution: "execute", appearance: "interaction-only",
+          callback: function (token) { form._tsToken = token; if (form._tsResolve) { form._tsResolve(token); form._tsResolve = null; } },
+          "error-callback": function () { if (form._tsResolve) { form._tsResolve(""); form._tsResolve = null; } },
+          "expired-callback": function () { form._tsToken = ""; }
+        });
+      } catch (e) { /* widget unavailable: the Worker still has honeypot + rate limits */ }
+    });
+  }
+  function challengeToken(form) {
+    return new Promise(function (resolve) {
+      if (form._tsToken) { return resolve(form._tsToken); }
+      if (!window.turnstile || form._tsId === undefined) { return resolve(""); }
+      var done = false;
+      form._tsResolve = function (tok) { if (!done) { done = true; resolve(tok || ""); } };
+      setTimeout(function () { if (!done) { done = true; form._tsResolve = null; resolve(""); } }, 8000);
+      try { window.turnstile.execute(form._tsId); } catch (e) { form._tsResolve = null; resolve(""); }
+    });
+  }
 
   function note(form, text, ok) {
     var el = form.querySelector(".capture-msg");
@@ -33,6 +89,7 @@
   }
 
   function wire(form) {
+    arm(form);
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var email = form.querySelector('input[type="email"]');
@@ -70,15 +127,22 @@
           if (el.name && !(el.name in payloadObj) && el.value) { payloadObj[el.name] = el.value; }
         });
       }
-      fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payloadObj)
+      var hpEl = form.querySelector('input[name="company_url"]');
+      var tEl = form.querySelector('input[name="_t"]');
+      payloadObj.company_url = hpEl ? hpEl.value : "";
+      payloadObj._t = tEl ? tEl.value : "";
+      challengeToken(form).then(function (tok) {
+        if (tok) { payloadObj.turnstile = tok; }
+        return fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payloadObj)
+        });
       })
         .then(function (r) { return r.json().catch(function () { return { ok: false, error: "HTTP " + r.status }; }); })
         .then(function (d) {
           if (d && d.ok) {
-            note(form, "Got it — check your inbox.", true);
+            note(form, "Received. An acknowledgement is on its way by email, and a person replies within one business day.", true);
             form.reset();
           } else {
             // Honest failure. A capture that fails must say so, not pretend.
@@ -89,7 +153,7 @@
         .catch(function () {
           note(form, "Couldn't reach the signup server. Email " + FALLBACK + " and I'll reply.", false);
         })
-        .finally(function () { if (btn) { btn.disabled = false; } });
+        .finally(function () { if (btn) { btn.disabled = false; } form._tsToken = ""; });
     });
   }
 
