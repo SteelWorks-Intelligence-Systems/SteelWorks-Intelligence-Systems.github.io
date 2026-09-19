@@ -127,7 +127,7 @@ document.querySelectorAll('.reveal').forEach(el => sReveal.observe(el));
 
 // ── Privacy-light conversion tracking ──
 (() => {
-  const endpoint = 'https://swi-chatbot.macsmacpro.workers.dev/track';
+  const endpoint = 'https://chat.steelworksintelligence.com/track';
   const sidKey = 'swi_sid';
   let sid = '';
   try {

@@ -17,7 +17,7 @@
 
 (function () {
   "use strict";
-  var ENDPOINT = "https://swi-leads.macsmacpro.workers.dev/api/lead";
+  var ENDPOINT = "https://leads.steelworksintelligence.com/api/lead";
   var FALLBACK = "admin@steelworksintelligence.com";
 
   function note(form, text, ok) {
@@ -104,7 +104,7 @@
 (function () {
   "use strict";
   try {
-    var HIT = "https://swi-leads.macsmacpro.workers.dev/api/hit";
+    var HIT = "https://leads.steelworksintelligence.com/api/hit";
     var payload = JSON.stringify({ path: location.pathname });
     /* text/plain is CORS-safelisted; an application/json Blob makes
        sendBeacon require a preflight it cannot perform, and the browser
