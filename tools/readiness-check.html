@@ -118,7 +118,7 @@ Skip to content</a>
  <p class="eyebrow">Apps · client demo · free, no account</p>
  <h1>AI Answer Readiness Check</h1>
  <p class="lede">Paste any page. Get the same ten-check score we run on our own site every morning, and the fix for every miss.</p>
- <form class="capture" id="checkform" action="https://swi-readiness.macsmacpro.workers.dev/score" method="get">
+ <form class="capture" id="checkform" action="https://readiness.steelworksintelligence.com/score" method="get">
  <label class="visually-hidden" for="url">Page URL</label>
  <input id="url" name="url" type="url" required placeholder="https://example.com/your-page" autocomplete="url" inputmode="url">
  <button class="btn" type="submit">Score it <svg class="ti" aria-hidden="true"><use href="/assets/vendor/tabler/icons.svg#ti-bolt"></use></svg></button>
@@ -151,7 +151,7 @@ Skip to content</a>
 
 <script>
 (function  {
- var WORKER = "https://swi-readiness.macsmacpro.workers.dev";
+ var WORKER = "https://readiness.steelworksintelligence.com";
  var form = document.getElementById("checkform"), status = document.getElementById("status");
  var result = document.getElementById("result");
  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }

@@ -6,7 +6,7 @@
    already live — this file then only aliases it (no double counting). */
 (function () {
   if (window.SWITrack) { window.swTrack = function (e, x) { window.SWITrack(e, x); }; return; }
-  var EP = 'https://swi-chatbot.macsmacpro.workers.dev/track';
+  var EP = 'https://chat.steelworksintelligence.com/track';
   function send(event, extra) {
     var payload = {
       event: event,
