@@ -1,0 +1,14 @@
+/* Paper & Pace — token overrides on top of components.css (brand_kit.py) */
+:root {
+  --ink-900: oklch(0.985 0.006 150);
+  --ink-700: oklch(0.95 0.012 150);
+  --ink-500: oklch(0.82 0.02 150);
+  --ink-300: oklch(0.45 0.03 150);
+  --ink-100: oklch(0.28 0.035 150);
+  --signal: oklch(0.58 0.09 150);
+  --signal-ink: oklch(0.985 0.006 150);
+  --link: oklch(0.45 0.09 150);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+.brand-hero img { border-radius: 12px; }
