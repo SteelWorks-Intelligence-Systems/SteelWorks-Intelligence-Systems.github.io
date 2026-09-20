@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-20T01:29:27+00:00",
+ "generated_at": "2026-09-20T01:54:18+00:00",
  "framework": "NIST AI RMF 1.0 (Govern/Map/Measure/Manage)",
  "system": "SteelWorks Intelligence / OpenClaw agent fleet",
  "audit_type": "Periodic (weekly, automated measurement)",
@@ -267,8 +267,8 @@
      "weight_pct": 4.0,
      "score": 4,
      "maturity": "Defined",
-     "evidence": "legality gate present, ToS register present, 0 standing allows (0 consequential), 0/0 public workers guarded",
-     "source": "external_action_guard + platform-tos + prompt-approvals + workers/",
+     "evidence": "legality gate present, ToS register present, 0 standing allows (0 consequential), 0/0 public workers guarded, gate map verified (15 gates)",
+     "source": "external_action_guard + platform-tos + prompt-approvals + workers/ + data/org/gate-map.json",
      "no_evidence": false,
      "layer": "actions",
      "owner": "action_gatekeeper"
@@ -303,7 +303,7 @@
      "weight_pct": 4.5,
      "score": 4,
      "maturity": "Defined",
-     "evidence": "health sweep age 0.1 h; memory guard live",
+     "evidence": "health sweep age 0.5 h; memory guard live",
      "source": "health-sweep-last.json + memory-guard-state.json",
      "no_evidence": false,
      "layer": "incident",
@@ -778,13 +778,13 @@
   }
  ],
  "layers_measured": {
-  "actions": "2026-09-20T01:29:27+00:00",
-  "data": "2026-09-20T01:29:27+00:00",
-  "identity": "2026-09-20T01:29:22+00:00",
-  "incident": "2026-09-20T01:29:27+00:00",
-  "injection": "2026-09-20T01:29:22+00:00",
-  "secrets": "2026-09-20T01:29:22+00:00",
-  "supply_chain": "2026-09-20T01:29:25+00:00"
+  "actions": "2026-09-20T01:54:18+00:00",
+  "data": "2026-09-20T01:54:18+00:00",
+  "identity": "2026-09-20T01:54:13+00:00",
+  "incident": "2026-09-20T01:54:18+00:00",
+  "injection": "2026-09-20T01:54:14+00:00",
+  "secrets": "2026-09-20T01:54:14+00:00",
+  "supply_chain": "2026-09-20T01:54:16+00:00"
  },
  "layers_missing": []
 }
