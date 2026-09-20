@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-20T01:54:18+00:00",
+ "generated_at": "2026-09-20T03:22:49+00:00",
  "framework": "NIST AI RMF 1.0 (Govern/Map/Measure/Manage)",
  "system": "SteelWorks Intelligence / OpenClaw agent fleet",
  "audit_type": "Periodic (weekly, automated measurement)",
  "risk_tier": "High (agentic, tool-using, customer-facing, PII in leads DB)",
- "overall_maturity_pct": 54.0,
+ "overall_maturity_pct": 55.0,
  "rating": "Developing",
  "functions": {
   "GOVERN": {
@@ -141,9 +141,9 @@
      "id": "M5",
      "control": "System integration & access mapping (APIs, identities, service accounts, data flows)",
      "weight_pct": 3.5,
-     "score": 2,
-     "maturity": "Initial",
-     "evidence": "56/57 agents carry a tool deny list; 1 without",
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "57/57 agents carry a tool deny list; 0 without",
      "source": "openclaw.json agents.entries[].tools.deny",
      "no_evidence": false,
      "layer": "identity",
@@ -162,10 +162,10 @@
      "owner": "identity_warden"
     }
    ],
-   "avg_score": 2.33,
-   "maturity_pct": 46.7,
+   "avg_score": 2.5,
+   "maturity_pct": 50.0,
    "weight": 0.2,
-   "weighted": 9.34
+   "weighted": 10.0
   },
   "MEASURE": {
    "controls": [
@@ -245,19 +245,19 @@
      "id": "E7",
      "control": "Identity & access control testing for AI agents / service accounts",
      "weight_pct": 5.0,
-     "score": 1,
-     "maturity": "Ad Hoc",
-     "evidence": "privilege_check: ROOT GRANT: sudoers gives the fleet NOPASSWD root for ['ALL', 'ALL'] \u2014 only /usr/bin/mdutil is needed (system_ops uses gui-domain launchctl since 2026-09-05); operator: `sudo visudo -f /etc/sudoers.d/openclawbot`; STRAY SUDO: 1 call(s) outside system_ops._sudo: ['brain_loop_eval.py:69']",
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "privilege_check clean: root grants, sudo, rotation debt, venv drift all within policy; no recertification cadence yet",
      "source": "scripts/privilege_check.py",
      "no_evidence": false,
      "layer": "identity",
      "owner": "identity_warden"
     }
    ],
-   "avg_score": 2.86,
-   "maturity_pct": 57.1,
+   "avg_score": 3.14,
+   "maturity_pct": 62.9,
    "weight": 0.35,
-   "weighted": 19.98
+   "weighted": 22.01
   },
   "MANAGE": {
    "controls": [
@@ -301,9 +301,9 @@
      "id": "A4",
      "control": "Ongoing monitoring & drift detection cadence defined",
      "weight_pct": 4.5,
-     "score": 4,
-     "maturity": "Defined",
-     "evidence": "health sweep age 0.5 h; memory guard live",
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "health sweep age 1.0 h; memory guard SILENT",
      "source": "health-sweep-last.json + memory-guard-state.json",
      "no_evidence": false,
      "layer": "incident",
@@ -334,10 +334,10 @@
      "owner": "security_lead"
     }
    ],
-   "avg_score": 2.67,
-   "maturity_pct": 53.3,
+   "avg_score": 2.33,
+   "maturity_pct": 46.7,
    "weight": 0.25,
-   "weighted": 13.32
+   "weighted": 11.68
   }
  },
  "no_evidence_controls": [],
@@ -359,20 +359,20 @@
    "target": "2026-10-20"
   },
   {
-   "control": "E7",
-   "finding": "Identity & access control testing for AI agents / service accounts (scored 1, Ad Hoc)",
-   "rating": "High",
-   "owner": "identity_warden",
-   "layer": "identity",
-   "target": "2026-10-20"
-  },
-  {
    "control": "M6",
    "finding": "Risk tier / classification assigned to the use case (scored 1, Ad Hoc)",
    "rating": "High",
    "owner": "identity_warden",
    "layer": "identity",
    "target": "2026-10-20"
+  },
+  {
+   "control": "A4",
+   "finding": "Ongoing monitoring & drift detection cadence defined (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "incident_responder",
+   "layer": "incident",
+   "target": "2026-12-19"
   },
   {
    "control": "E4",
@@ -415,14 +415,6 @@
    "target": "2026-12-19"
   },
   {
-   "control": "M5",
-   "finding": "System integration & access mapping (APIs, identities, service accounts, data flows) (scored 2, Initial)",
-   "rating": "Medium",
-   "owner": "identity_warden",
-   "layer": "identity",
-   "target": "2026-12-19"
-  },
-  {
    "control": "A5",
    "finding": "Periodic re-audit / re-certification schedule (scored 3, Developing)",
    "rating": "Low",
@@ -436,6 +428,14 @@
    "rating": "Low",
    "owner": "security_lead",
    "layer": "lead",
+   "target": "next review cycle"
+  },
+  {
+   "control": "E7",
+   "finding": "Identity & access control testing for AI agents / service accounts (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "identity_warden",
+   "layer": "identity",
    "target": "next review cycle"
   },
   {
@@ -485,6 +485,14 @@
    "owner": "security_lead",
    "layer": "lead",
    "target": "next review cycle"
+  },
+  {
+   "control": "M5",
+   "finding": "System integration & access mapping (APIs, identities, service accounts, data flows) (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "identity_warden",
+   "layer": "identity",
+   "target": "next review cycle"
   }
  ],
  "layer_findings": [
@@ -505,27 +513,11 @@
    "target": "2026-09-27"
   },
   {
-   "layer": "identity",
-   "owner": "identity_warden",
+   "layer": "incident",
+   "owner": "incident_responder",
    "rating": "High",
-   "id": "no-deny:canary",
-   "finding": "agent 'canary' has NO tool deny list -- unscoped access",
-   "target": "2026-10-20"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "High",
-   "id": "priv:ROOT-GRANT-sudoers-gives-the-fleet-NOPA",
-   "finding": "ROOT GRANT: sudoers gives the fleet NOPASSWD root for ['ALL', 'ALL'] \u2014 only /usr/bin/mdutil is needed (system_ops uses gui-domain launchctl since 2026-09-05); operator: `sudo visudo -f /etc/sudoers.d/openclawbot`",
-   "target": "2026-10-20"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "High",
-   "id": "priv:STRAY-SUDO-1-call-s-outside-system_ops",
-   "finding": "STRAY SUDO: 1 call(s) outside system_ops._sudo: ['brain_loop_eval.py:69']",
+   "id": "memory-guard-silent",
+   "finding": "memory guard heartbeat is older than 30 min",
    "target": "2026-10-20"
   },
   {
@@ -598,14 +590,6 @@
    "rating": "Medium",
    "id": "dormant:injection_sentinel",
    "finding": "agent 'injection_sentinel' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:main",
-   "finding": "agent 'main' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
    "target": "2026-12-19"
   },
   {
@@ -778,13 +762,13 @@
   }
  ],
  "layers_measured": {
-  "actions": "2026-09-20T01:54:18+00:00",
-  "data": "2026-09-20T01:54:18+00:00",
-  "identity": "2026-09-20T01:54:13+00:00",
-  "incident": "2026-09-20T01:54:18+00:00",
-  "injection": "2026-09-20T01:54:14+00:00",
-  "secrets": "2026-09-20T01:54:14+00:00",
-  "supply_chain": "2026-09-20T01:54:16+00:00"
+  "actions": "2026-09-20T03:22:49+00:00",
+  "data": "2026-09-20T03:22:49+00:00",
+  "identity": "2026-09-20T03:22:44+00:00",
+  "incident": "2026-09-20T03:22:49+00:00",
+  "injection": "2026-09-20T03:22:44+00:00",
+  "secrets": "2026-09-20T03:22:44+00:00",
+  "supply_chain": "2026-09-20T03:22:47+00:00"
  },
  "layers_missing": []
 }
