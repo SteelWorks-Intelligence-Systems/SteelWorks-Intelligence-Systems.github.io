@@ -1,0 +1,878 @@
+{
+ "generated_at": "2026-09-19T12:53:50+00:00",
+ "framework": "NIST AI RMF 1.0 (Govern/Map/Measure/Manage)",
+ "system": "SteelWorks Intelligence / OpenClaw agent fleet",
+ "audit_type": "Periodic (weekly, automated measurement)",
+ "risk_tier": "High (agentic, tool-using, customer-facing, PII in leads DB)",
+ "overall_maturity_pct": 47.8,
+ "rating": "Developing",
+ "functions": {
+  "GOVERN": {
+   "controls": [
+    {
+     "id": "G1",
+     "control": "Accountable AI governance owner/committee established",
+     "weight_pct": 3.5,
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "security team minted: 8 of 8 specialists; accountable executive = operator (sign-off in security-register.md)",
+     "source": "data/org/agent-factory/minted + security-register.md",
+     "no_evidence": false,
+     "layer": "lead",
+     "owner": "security_lead"
+    },
+    {
+     "id": "G2",
+     "control": "Documented AI use, model-risk, and acceptable-use policies",
+     "weight_pct": 3.5,
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "2/3 policy artefacts present (overhaul spec = threat model + controls, doctrine.yaml, platform-tos.json); no standalone acceptable-use policy",
+     "source": "data/org/*",
+     "no_evidence": false,
+     "layer": "lead",
+     "owner": "security_lead"
+    },
+    {
+     "id": "G3",
+     "control": "AI system inventory maintained, including shadow AI discovery",
+     "weight_pct": 3.5,
+     "score": 4,
+     "maturity": "Defined",
+     "evidence": "config entries 57, agent dirs 57, dept names unmatched 0, dirs unmatched 0",
+     "source": "openclaw.json + ~/.openclaw/agents + departments.json",
+     "no_evidence": false,
+     "layer": "identity",
+     "owner": "identity_warden"
+    },
+    {
+     "id": "G4",
+     "control": "Roles & responsibilities defined across legal, security, data science, business",
+     "weight_pct": 3.0,
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "departments.json with named lanes and owners; legal/security/data/business split is by department, not a RACI",
+     "source": "data/org/departments.json",
+     "no_evidence": false,
+     "layer": "lead",
+     "owner": "security_lead"
+    },
+    {
+     "id": "G5",
+     "control": "Third-party / vendor AI risk management process",
+     "weight_pct": 3.0,
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "vendor AI inventory written (14 providers, 0 local models); per-vendor terms review not yet recorded",
+     "source": "data/security/vendor-ai-inventory.json",
+     "no_evidence": false,
+     "layer": "supply_chain",
+     "owner": "supply_chain_auditor"
+    },
+    {
+     "id": "G6",
+     "control": "Regulatory mapping (EU AI Act, sector & state law) maintained",
+     "weight_pct": 3.5,
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "crosswalk on file: 6 regimes, 6 declared gaps, draft-labelled, awaiting counsel review",
+     "source": "data/security/regulatory-crosswalk.md",
+     "no_evidence": false,
+     "layer": "lead",
+     "owner": "security_lead"
+    }
+   ],
+   "avg_score": 2.83,
+   "maturity_pct": 56.7,
+   "weight": 0.2,
+   "weighted": 11.34
+  },
+  "MAP": {
+   "controls": [
+    {
+     "id": "M1",
+     "control": "Intended use documented and validated against actual/observed use",
+     "weight_pct": 3.5,
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "57/57 agents carry a SOUL (intended use); 57/57 run a scheduled job (observed use)",
+     "source": "~/.openclaw/agents/*/SOUL.md + cron receipts",
+     "no_evidence": false,
+     "layer": "lead",
+     "owner": "security_lead"
+    },
+    {
+     "id": "M2",
+     "control": "Data lineage & provenance documented (training + inference data)",
+     "weight_pct": 3.5,
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "0/22 knowledge files with provenance; doctrine_guard present; backup restore NOT verified",
+     "source": "data/knowledge frontmatter + doctrine_guard + backup-verify-verdict",
+     "no_evidence": false,
+     "layer": "data",
+     "owner": "data_boundary_officer"
+    },
+    {
+     "id": "M3",
+     "control": "Model architecture & dependencies documented",
+     "weight_pct": 3.5,
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "model routing documented in api_router.PROVIDERS + openclaw.json chains; 0 local models",
+     "source": "api_router.py + ollama list",
+     "no_evidence": false,
+     "layer": "supply_chain",
+     "owner": "supply_chain_auditor"
+    },
+    {
+     "id": "M4",
+     "control": "Stakeholder & affected-party impact analysis completed",
+     "weight_pct": 3.0,
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "impact analysis on file: 11 affected-party entries",
+     "source": "data/security/impact-analysis.md",
+     "no_evidence": false,
+     "layer": "lead",
+     "owner": "security_lead"
+    },
+    {
+     "id": "M5",
+     "control": "System integration & access mapping (APIs, identities, service accounts, data flows)",
+     "weight_pct": 3.5,
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "56/57 agents carry a tool deny list; 1 without",
+     "source": "openclaw.json agents.entries[].tools.deny",
+     "no_evidence": false,
+     "layer": "identity",
+     "owner": "identity_warden"
+    },
+    {
+     "id": "M6",
+     "control": "Risk tier / classification assigned to the use case",
+     "weight_pct": 3.0,
+     "score": 1,
+     "maturity": "Ad Hoc",
+     "evidence": "17/57 agents born through the factory with a ToS class + guardrails on record; 40 not",
+     "source": "data/org/agent-factory/minted",
+     "no_evidence": false,
+     "layer": "identity",
+     "owner": "identity_warden"
+    }
+   ],
+   "avg_score": 2.33,
+   "maturity_pct": 46.7,
+   "weight": 0.2,
+   "weighted": 9.34
+  },
+  "MEASURE": {
+   "controls": [
+    {
+     "id": "E1",
+     "control": "Performance tested against defined benchmarks",
+     "weight_pct": 5.0,
+     "score": 4,
+     "maturity": "Defined",
+     "evidence": "test integrity: 8 catch, 0 blind",
+     "source": "data/ops/test-integrity.jsonl",
+     "no_evidence": false,
+     "layer": "actions",
+     "owner": "action_gatekeeper"
+    },
+    {
+     "id": "E2",
+     "control": "Bias & fairness testing across protected classes and edge cases",
+     "weight_pct": 5.0,
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "10 bias/fairness test artefact(s) on file",
+     "source": "data/security/bias-tests/",
+     "no_evidence": false,
+     "layer": "lead",
+     "owner": "security_lead"
+    },
+    {
+     "id": "E3",
+     "control": "Robustness / adversarial testing (prompt injection, jailbreak, evasion)",
+     "weight_pct": 5.0,
+     "score": 4,
+     "maturity": "Defined",
+     "evidence": "screen present; sweep 0/0; fixtures 38 (all pass); chokepoints router=True bridge=True; direct callers 11 covered / 0 not; 23 events/7d; observe",
+     "source": "injection_screen.py --fixtures + api_router/llm_bridge chokepoints + tripwire on direct callers + injection-events.jsonl",
+     "no_evidence": false,
+     "layer": "injection",
+     "owner": "injection_sentinel"
+    },
+    {
+     "id": "E4",
+     "control": "Security testing (data exfiltration, model extraction, supply-chain review)",
+     "weight_pct": 5.0,
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "exposure audit: TOKEN SHAPE IN GIT: 1 tracked file(s) contain token-shaped strings \u2014 [('scripts/data_boundary.py', ['aws-key', 'bot-token', 'private-key', 'sk-key'])] \u2014 untrack; hooks MISSING; rotation overdue 0",
+     "source": "secret_exposure_audit + git hooks + rotation ledger",
+     "no_evidence": false,
+     "layer": "secrets",
+     "owner": "secrets_custodian"
+    },
+    {
+     "id": "E5",
+     "control": "Explainability & decision traceability for consequential outputs",
+     "weight_pct": 5.0,
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "2/3 decision trails fresh (<48h): task ledger, cron receipts, routing log",
+     "source": "task-ledger.sqlite + openclaw.sqlite + routing-log.jsonl",
+     "no_evidence": false,
+     "layer": "data",
+     "owner": "data_boundary_officer"
+    },
+    {
+     "id": "E6",
+     "control": "Privacy testing (PII handling, data minimization, retention)",
+     "weight_pct": 5.0,
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "pii_scrub present, directly imported by 2 script(s) [counts importers, NOT covered egress paths]; frontier lane covered via data_boundary.py; retention: media-retention job present=False",
+     "source": "pii_scrub.py + data_boundary.py",
+     "no_evidence": false,
+     "layer": "secrets",
+     "owner": "secrets_custodian"
+    },
+    {
+     "id": "E7",
+     "control": "Identity & access control testing for AI agents / service accounts",
+     "weight_pct": 5.0,
+     "score": 1,
+     "maturity": "Ad Hoc",
+     "evidence": "privilege_check: ROOT GRANT: sudoers gives the fleet NOPASSWD root for ['ALL', 'ALL'] \u2014 only /usr/bin/mdutil is needed (system_ops uses gui-domain launchctl since 2026-09-05); operator: `sudo visudo -f /etc/sudoers.d/openclawbot`; STRAY SUDO: 1 call(s) outside system_ops._sudo: ['brain_loop_eval.py:69']",
+     "source": "scripts/privilege_check.py",
+     "no_evidence": false,
+     "layer": "identity",
+     "owner": "identity_warden"
+    }
+   ],
+   "avg_score": 2.57,
+   "maturity_pct": 51.4,
+   "weight": 0.35,
+   "weighted": 17.99
+  },
+  "MANAGE": {
+   "controls": [
+    {
+     "id": "A1",
+     "control": "Human-in-the-loop checkpoints for consequential decisions",
+     "weight_pct": 4.0,
+     "score": 4,
+     "maturity": "Defined",
+     "evidence": "legality gate present, ToS register present, 0 standing allows (0 consequential), 0/0 public workers guarded",
+     "source": "external_action_guard + platform-tos + prompt-approvals + workers/",
+     "no_evidence": false,
+     "layer": "actions",
+     "owner": "action_gatekeeper"
+    },
+    {
+     "id": "A2",
+     "control": "AI-specific incident response plan (hallucination, bias, breach)",
+     "weight_pct": 4.5,
+     "score": 1,
+     "maturity": "Ad Hoc",
+     "evidence": "runbook MISSING; switches present 2/4; 0 incident records; 0 panics/14d, 0 post-mortems",
+     "source": "incident-runbook + kill switches + mast-incidents + panic logs",
+     "no_evidence": false,
+     "layer": "incident",
+     "owner": "incident_responder"
+    },
+    {
+     "id": "A3",
+     "control": "Change management for model/version updates",
+     "weight_pct": 4.0,
+     "score": 1,
+     "maturity": "Ad Hoc",
+     "evidence": "blessed-hashes MISSING; core behind: openclaw 2026.9.3\u21922026.9.4 (ops task filed; install is operator sign-off); CVEs: 0",
+     "source": "blessed-hashes.json + dependency_cve_scan + core-behind alerts",
+     "no_evidence": false,
+     "layer": "supply_chain",
+     "owner": "supply_chain_auditor"
+    },
+    {
+     "id": "A4",
+     "control": "Ongoing monitoring & drift detection cadence defined",
+     "weight_pct": 4.5,
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "health sweep age 0.5 h; memory guard SILENT",
+     "source": "health-sweep-last.json + memory-guard-state.json",
+     "no_evidence": false,
+     "layer": "incident",
+     "owner": "incident_responder"
+    },
+    {
+     "id": "A5",
+     "control": "Periodic re-audit / re-certification schedule",
+     "weight_pct": 4.0,
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "weekly security audit cron + monthly report present=True; weekly RMF scorecard by security_lead",
+     "source": "security-audit-weekly + security-report-monthly + ai_rmf_scorecard",
+     "no_evidence": false,
+     "layer": "incident",
+     "owner": "incident_responder"
+    },
+    {
+     "id": "A6",
+     "control": "Residual risk acceptance & executive sign-off process",
+     "weight_pct": 4.0,
+     "score": 0,
+     "maturity": "Absent",
+     "evidence": "0 operator FINAL risk-acceptance decisions recorded",
+     "source": "data/org/security-register.md",
+     "no_evidence": false,
+     "layer": "lead",
+     "owner": "security_lead"
+    }
+   ],
+   "avg_score": 1.83,
+   "maturity_pct": 36.7,
+   "weight": 0.25,
+   "weighted": 9.18
+  }
+ },
+ "no_evidence_controls": [],
+ "control_findings": [
+  {
+   "control": "A2",
+   "finding": "AI-specific incident response plan (hallucination, bias, breach) (scored 1, Ad Hoc)",
+   "rating": "High",
+   "owner": "incident_responder",
+   "layer": "incident",
+   "target": "2026-10-19"
+  },
+  {
+   "control": "A3",
+   "finding": "Change management for model/version updates (scored 1, Ad Hoc)",
+   "rating": "High",
+   "owner": "supply_chain_auditor",
+   "layer": "supply_chain",
+   "target": "2026-10-19"
+  },
+  {
+   "control": "A6",
+   "finding": "Residual risk acceptance & executive sign-off process (scored 0, Absent)",
+   "rating": "High",
+   "owner": "security_lead",
+   "layer": "lead",
+   "target": "2026-10-19"
+  },
+  {
+   "control": "E7",
+   "finding": "Identity & access control testing for AI agents / service accounts (scored 1, Ad Hoc)",
+   "rating": "High",
+   "owner": "identity_warden",
+   "layer": "identity",
+   "target": "2026-10-19"
+  },
+  {
+   "control": "M6",
+   "finding": "Risk tier / classification assigned to the use case (scored 1, Ad Hoc)",
+   "rating": "High",
+   "owner": "identity_warden",
+   "layer": "identity",
+   "target": "2026-10-19"
+  },
+  {
+   "control": "A4",
+   "finding": "Ongoing monitoring & drift detection cadence defined (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "incident_responder",
+   "layer": "incident",
+   "target": "2026-12-18"
+  },
+  {
+   "control": "E4",
+   "finding": "Security testing (data exfiltration, model extraction, supply-chain review) (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "secrets_custodian",
+   "layer": "secrets",
+   "target": "2026-12-18"
+  },
+  {
+   "control": "E5",
+   "finding": "Explainability & decision traceability for consequential outputs (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "data_boundary_officer",
+   "layer": "data",
+   "target": "2026-12-18"
+  },
+  {
+   "control": "E6",
+   "finding": "Privacy testing (PII handling, data minimization, retention) (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "secrets_custodian",
+   "layer": "secrets",
+   "target": "2026-12-18"
+  },
+  {
+   "control": "G2",
+   "finding": "Documented AI use, model-risk, and acceptable-use policies (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "security_lead",
+   "layer": "lead",
+   "target": "2026-12-18"
+  },
+  {
+   "control": "G5",
+   "finding": "Third-party / vendor AI risk management process (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "supply_chain_auditor",
+   "layer": "supply_chain",
+   "target": "2026-12-18"
+  },
+  {
+   "control": "M2",
+   "finding": "Data lineage & provenance documented (training + inference data) (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "data_boundary_officer",
+   "layer": "data",
+   "target": "2026-12-18"
+  },
+  {
+   "control": "M5",
+   "finding": "System integration & access mapping (APIs, identities, service accounts, data flows) (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "identity_warden",
+   "layer": "identity",
+   "target": "2026-12-18"
+  },
+  {
+   "control": "A5",
+   "finding": "Periodic re-audit / re-certification schedule (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "incident_responder",
+   "layer": "incident",
+   "target": "next review cycle"
+  },
+  {
+   "control": "E2",
+   "finding": "Bias & fairness testing across protected classes and edge cases (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "security_lead",
+   "layer": "lead",
+   "target": "next review cycle"
+  },
+  {
+   "control": "G1",
+   "finding": "Accountable AI governance owner/committee established (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "security_lead",
+   "layer": "lead",
+   "target": "next review cycle"
+  },
+  {
+   "control": "G4",
+   "finding": "Roles & responsibilities defined across legal, security, data science, business (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "security_lead",
+   "layer": "lead",
+   "target": "next review cycle"
+  },
+  {
+   "control": "G6",
+   "finding": "Regulatory mapping (EU AI Act, sector & state law) maintained (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "security_lead",
+   "layer": "lead",
+   "target": "next review cycle"
+  },
+  {
+   "control": "M1",
+   "finding": "Intended use documented and validated against actual/observed use (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "security_lead",
+   "layer": "lead",
+   "target": "next review cycle"
+  },
+  {
+   "control": "M3",
+   "finding": "Model architecture & dependencies documented (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "supply_chain_auditor",
+   "layer": "supply_chain",
+   "target": "next review cycle"
+  },
+  {
+   "control": "M4",
+   "finding": "Stakeholder & affected-party impact analysis completed (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "security_lead",
+   "layer": "lead",
+   "target": "next review cycle"
+  }
+ ],
+ "layer_findings": [
+  {
+   "layer": "data",
+   "owner": "data_boundary_officer",
+   "rating": "Critical",
+   "id": "backup-fails",
+   "finding": "last backup restore drill did not pass: {\"ok\": false, \"reason\": \"no archives on the remote\"}",
+   "target": "2026-09-26"
+  },
+  {
+   "layer": "secrets",
+   "owner": "secrets_custodian",
+   "rating": "Critical",
+   "id": "sea:TOKEN-SHAPE-IN-GIT-1-tracked-file-s-co",
+   "finding": "TOKEN SHAPE IN GIT: 1 tracked file(s) contain token-shaped strings \u2014 [('scripts/data_boundary.py', ['aws-key', 'bot-token', 'private-key', 'sk-key'])] \u2014 untrack, redact, rotate if live",
+   "target": "2026-09-26"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "High",
+   "id": "no-deny:canary",
+   "finding": "agent 'canary' has NO tool deny list -- unscoped access",
+   "target": "2026-10-19"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "High",
+   "id": "priv:ROOT-GRANT-sudoers-gives-the-fleet-NOPA",
+   "finding": "ROOT GRANT: sudoers gives the fleet NOPASSWD root for ['ALL', 'ALL'] \u2014 only /usr/bin/mdutil is needed (system_ops uses gui-domain launchctl since 2026-09-05); operator: `sudo visudo -f /etc/sudoers.d/openclawbot`",
+   "target": "2026-10-19"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "High",
+   "id": "priv:STRAY-SUDO-1-call-s-outside-system_ops",
+   "finding": "STRAY SUDO: 1 call(s) outside system_ops._sudo: ['brain_loop_eval.py:69']",
+   "target": "2026-10-19"
+  },
+  {
+   "layer": "incident",
+   "owner": "incident_responder",
+   "rating": "High",
+   "id": "no-runbook",
+   "finding": "no AI-specific incident runbook (data/security/incident-runbook.md): runaway agent, injection, leak, crash",
+   "target": "2026-10-19"
+  },
+  {
+   "layer": "incident",
+   "owner": "incident_responder",
+   "rating": "High",
+   "id": "switch-missing:trading kill-switch",
+   "finding": "kill switch / guard not present: trading kill-switch",
+   "target": "2026-10-19"
+  },
+  {
+   "layer": "incident",
+   "owner": "incident_responder",
+   "rating": "High",
+   "id": "switch-missing:memory guard",
+   "finding": "kill switch / guard not present: memory guard",
+   "target": "2026-10-19"
+  },
+  {
+   "layer": "incident",
+   "owner": "incident_responder",
+   "rating": "High",
+   "id": "memory-guard-silent",
+   "finding": "memory guard heartbeat is older than 30 min",
+   "target": "2026-10-19"
+  },
+  {
+   "layer": "secrets",
+   "owner": "secrets_custodian",
+   "rating": "High",
+   "id": "hooks",
+   "finding": "git pre-commit/pre-push secret hooks not both installed",
+   "target": "2026-10-19"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "High",
+   "id": "no-blessed",
+   "finding": "no blessed-hashes register for adopted tools",
+   "target": "2026-10-19"
+  },
+  {
+   "layer": "data",
+   "owner": "data_boundary_officer",
+   "rating": "Medium",
+   "id": "knowledge-provenance",
+   "finding": "0/22 knowledge files carry provenance frontmatter",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:business_opportunity",
+   "finding": "agent 'business_opportunity' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:canary",
+   "finding": "agent 'canary' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:client_success",
+   "finding": "agent 'client_success' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:growth",
+   "finding": "agent 'growth' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:impact_assessor",
+   "finding": "agent 'impact_assessor' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:injection_sentinel",
+   "finding": "agent 'injection_sentinel' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:main",
+   "finding": "agent 'main' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:procurement",
+   "finding": "agent 'procurement' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:prospecting",
+   "finding": "agent 'prospecting' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:recruiter",
+   "finding": "agent 'recruiter' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:regulatory_mapper",
+   "finding": "agent 'regulatory_mapper' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:report_reviewer",
+   "finding": "agent 'report_reviewer' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:scout",
+   "finding": "agent 'scout' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:security",
+   "finding": "agent 'security' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:seo",
+   "finding": "agent 'seo' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:synthesis",
+   "finding": "agent 'synthesis' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "injection",
+   "owner": "injection_sentinel",
+   "rating": "Medium",
+   "id": "events-observe-only",
+   "finding": "23 injection event(s) in 7d while the screen is in OBSERVE mode (touch data/security/injection-enforce to refuse)",
+   "target": "2026-12-18"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "behind:openclaw",
+   "finding": "core component behind its release: openclaw 2026.9.3\u21922026.9.4 (ops task filed; install is operator sign-off) (install is operator sign-off)",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:google",
+   "finding": "vendor AI 'google': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:groq",
+   "finding": "vendor AI 'groq': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:m1_ollama",
+   "finding": "vendor AI 'm1_ollama': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:mistral",
+   "finding": "vendor AI 'mistral': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:n8n_chatgpt",
+   "finding": "vendor AI 'n8n_chatgpt': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:n8n_claude",
+   "finding": "vendor AI 'n8n_claude': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:n8n_deepseek",
+   "finding": "vendor AI 'n8n_deepseek': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:n8n_gemini",
+   "finding": "vendor AI 'n8n_gemini': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:n8n_grok",
+   "finding": "vendor AI 'n8n_grok': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:n8n_kimi",
+   "finding": "vendor AI 'n8n_kimi': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:n8n_perplexity",
+   "finding": "vendor AI 'n8n_perplexity': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:ollama",
+   "finding": "vendor AI 'ollama': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:openrouter",
+   "finding": "vendor AI 'openrouter': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:pc_heavy",
+   "finding": "vendor AI 'pc_heavy': terms, retention and model-change notice not on record -- review and record in the inventory",
+   "target": "next review cycle"
+  }
+ ],
+ "layers_measured": {
+  "actions": "2026-09-19T12:53:49+00:00",
+  "data": "2026-09-19T12:53:49+00:00",
+  "identity": "2026-09-19T12:53:45+00:00",
+  "incident": "2026-09-19T12:53:49+00:00",
+  "injection": "2026-09-19T12:53:45+00:00",
+  "secrets": "2026-09-19T12:53:45+00:00",
+  "supply_chain": "2026-09-19T12:53:47+00:00"
+ },
+ "layers_missing": []
+}
