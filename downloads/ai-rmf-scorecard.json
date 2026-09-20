@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-19T12:53:50+00:00",
+ "generated_at": "2026-09-20T01:29:27+00:00",
  "framework": "NIST AI RMF 1.0 (Govern/Map/Measure/Manage)",
  "system": "SteelWorks Intelligence / OpenClaw agent fleet",
  "audit_type": "Periodic (weekly, automated measurement)",
  "risk_tier": "High (agentic, tool-using, customer-facing, PII in leads DB)",
- "overall_maturity_pct": 47.8,
+ "overall_maturity_pct": 54.0,
  "rating": "Developing",
  "functions": {
   "GOVERN": {
@@ -221,9 +221,9 @@
      "id": "E5",
      "control": "Explainability & decision traceability for consequential outputs",
      "weight_pct": 5.0,
-     "score": 2,
-     "maturity": "Initial",
-     "evidence": "2/3 decision trails fresh (<48h): task ledger, cron receipts, routing log",
+     "score": 4,
+     "maturity": "Defined",
+     "evidence": "3/3 decision trails fresh (<48h): task ledger, cron receipts, routing log",
      "source": "task-ledger.sqlite + openclaw.sqlite + routing-log.jsonl",
      "no_evidence": false,
      "layer": "data",
@@ -254,10 +254,10 @@
      "owner": "identity_warden"
     }
    ],
-   "avg_score": 2.57,
-   "maturity_pct": 51.4,
+   "avg_score": 2.86,
+   "maturity_pct": 57.1,
    "weight": 0.35,
-   "weighted": 17.99
+   "weighted": 19.98
   },
   "MANAGE": {
    "controls": [
@@ -277,9 +277,9 @@
      "id": "A2",
      "control": "AI-specific incident response plan (hallucination, bias, breach)",
      "weight_pct": 4.5,
-     "score": 1,
-     "maturity": "Ad Hoc",
-     "evidence": "runbook MISSING; switches present 2/4; 0 incident records; 0 panics/14d, 0 post-mortems",
+     "score": 4,
+     "maturity": "Defined",
+     "evidence": "runbook present; switches present 5/5; drill passed <35d; 1 incident records; 0 panics/14d, 0 post-mortems",
      "source": "incident-runbook + kill switches + mast-incidents + panic logs",
      "no_evidence": false,
      "layer": "incident",
@@ -291,7 +291,7 @@
      "weight_pct": 4.0,
      "score": 1,
      "maturity": "Ad Hoc",
-     "evidence": "blessed-hashes MISSING; core behind: openclaw 2026.9.3\u21922026.9.4 (ops task filed; install is operator sign-off); CVEs: 0",
+     "evidence": "blessed-hashes MISSING; core behind: openclaw 2026.9.3\u21922026.9.5 (ops task filed; install is operator sign-off); CVEs: 0",
      "source": "blessed-hashes.json + dependency_cve_scan + core-behind alerts",
      "no_evidence": false,
      "layer": "supply_chain",
@@ -301,9 +301,9 @@
      "id": "A4",
      "control": "Ongoing monitoring & drift detection cadence defined",
      "weight_pct": 4.5,
-     "score": 2,
-     "maturity": "Initial",
-     "evidence": "health sweep age 0.5 h; memory guard SILENT",
+     "score": 4,
+     "maturity": "Defined",
+     "evidence": "health sweep age 0.1 h; memory guard live",
      "source": "health-sweep-last.json + memory-guard-state.json",
      "no_evidence": false,
      "layer": "incident",
@@ -334,29 +334,21 @@
      "owner": "security_lead"
     }
    ],
-   "avg_score": 1.83,
-   "maturity_pct": 36.7,
+   "avg_score": 2.67,
+   "maturity_pct": 53.3,
    "weight": 0.25,
-   "weighted": 9.18
+   "weighted": 13.32
   }
  },
  "no_evidence_controls": [],
  "control_findings": [
-  {
-   "control": "A2",
-   "finding": "AI-specific incident response plan (hallucination, bias, breach) (scored 1, Ad Hoc)",
-   "rating": "High",
-   "owner": "incident_responder",
-   "layer": "incident",
-   "target": "2026-10-19"
-  },
   {
    "control": "A3",
    "finding": "Change management for model/version updates (scored 1, Ad Hoc)",
    "rating": "High",
    "owner": "supply_chain_auditor",
    "layer": "supply_chain",
-   "target": "2026-10-19"
+   "target": "2026-10-20"
   },
   {
    "control": "A6",
@@ -364,7 +356,7 @@
    "rating": "High",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2026-10-19"
+   "target": "2026-10-20"
   },
   {
    "control": "E7",
@@ -372,7 +364,7 @@
    "rating": "High",
    "owner": "identity_warden",
    "layer": "identity",
-   "target": "2026-10-19"
+   "target": "2026-10-20"
   },
   {
    "control": "M6",
@@ -380,15 +372,7 @@
    "rating": "High",
    "owner": "identity_warden",
    "layer": "identity",
-   "target": "2026-10-19"
-  },
-  {
-   "control": "A4",
-   "finding": "Ongoing monitoring & drift detection cadence defined (scored 2, Initial)",
-   "rating": "Medium",
-   "owner": "incident_responder",
-   "layer": "incident",
-   "target": "2026-12-18"
+   "target": "2026-10-20"
   },
   {
    "control": "E4",
@@ -396,15 +380,7 @@
    "rating": "Medium",
    "owner": "secrets_custodian",
    "layer": "secrets",
-   "target": "2026-12-18"
-  },
-  {
-   "control": "E5",
-   "finding": "Explainability & decision traceability for consequential outputs (scored 2, Initial)",
-   "rating": "Medium",
-   "owner": "data_boundary_officer",
-   "layer": "data",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "control": "E6",
@@ -412,7 +388,7 @@
    "rating": "Medium",
    "owner": "secrets_custodian",
    "layer": "secrets",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "control": "G2",
@@ -420,7 +396,7 @@
    "rating": "Medium",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "control": "G5",
@@ -428,7 +404,7 @@
    "rating": "Medium",
    "owner": "supply_chain_auditor",
    "layer": "supply_chain",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "control": "M2",
@@ -436,7 +412,7 @@
    "rating": "Medium",
    "owner": "data_boundary_officer",
    "layer": "data",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "control": "M5",
@@ -444,7 +420,7 @@
    "rating": "Medium",
    "owner": "identity_warden",
    "layer": "identity",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "control": "A5",
@@ -518,7 +494,7 @@
    "rating": "Critical",
    "id": "backup-fails",
    "finding": "last backup restore drill did not pass: {\"ok\": false, \"reason\": \"no archives on the remote\"}",
-   "target": "2026-09-26"
+   "target": "2026-09-27"
   },
   {
    "layer": "secrets",
@@ -526,7 +502,7 @@
    "rating": "Critical",
    "id": "sea:TOKEN-SHAPE-IN-GIT-1-tracked-file-s-co",
    "finding": "TOKEN SHAPE IN GIT: 1 tracked file(s) contain token-shaped strings \u2014 [('scripts/data_boundary.py', ['aws-key', 'bot-token', 'private-key', 'sk-key'])] \u2014 untrack, redact, rotate if live",
-   "target": "2026-09-26"
+   "target": "2026-09-27"
   },
   {
    "layer": "identity",
@@ -534,7 +510,7 @@
    "rating": "High",
    "id": "no-deny:canary",
    "finding": "agent 'canary' has NO tool deny list -- unscoped access",
-   "target": "2026-10-19"
+   "target": "2026-10-20"
   },
   {
    "layer": "identity",
@@ -542,7 +518,7 @@
    "rating": "High",
    "id": "priv:ROOT-GRANT-sudoers-gives-the-fleet-NOPA",
    "finding": "ROOT GRANT: sudoers gives the fleet NOPASSWD root for ['ALL', 'ALL'] \u2014 only /usr/bin/mdutil is needed (system_ops uses gui-domain launchctl since 2026-09-05); operator: `sudo visudo -f /etc/sudoers.d/openclawbot`",
-   "target": "2026-10-19"
+   "target": "2026-10-20"
   },
   {
    "layer": "identity",
@@ -550,39 +526,7 @@
    "rating": "High",
    "id": "priv:STRAY-SUDO-1-call-s-outside-system_ops",
    "finding": "STRAY SUDO: 1 call(s) outside system_ops._sudo: ['brain_loop_eval.py:69']",
-   "target": "2026-10-19"
-  },
-  {
-   "layer": "incident",
-   "owner": "incident_responder",
-   "rating": "High",
-   "id": "no-runbook",
-   "finding": "no AI-specific incident runbook (data/security/incident-runbook.md): runaway agent, injection, leak, crash",
-   "target": "2026-10-19"
-  },
-  {
-   "layer": "incident",
-   "owner": "incident_responder",
-   "rating": "High",
-   "id": "switch-missing:trading kill-switch",
-   "finding": "kill switch / guard not present: trading kill-switch",
-   "target": "2026-10-19"
-  },
-  {
-   "layer": "incident",
-   "owner": "incident_responder",
-   "rating": "High",
-   "id": "switch-missing:memory guard",
-   "finding": "kill switch / guard not present: memory guard",
-   "target": "2026-10-19"
-  },
-  {
-   "layer": "incident",
-   "owner": "incident_responder",
-   "rating": "High",
-   "id": "memory-guard-silent",
-   "finding": "memory guard heartbeat is older than 30 min",
-   "target": "2026-10-19"
+   "target": "2026-10-20"
   },
   {
    "layer": "secrets",
@@ -590,7 +534,7 @@
    "rating": "High",
    "id": "hooks",
    "finding": "git pre-commit/pre-push secret hooks not both installed",
-   "target": "2026-10-19"
+   "target": "2026-10-20"
   },
   {
    "layer": "supply_chain",
@@ -598,7 +542,7 @@
    "rating": "High",
    "id": "no-blessed",
    "finding": "no blessed-hashes register for adopted tools",
-   "target": "2026-10-19"
+   "target": "2026-10-20"
   },
   {
    "layer": "data",
@@ -606,7 +550,7 @@
    "rating": "Medium",
    "id": "knowledge-provenance",
    "finding": "0/22 knowledge files carry provenance frontmatter",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -614,7 +558,7 @@
    "rating": "Medium",
    "id": "dormant:business_opportunity",
    "finding": "agent 'business_opportunity' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -622,7 +566,7 @@
    "rating": "Medium",
    "id": "dormant:canary",
    "finding": "agent 'canary' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -630,7 +574,7 @@
    "rating": "Medium",
    "id": "dormant:client_success",
    "finding": "agent 'client_success' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -638,7 +582,7 @@
    "rating": "Medium",
    "id": "dormant:growth",
    "finding": "agent 'growth' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -646,7 +590,7 @@
    "rating": "Medium",
    "id": "dormant:impact_assessor",
    "finding": "agent 'impact_assessor' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -654,7 +598,7 @@
    "rating": "Medium",
    "id": "dormant:injection_sentinel",
    "finding": "agent 'injection_sentinel' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -662,23 +606,7 @@
    "rating": "Medium",
    "id": "dormant:main",
    "finding": "agent 'main' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:procurement",
-   "finding": "agent 'procurement' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:prospecting",
-   "finding": "agent 'prospecting' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -686,15 +614,7 @@
    "rating": "Medium",
    "id": "dormant:recruiter",
    "finding": "agent 'recruiter' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:regulatory_mapper",
-   "finding": "agent 'regulatory_mapper' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -702,7 +622,7 @@
    "rating": "Medium",
    "id": "dormant:report_reviewer",
    "finding": "agent 'report_reviewer' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -710,7 +630,7 @@
    "rating": "Medium",
    "id": "dormant:scout",
    "finding": "agent 'scout' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -718,7 +638,7 @@
    "rating": "Medium",
    "id": "dormant:security",
    "finding": "agent 'security' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "identity",
@@ -726,15 +646,7 @@
    "rating": "Medium",
    "id": "dormant:seo",
    "finding": "agent 'seo' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:synthesis",
-   "finding": "agent 'synthesis' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "injection",
@@ -742,14 +654,14 @@
    "rating": "Medium",
    "id": "events-observe-only",
    "finding": "23 injection event(s) in 7d while the screen is in OBSERVE mode (touch data/security/injection-enforce to refuse)",
-   "target": "2026-12-18"
+   "target": "2026-12-19"
   },
   {
    "layer": "supply_chain",
    "owner": "supply_chain_auditor",
    "rating": "Low",
    "id": "behind:openclaw",
-   "finding": "core component behind its release: openclaw 2026.9.3\u21922026.9.4 (ops task filed; install is operator sign-off) (install is operator sign-off)",
+   "finding": "core component behind its release: openclaw 2026.9.3\u21922026.9.5 (ops task filed; install is operator sign-off) (install is operator sign-off)",
    "target": "next review cycle"
   },
   {
@@ -866,13 +778,13 @@
   }
  ],
  "layers_measured": {
-  "actions": "2026-09-19T12:53:49+00:00",
-  "data": "2026-09-19T12:53:49+00:00",
-  "identity": "2026-09-19T12:53:45+00:00",
-  "incident": "2026-09-19T12:53:49+00:00",
-  "injection": "2026-09-19T12:53:45+00:00",
-  "secrets": "2026-09-19T12:53:45+00:00",
-  "supply_chain": "2026-09-19T12:53:47+00:00"
+  "actions": "2026-09-20T01:29:27+00:00",
+  "data": "2026-09-20T01:29:27+00:00",
+  "identity": "2026-09-20T01:29:22+00:00",
+  "incident": "2026-09-20T01:29:27+00:00",
+  "injection": "2026-09-20T01:29:22+00:00",
+  "secrets": "2026-09-20T01:29:22+00:00",
+  "supply_chain": "2026-09-20T01:29:25+00:00"
  },
  "layers_missing": []
 }
