@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-20T03:22:49+00:00",
+ "generated_at": "2026-09-23T16:19:24+00:00",
  "framework": "NIST AI RMF 1.0 (Govern/Map/Measure/Manage)",
  "system": "SteelWorks Intelligence / OpenClaw agent fleet",
  "audit_type": "Periodic (weekly, automated measurement)",
  "risk_tier": "High (agentic, tool-using, customer-facing, PII in leads DB)",
- "overall_maturity_pct": 55.0,
+ "overall_maturity_pct": 58.4,
  "rating": "Developing",
  "functions": {
   "GOVERN": {
@@ -155,7 +155,7 @@
      "weight_pct": 3.0,
      "score": 1,
      "maturity": "Ad Hoc",
-     "evidence": "17/57 agents born through the factory with a ToS class + guardrails on record; 40 not",
+     "evidence": "18/57 agents born through the factory with a ToS class + guardrails on record; 39 not",
      "source": "data/org/agent-factory/minted",
      "no_evidence": false,
      "layer": "identity",
@@ -187,7 +187,7 @@
      "weight_pct": 5.0,
      "score": 3,
      "maturity": "Developing",
-     "evidence": "10 bias/fairness test artefact(s) on file",
+     "evidence": "15 bias/fairness test artefact(s) on file",
      "source": "data/security/bias-tests/",
      "no_evidence": false,
      "layer": "lead",
@@ -199,7 +199,7 @@
      "weight_pct": 5.0,
      "score": 4,
      "maturity": "Defined",
-     "evidence": "screen present; sweep 0/0; fixtures 38 (all pass); chokepoints router=True bridge=True; direct callers 11 covered / 0 not; 23 events/7d; observe",
+     "evidence": "screen present; sweep 6/0; fixtures 38 (all pass); chokepoints router=True bridge=True; direct callers 11 covered / 0 not; 5 events/7d; observe",
      "source": "injection_screen.py --fixtures + api_router/llm_bridge chokepoints + tripwire on direct callers + injection-events.jsonl",
      "no_evidence": false,
      "layer": "injection",
@@ -267,7 +267,7 @@
      "weight_pct": 4.0,
      "score": 4,
      "maturity": "Defined",
-     "evidence": "legality gate present, ToS register present, 0 standing allows (0 consequential), 0/0 public workers guarded, gate map verified (15 gates)",
+     "evidence": "legality gate present, ToS register present, 0 standing allows (0 consequential), 0/0 public workers guarded, gate map verified (19 gates)",
      "source": "external_action_guard + platform-tos + prompt-approvals + workers/ + data/org/gate-map.json",
      "no_evidence": false,
      "layer": "actions",
@@ -279,7 +279,7 @@
      "weight_pct": 4.5,
      "score": 4,
      "maturity": "Defined",
-     "evidence": "runbook present; switches present 5/5; drill passed <35d; 1 incident records; 0 panics/14d, 0 post-mortems",
+     "evidence": "runbook present; switches present 5/5; drill passed <35d; 2 incident records; 0 panics/14d, 0 post-mortems",
      "source": "incident-runbook + kill switches + mast-incidents + panic logs",
      "no_evidence": false,
      "layer": "incident",
@@ -289,9 +289,9 @@
      "id": "A3",
      "control": "Change management for model/version updates",
      "weight_pct": 4.0,
-     "score": 1,
-     "maturity": "Ad Hoc",
-     "evidence": "blessed-hashes MISSING; core behind: openclaw 2026.9.3\u21922026.9.5 (ops task filed; install is operator sign-off); CVEs: 0",
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "blessed-hashes present; core behind: openclaw 2026.9.3\u21922026.9.5 (ops task filed; install is operator sign-off); CVEs: 0",
      "source": "blessed-hashes.json + dependency_cve_scan + core-behind alerts",
      "no_evidence": false,
      "layer": "supply_chain",
@@ -301,9 +301,9 @@
      "id": "A4",
      "control": "Ongoing monitoring & drift detection cadence defined",
      "weight_pct": 4.5,
-     "score": 2,
-     "maturity": "Initial",
-     "evidence": "health sweep age 1.0 h; memory guard SILENT",
+     "score": 4,
+     "maturity": "Defined",
+     "evidence": "health sweep age 0.7 h; memory guard live",
      "source": "health-sweep-last.json + memory-guard-state.json",
      "no_evidence": false,
      "layer": "incident",
@@ -334,29 +334,21 @@
      "owner": "security_lead"
     }
    ],
-   "avg_score": 2.33,
-   "maturity_pct": 46.7,
+   "avg_score": 3.0,
+   "maturity_pct": 60.0,
    "weight": 0.25,
-   "weighted": 11.68
+   "weighted": 15.0
   }
  },
  "no_evidence_controls": [],
  "control_findings": [
-  {
-   "control": "A3",
-   "finding": "Change management for model/version updates (scored 1, Ad Hoc)",
-   "rating": "High",
-   "owner": "supply_chain_auditor",
-   "layer": "supply_chain",
-   "target": "2026-10-20"
-  },
   {
    "control": "A6",
    "finding": "Residual risk acceptance & executive sign-off process (scored 0, Absent)",
    "rating": "High",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2026-10-20"
+   "target": "2026-10-23"
   },
   {
    "control": "M6",
@@ -364,15 +356,7 @@
    "rating": "High",
    "owner": "identity_warden",
    "layer": "identity",
-   "target": "2026-10-20"
-  },
-  {
-   "control": "A4",
-   "finding": "Ongoing monitoring & drift detection cadence defined (scored 2, Initial)",
-   "rating": "Medium",
-   "owner": "incident_responder",
-   "layer": "incident",
-   "target": "2026-12-19"
+   "target": "2026-10-23"
   },
   {
    "control": "E4",
@@ -380,7 +364,7 @@
    "rating": "Medium",
    "owner": "secrets_custodian",
    "layer": "secrets",
-   "target": "2026-12-19"
+   "target": "2026-12-22"
   },
   {
    "control": "E6",
@@ -388,7 +372,7 @@
    "rating": "Medium",
    "owner": "secrets_custodian",
    "layer": "secrets",
-   "target": "2026-12-19"
+   "target": "2026-12-22"
   },
   {
    "control": "G2",
@@ -396,7 +380,7 @@
    "rating": "Medium",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2026-12-19"
+   "target": "2026-12-22"
   },
   {
    "control": "G5",
@@ -404,7 +388,7 @@
    "rating": "Medium",
    "owner": "supply_chain_auditor",
    "layer": "supply_chain",
-   "target": "2026-12-19"
+   "target": "2026-12-22"
   },
   {
    "control": "M2",
@@ -412,7 +396,15 @@
    "rating": "Medium",
    "owner": "data_boundary_officer",
    "layer": "data",
-   "target": "2026-12-19"
+   "target": "2026-12-22"
+  },
+  {
+   "control": "A3",
+   "finding": "Change management for model/version updates (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "supply_chain_auditor",
+   "layer": "supply_chain",
+   "target": "next review cycle"
   },
   {
    "control": "A5",
@@ -502,7 +494,7 @@
    "rating": "Critical",
    "id": "backup-fails",
    "finding": "last backup restore drill did not pass: {\"ok\": false, \"reason\": \"no archives on the remote\"}",
-   "target": "2026-09-27"
+   "target": "2026-09-30"
   },
   {
    "layer": "secrets",
@@ -510,15 +502,7 @@
    "rating": "Critical",
    "id": "sea:TOKEN-SHAPE-IN-GIT-1-tracked-file-s-co",
    "finding": "TOKEN SHAPE IN GIT: 1 tracked file(s) contain token-shaped strings \u2014 [('scripts/data_boundary.py', ['aws-key', 'bot-token', 'private-key', 'sk-key'])] \u2014 untrack, redact, rotate if live",
-   "target": "2026-09-27"
-  },
-  {
-   "layer": "incident",
-   "owner": "incident_responder",
-   "rating": "High",
-   "id": "memory-guard-silent",
-   "finding": "memory guard heartbeat is older than 30 min",
-   "target": "2026-10-20"
+   "target": "2026-09-30"
   },
   {
    "layer": "secrets",
@@ -526,15 +510,7 @@
    "rating": "High",
    "id": "hooks",
    "finding": "git pre-commit/pre-push secret hooks not both installed",
-   "target": "2026-10-20"
-  },
-  {
-   "layer": "supply_chain",
-   "owner": "supply_chain_auditor",
-   "rating": "High",
-   "id": "no-blessed",
-   "finding": "no blessed-hashes register for adopted tools",
-   "target": "2026-10-20"
+   "target": "2026-10-23"
   },
   {
    "layer": "data",
@@ -542,103 +518,15 @@
    "rating": "Medium",
    "id": "knowledge-provenance",
    "finding": "0/22 knowledge files carry provenance frontmatter",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:business_opportunity",
-   "finding": "agent 'business_opportunity' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:canary",
-   "finding": "agent 'canary' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:client_success",
-   "finding": "agent 'client_success' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:growth",
-   "finding": "agent 'growth' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:impact_assessor",
-   "finding": "agent 'impact_assessor' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:injection_sentinel",
-   "finding": "agent 'injection_sentinel' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:recruiter",
-   "finding": "agent 'recruiter' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:report_reviewer",
-   "finding": "agent 'report_reviewer' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:scout",
-   "finding": "agent 'scout' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:security",
-   "finding": "agent 'security' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:seo",
-   "finding": "agent 'seo' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-19"
+   "target": "2026-12-22"
   },
   {
    "layer": "injection",
    "owner": "injection_sentinel",
    "rating": "Medium",
    "id": "events-observe-only",
-   "finding": "23 injection event(s) in 7d while the screen is in OBSERVE mode (touch data/security/injection-enforce to refuse)",
-   "target": "2026-12-19"
+   "finding": "5 injection event(s) in 7d while the screen is in OBSERVE mode (touch data/security/injection-enforce to refuse)",
+   "target": "2026-12-22"
   },
   {
    "layer": "supply_chain",
@@ -762,13 +650,13 @@
   }
  ],
  "layers_measured": {
-  "actions": "2026-09-20T03:22:49+00:00",
-  "data": "2026-09-20T03:22:49+00:00",
-  "identity": "2026-09-20T03:22:44+00:00",
-  "incident": "2026-09-20T03:22:49+00:00",
-  "injection": "2026-09-20T03:22:44+00:00",
-  "secrets": "2026-09-20T03:22:44+00:00",
-  "supply_chain": "2026-09-20T03:22:47+00:00"
+  "actions": "2026-09-23T04:05:05+00:00",
+  "data": "2026-09-23T04:05:05+00:00",
+  "identity": "2026-09-23T04:05:00+00:00",
+  "incident": "2026-09-23T04:05:05+00:00",
+  "injection": "2026-09-23T04:05:00+00:00",
+  "secrets": "2026-09-23T04:05:00+00:00",
+  "supply_chain": "2026-09-23T16:19:22+00:00"
  },
  "layers_missing": []
 }
