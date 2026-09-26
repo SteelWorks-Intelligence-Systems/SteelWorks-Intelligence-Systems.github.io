@@ -184,6 +184,9 @@ a:hover { color: var(--ink-100); }
 table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
 th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--ink-500); vertical-align: top; }
 th { font-family: var(--font-display); font-weight: 700; }
+/* narrow screens: a wide data table scrolls inside itself, never the page (2026-09-26: 4 workbench pages
+   scrolled sideways at 390px). display:block keeps the rows' table layout via an anonymous table box. */
+@media (max-width: 48rem) { main table { display: block; max-width: 100%; overflow-x: auto; } }
 .receipt {
   font-family: var(--font-display); font-size: var(--step--1);
   border: 1px dashed var(--ink-500); padding: var(--gutter);
@@ -217,7 +220,10 @@ th { font-family: var(--font-display); font-weight: 700; }
   border: 1px solid var(--field-edge);
 }
 .capture textarea { flex-basis: 100%; min-height: 6rem; resize: vertical; }
+.capture input, .capture select, .capture textarea { min-width: 0; max-width: 100%; } /* a long option label must not widen the page */
 .capture .capture-msg { flex-basis: 100%; }
+/* third-party embed (booking calendar): tokens only, no inline style (2026-09-26) */
+.embed-frame { display: block; width: 100%; min-height: 1180px; border: 1px solid var(--ink-500); background: var(--ink-100); }
 
 /* --- motion: CSS scroll-driven, zero JS -----------------------------------
    motion-presets.csv#5 scroll reveal (400–600ms) and #7 stagger list.
