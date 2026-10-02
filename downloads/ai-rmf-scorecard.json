@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-23T16:19:24+00:00",
+ "generated_at": "2026-09-30T06:30:00+00:00",
  "framework": "NIST AI RMF 1.0 (Govern/Map/Measure/Manage)",
  "system": "SteelWorks Intelligence / OpenClaw agent fleet",
  "audit_type": "Periodic (weekly, automated measurement)",
  "risk_tier": "High (agentic, tool-using, customer-facing, PII in leads DB)",
- "overall_maturity_pct": 58.4,
+ "overall_maturity_pct": 59.3,
  "rating": "Developing",
  "functions": {
   "GOVERN": {
@@ -39,7 +39,7 @@
      "weight_pct": 3.5,
      "score": 4,
      "maturity": "Defined",
-     "evidence": "config entries 57, agent dirs 57, dept names unmatched 0, dirs unmatched 0",
+     "evidence": "config entries 70, agent dirs 70, dept names unmatched 0, dirs unmatched 0",
      "source": "openclaw.json + ~/.openclaw/agents + departments.json",
      "no_evidence": false,
      "layer": "identity",
@@ -63,7 +63,7 @@
      "weight_pct": 3.0,
      "score": 2,
      "maturity": "Initial",
-     "evidence": "vendor AI inventory written (14 providers, 0 local models); per-vendor terms review not yet recorded",
+     "evidence": "vendor AI inventory written (13 providers, 0 local models); per-vendor terms review not yet recorded",
      "source": "data/security/vendor-ai-inventory.json",
      "no_evidence": false,
      "layer": "supply_chain",
@@ -95,7 +95,7 @@
      "weight_pct": 3.5,
      "score": 3,
      "maturity": "Developing",
-     "evidence": "57/57 agents carry a SOUL (intended use); 57/57 run a scheduled job (observed use)",
+     "evidence": "70/70 agents carry a SOUL (intended use); 70/70 run a scheduled job (observed use)",
      "source": "~/.openclaw/agents/*/SOUL.md + cron receipts",
      "no_evidence": false,
      "layer": "lead",
@@ -107,7 +107,7 @@
      "weight_pct": 3.5,
      "score": 2,
      "maturity": "Initial",
-     "evidence": "0/22 knowledge files with provenance; doctrine_guard present; backup restore NOT verified",
+     "evidence": "0/22 knowledge files with provenance; doctrine_guard present; backup restore verified",
      "source": "data/knowledge frontmatter + doctrine_guard + backup-verify-verdict",
      "no_evidence": false,
      "layer": "data",
@@ -143,7 +143,7 @@
      "weight_pct": 3.5,
      "score": 3,
      "maturity": "Developing",
-     "evidence": "57/57 agents carry a tool deny list; 0 without",
+     "evidence": "70/70 agents carry a tool deny list; 0 without",
      "source": "openclaw.json agents.entries[].tools.deny",
      "no_evidence": false,
      "layer": "identity",
@@ -155,7 +155,7 @@
      "weight_pct": 3.0,
      "score": 1,
      "maturity": "Ad Hoc",
-     "evidence": "18/57 agents born through the factory with a ToS class + guardrails on record; 39 not",
+     "evidence": "18/70 agents born through the factory with a ToS class + guardrails on record; 52 not",
      "source": "data/org/agent-factory/minted",
      "no_evidence": false,
      "layer": "identity",
@@ -187,7 +187,7 @@
      "weight_pct": 5.0,
      "score": 3,
      "maturity": "Developing",
-     "evidence": "15 bias/fairness test artefact(s) on file",
+     "evidence": "145 bias/fairness test artefact(s) on file",
      "source": "data/security/bias-tests/",
      "no_evidence": false,
      "layer": "lead",
@@ -197,9 +197,9 @@
      "id": "E3",
      "control": "Robustness / adversarial testing (prompt injection, jailbreak, evasion)",
      "weight_pct": 5.0,
-     "score": 4,
-     "maturity": "Defined",
-     "evidence": "screen present; sweep 6/0; fixtures 38 (all pass); chokepoints router=True bridge=True; direct callers 11 covered / 0 not; 5 events/7d; observe",
+     "score": 5,
+     "maturity": "Managed / Optimized",
+     "evidence": "screen present; sweep 6/0; fixtures 55 (all pass); chokepoints router=True bridge=True fp=True; direct callers 10 covered / 0 not; 1 events/7d (0 unresolved); SANITISE+action-gate",
      "source": "injection_screen.py --fixtures + api_router/llm_bridge chokepoints + tripwire on direct callers + injection-events.jsonl",
      "no_evidence": false,
      "layer": "injection",
@@ -209,9 +209,9 @@
      "id": "E4",
      "control": "Security testing (data exfiltration, model extraction, supply-chain review)",
      "weight_pct": 5.0,
-     "score": 2,
-     "maturity": "Initial",
-     "evidence": "exposure audit: TOKEN SHAPE IN GIT: 1 tracked file(s) contain token-shaped strings \u2014 [('scripts/data_boundary.py', ['aws-key', 'bot-token', 'private-key', 'sk-key'])] \u2014 untrack; hooks MISSING; rotation overdue 0",
+     "score": 4,
+     "maturity": "Defined",
+     "evidence": "exposure audit: clean; hooks installed; rotation overdue 0",
      "source": "secret_exposure_audit + git hooks + rotation ledger",
      "no_evidence": false,
      "layer": "secrets",
@@ -235,7 +235,7 @@
      "weight_pct": 5.0,
      "score": 2,
      "maturity": "Initial",
-     "evidence": "pii_scrub present, directly imported by 2 script(s) [counts importers, NOT covered egress paths]; frontier lane covered via data_boundary.py; retention: media-retention job present=False",
+     "evidence": "pii_scrub present, directly imported by 1 script(s) [counts importers, NOT covered egress paths]; frontier lane covered via data_boundary.py; retention: media-retention job present=False",
      "source": "pii_scrub.py + data_boundary.py",
      "no_evidence": false,
      "layer": "secrets",
@@ -245,19 +245,19 @@
      "id": "E7",
      "control": "Identity & access control testing for AI agents / service accounts",
      "weight_pct": 5.0,
-     "score": 3,
-     "maturity": "Developing",
-     "evidence": "privilege_check clean: root grants, sudo, rotation debt, venv drift all within policy; no recertification cadence yet",
+     "score": 1,
+     "maturity": "Ad Hoc",
+     "evidence": "privilege_check: VENV DRIFT: 2 venv(s) without a matching requirements.lock: ['scrapling-venv: no requirements.lock', 'ytdlp-venv: no requirements.lock'] \u2014 `privilege_check.py --lock` after a deliberate install",
      "source": "scripts/privilege_check.py",
      "no_evidence": false,
      "layer": "identity",
      "owner": "identity_warden"
     }
    ],
-   "avg_score": 3.14,
-   "maturity_pct": 62.9,
+   "avg_score": 3.29,
+   "maturity_pct": 65.7,
    "weight": 0.35,
-   "weighted": 22.01
+   "weighted": 23.0
   },
   "MANAGE": {
    "controls": [
@@ -291,7 +291,7 @@
      "weight_pct": 4.0,
      "score": 3,
      "maturity": "Developing",
-     "evidence": "blessed-hashes present; core behind: openclaw 2026.9.3\u21922026.9.5 (ops task filed; install is operator sign-off); CVEs: 0",
+     "evidence": "blessed-hashes present; core behind: openclaw 2026.9.3 \u2192 2026.9.4 \u2014 read the release notes (https://www.npmjs.com/package/openclaw?activeTab=versions), list breaking changes for our wiring, propose the upgrade; INSTALL NEEDS OPERATOR SIGN-OFF, do not upgrade autonomously (due 2026-09-22T05:50:01.046964+00:00); CVEs: 0",
      "source": "blessed-hashes.json + dependency_cve_scan + core-behind alerts",
      "no_evidence": false,
      "layer": "supply_chain",
@@ -348,7 +348,15 @@
    "rating": "High",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2026-10-23"
+   "target": "2026-10-30"
+  },
+  {
+   "control": "E7",
+   "finding": "Identity & access control testing for AI agents / service accounts (scored 1, Ad Hoc)",
+   "rating": "High",
+   "owner": "identity_warden",
+   "layer": "identity",
+   "target": "2026-10-30"
   },
   {
    "control": "M6",
@@ -356,15 +364,7 @@
    "rating": "High",
    "owner": "identity_warden",
    "layer": "identity",
-   "target": "2026-10-23"
-  },
-  {
-   "control": "E4",
-   "finding": "Security testing (data exfiltration, model extraction, supply-chain review) (scored 2, Initial)",
-   "rating": "Medium",
-   "owner": "secrets_custodian",
-   "layer": "secrets",
-   "target": "2026-12-22"
+   "target": "2026-10-30"
   },
   {
    "control": "E6",
@@ -372,7 +372,7 @@
    "rating": "Medium",
    "owner": "secrets_custodian",
    "layer": "secrets",
-   "target": "2026-12-22"
+   "target": "2026-12-29"
   },
   {
    "control": "G2",
@@ -380,7 +380,7 @@
    "rating": "Medium",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2026-12-22"
+   "target": "2026-12-29"
   },
   {
    "control": "G5",
@@ -388,7 +388,7 @@
    "rating": "Medium",
    "owner": "supply_chain_auditor",
    "layer": "supply_chain",
-   "target": "2026-12-22"
+   "target": "2026-12-29"
   },
   {
    "control": "M2",
@@ -396,7 +396,7 @@
    "rating": "Medium",
    "owner": "data_boundary_officer",
    "layer": "data",
-   "target": "2026-12-22"
+   "target": "2026-12-29"
   },
   {
    "control": "A3",
@@ -420,14 +420,6 @@
    "rating": "Low",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "next review cycle"
-  },
-  {
-   "control": "E7",
-   "finding": "Identity & access control testing for AI agents / service accounts (scored 3, Developing)",
-   "rating": "Low",
-   "owner": "identity_warden",
-   "layer": "identity",
    "target": "next review cycle"
   },
   {
@@ -489,28 +481,28 @@
  ],
  "layer_findings": [
   {
-   "layer": "data",
-   "owner": "data_boundary_officer",
-   "rating": "Critical",
-   "id": "backup-fails",
-   "finding": "last backup restore drill did not pass: {\"ok\": false, \"reason\": \"no archives on the remote\"}",
-   "target": "2026-09-30"
-  },
-  {
-   "layer": "secrets",
-   "owner": "secrets_custodian",
-   "rating": "Critical",
-   "id": "sea:TOKEN-SHAPE-IN-GIT-1-tracked-file-s-co",
-   "finding": "TOKEN SHAPE IN GIT: 1 tracked file(s) contain token-shaped strings \u2014 [('scripts/data_boundary.py', ['aws-key', 'bot-token', 'private-key', 'sk-key'])] \u2014 untrack, redact, rotate if live",
-   "target": "2026-09-30"
-  },
-  {
-   "layer": "secrets",
-   "owner": "secrets_custodian",
+   "layer": "identity",
+   "owner": "identity_warden",
    "rating": "High",
-   "id": "hooks",
-   "finding": "git pre-commit/pre-push secret hooks not both installed",
-   "target": "2026-10-23"
+   "id": "priv:VENV-DRIFT-2-venv-s-without-a-matching",
+   "finding": "VENV DRIFT: 2 venv(s) without a matching requirements.lock: ['scrapling-venv: no requirements.lock', 'ytdlp-venv: no requirements.lock'] \u2014 `privilege_check.py --lock` after a deliberate install",
+   "target": "2026-10-30"
+  },
+  {
+   "layer": "actions",
+   "owner": "action_gatekeeper",
+   "rating": "Medium",
+   "id": "program:D2",
+   "finding": "PROGRAM D2 (not started): Attack surface map with ownership confidence + passive recon method - write data/security/program/D2.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Allowlisted root domains/subdomains/IPs/repos/cert owners FROM OUR OWN RECORDS first; data-flow/trust-boundary diagram; forgotten subdomains, stale certs, unexpected public services (Funnel :443, Serve ports) compared with certificate transparency. Passive only - no scanning of anything, owned or no APPROVAL GATE: any active probe or scan - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "actions",
+   "owner": "action_gatekeeper",
+   "rating": "Medium",
+   "id": "program:D3",
+   "finding": "PROGRAM D3 (not started): Censys CenQL worksheet + privacy/credit assessment - write data/security/program/D3.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Worksheet for web.hostname / host.dns.names / cert.names / host.services.cert.names, ':' vs '=' matching, nested host.services, tier/regex/API limits, cost and false-positive risk per query - documentation only. Query Assistant inputs go to OpenAI under Censys' policy: no private architecture or sec APPROVAL GATE: every credit-consuming Censys search; creating a Censys account - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2026-12-29"
   },
   {
    "layer": "data",
@@ -518,22 +510,182 @@
    "rating": "Medium",
    "id": "knowledge-provenance",
    "finding": "0/22 knowledge files carry provenance frontmatter",
-   "target": "2026-12-22"
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_architecture",
+   "finding": "agent 'energy_architecture' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_assurance",
+   "finding": "agent 'energy_assurance' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_client",
+   "finding": "agent 'energy_client' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_counsel",
+   "finding": "agent 'energy_counsel' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_data_boundary",
+   "finding": "agent 'energy_data_boundary' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_data_lead",
+   "finding": "agent 'energy_data_lead' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_lead",
+   "finding": "agent 'energy_lead' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_marketing",
+   "finding": "agent 'energy_marketing' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_regulatory",
+   "finding": "agent 'energy_regulatory' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_security",
+   "finding": "agent 'energy_security' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "dormant:energy_solutions",
+   "finding": "agent 'energy_solutions' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "program:D1",
+   "finding": "PROGRAM D1 (not started): Verified current-state inventory and unknowns - write data/security/program/D1.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Source-linked inventory: repos, branches, CI/CD, VM/PC/containers, domains, DNS, certs, Cloudflare, Tailscale Funnel/Serve, GitHub, third-party services, identities, secrets handling, agent/tool permissions, data stores, customer-data categories, logs, backups, incident owner. Each row: owner, autho Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "program:D6",
+   "finding": "PROGRAM D6 (not started): Agent role / skill / connector permission matrix - write data/security/program/D6.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Per bot (OpenClaw agents, Hermes, Paperclip CEO, Command Center chat): owner, scope, data access, named identity, least-privilege credential, allowed/forbidden tools, isolation, approval gate, logging, escalation, disable switch, and a test that the boundary holds. External MCP servers, ClawHub/thir Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "incident",
+   "owner": "incident_responder",
+   "rating": "Medium",
+   "id": "program:D10",
+   "finding": "PROGRAM D10 (not started): Monitoring / incident runbooks + human tester rules of engagement - write data/security/program/D10.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Runbooks with a real escalation owner, retention and false-positive handling; backup/restore verification (open Critical: last restore drill failed - no archives on the remote); tabletop; draft ROE: named testers, exact assets/dates, forbidden methods, stop conditions, evidence custody, retest. APPROVAL GATE: any live human red-team exercise - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2026-12-29"
   },
   {
    "layer": "injection",
    "owner": "injection_sentinel",
    "rating": "Medium",
-   "id": "events-observe-only",
-   "finding": "5 injection event(s) in 7d while the screen is in OBSERVE mode (touch data/security/injection-enforce to refuse)",
-   "target": "2026-12-22"
+   "id": "program:D4",
+   "finding": "PROGRAM D4 (not started): ANY.RUN applicability, privacy and cost decision - write data/security/program/D4.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Decide from OUR ingestion surfaces (Command Center uploads, bug-desk attachments/recordings, video intake, email): hash/public-report research first; public/community tasks are public - never submit private builds, keys, customer files or tokenised URLs; private tier or self-hosted sandbox before an APPROVAL GATE: any sample or URL submission; any paid plan - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "secrets",
+   "owner": "secrets_custodian",
+   "rating": "Medium",
+   "id": "program:D9",
+   "finding": "PROGRAM D9 (not started): Isolated-branch changes with real test evidence - write data/security/program/D9.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Proposed changes on an isolated branch/worktree with reproducible test output (not claims); synthetic adversarial fixtures with expected secure response and a regression owner. Starts with the open High: pre-commit/pre-push secret hooks not installed. APPROVAL GATE: any write to main; any merge - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2026-12-29"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Medium",
+   "id": "program:D7",
+   "finding": "PROGRAM D7 (not started): Tool and repository decision matrix (adopt / defer / reject) - write data/security/program/D7.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Gitleaks, Semgrep, Trivy, Syft, OpenSSF Scorecard, OWASP ZAP (staging only), Promptfoo/garak, Wazuh, GitHub Dependabot/review gates, Cloudflare edge controls: official repo, licence, maintenance evidence, egress, cost, false positives, asset, operator, acceptance test, decision. Prefer deterministic APPROVAL GATE: installing any tool; enabling any paid feature - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2026-12-29"
   },
   {
    "layer": "supply_chain",
    "owner": "supply_chain_auditor",
    "rating": "Low",
    "id": "behind:openclaw",
-   "finding": "core component behind its release: openclaw 2026.9.3\u21922026.9.5 (ops task filed; install is operator sign-off) (install is operator sign-off)",
+   "finding": "core component behind its release: openclaw 2026.9.3 \u2192 2026.9.4 \u2014 read the release notes (https://www.npmjs.com/package/openclaw?activeTab=versions) (install is operator sign-off)",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "behind:list",
+   "finding": "core component behind its release: list breaking changes for our wiring (install is operator sign-off)",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "behind:propose",
+   "finding": "core component behind its release: propose the upgrade; INSTALL NEEDS OPERATOR SIGN-OFF (install is operator sign-off)",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "behind:do",
+   "finding": "core component behind its release: do not upgrade autonomously (due 2026-09-22T05:50:01.046964+00:00) (install is operator sign-off)",
+   "target": "next review cycle"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "Low",
+   "id": "vendor-review:cloud_120b",
+   "finding": "vendor AI 'cloud_120b': terms, retention and model-change notice not on record -- review and record in the inventory",
    "target": "next review cycle"
   },
   {
@@ -550,14 +702,6 @@
    "rating": "Low",
    "id": "vendor-review:groq",
    "finding": "vendor AI 'groq': terms, retention and model-change notice not on record -- review and record in the inventory",
-   "target": "next review cycle"
-  },
-  {
-   "layer": "supply_chain",
-   "owner": "supply_chain_auditor",
-   "rating": "Low",
-   "id": "vendor-review:m1_ollama",
-   "finding": "vendor AI 'm1_ollama': terms, retention and model-change notice not on record -- review and record in the inventory",
    "target": "next review cycle"
   },
   {
@@ -639,24 +783,16 @@
    "id": "vendor-review:openrouter",
    "finding": "vendor AI 'openrouter': terms, retention and model-change notice not on record -- review and record in the inventory",
    "target": "next review cycle"
-  },
-  {
-   "layer": "supply_chain",
-   "owner": "supply_chain_auditor",
-   "rating": "Low",
-   "id": "vendor-review:pc_heavy",
-   "finding": "vendor AI 'pc_heavy': terms, retention and model-change notice not on record -- review and record in the inventory",
-   "target": "next review cycle"
   }
  ],
  "layers_measured": {
-  "actions": "2026-09-23T04:05:05+00:00",
-  "data": "2026-09-23T04:05:05+00:00",
-  "identity": "2026-09-23T04:05:00+00:00",
-  "incident": "2026-09-23T04:05:05+00:00",
-  "injection": "2026-09-23T04:05:00+00:00",
-  "secrets": "2026-09-23T04:05:00+00:00",
-  "supply_chain": "2026-09-23T16:19:22+00:00"
+  "actions": "2026-09-30T04:05:16+00:00",
+  "data": "2026-09-30T04:05:16+00:00",
+  "identity": "2026-09-30T04:05:00+00:00",
+  "incident": "2026-09-30T04:05:16+00:00",
+  "injection": "2026-09-30T04:05:00+00:00",
+  "secrets": "2026-09-30T04:05:00+00:00",
+  "supply_chain": "2026-09-30T04:05:05+00:00"
  },
  "layers_missing": []
 }
