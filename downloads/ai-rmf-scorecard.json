@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-30T06:30:00+00:00",
+ "generated_at": "2026-10-07T06:30:00+00:00",
  "framework": "NIST AI RMF 1.0 (Govern/Map/Measure/Manage)",
  "system": "SteelWorks Intelligence / OpenClaw agent fleet",
  "audit_type": "Periodic (weekly, automated measurement)",
@@ -187,7 +187,7 @@
      "weight_pct": 5.0,
      "score": 3,
      "maturity": "Developing",
-     "evidence": "145 bias/fairness test artefact(s) on file",
+     "evidence": "495 bias/fairness test artefact(s) on file",
      "source": "data/security/bias-tests/",
      "no_evidence": false,
      "layer": "lead",
@@ -197,9 +197,9 @@
      "id": "E3",
      "control": "Robustness / adversarial testing (prompt injection, jailbreak, evasion)",
      "weight_pct": 5.0,
-     "score": 5,
-     "maturity": "Managed / Optimized",
-     "evidence": "screen present; sweep 6/0; fixtures 55 (all pass); chokepoints router=True bridge=True fp=True; direct callers 10 covered / 0 not; 1 events/7d (0 unresolved); SANITISE+action-gate",
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "screen present; sweep 6/0; fixtures 55 (all pass); chokepoints router=True bridge=True fp=True; direct callers 10 covered / 1 not; 109 events/7d (0 unresolved); SANITISE+action-gate",
      "source": "injection_screen.py --fixtures + api_router/llm_bridge chokepoints + tripwire on direct callers + injection-events.jsonl",
      "no_evidence": false,
      "layer": "injection",
@@ -245,9 +245,9 @@
      "id": "E7",
      "control": "Identity & access control testing for AI agents / service accounts",
      "weight_pct": 5.0,
-     "score": 1,
-     "maturity": "Ad Hoc",
-     "evidence": "privilege_check: VENV DRIFT: 2 venv(s) without a matching requirements.lock: ['scrapling-venv: no requirements.lock', 'ytdlp-venv: no requirements.lock'] \u2014 `privilege_check.py --lock` after a deliberate install",
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "privilege_check clean: root grants, sudo, rotation debt, venv drift all within policy; no recertification cadence yet",
      "source": "scripts/privilege_check.py",
      "no_evidence": false,
      "layer": "identity",
@@ -267,7 +267,7 @@
      "weight_pct": 4.0,
      "score": 4,
      "maturity": "Defined",
-     "evidence": "legality gate present, ToS register present, 0 standing allows (0 consequential), 0/0 public workers guarded, gate map verified (19 gates)",
+     "evidence": "legality gate present, ToS register present, 0 standing allows (0 consequential), 0/0 public workers guarded, gate map unverified/missing (19 gates)",
      "source": "external_action_guard + platform-tos + prompt-approvals + workers/ + data/org/gate-map.json",
      "no_evidence": false,
      "layer": "actions",
@@ -348,15 +348,7 @@
    "rating": "High",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2026-10-30"
-  },
-  {
-   "control": "E7",
-   "finding": "Identity & access control testing for AI agents / service accounts (scored 1, Ad Hoc)",
-   "rating": "High",
-   "owner": "identity_warden",
-   "layer": "identity",
-   "target": "2026-10-30"
+   "target": "2026-11-06"
   },
   {
    "control": "M6",
@@ -364,7 +356,7 @@
    "rating": "High",
    "owner": "identity_warden",
    "layer": "identity",
-   "target": "2026-10-30"
+   "target": "2026-11-06"
   },
   {
    "control": "E6",
@@ -372,7 +364,7 @@
    "rating": "Medium",
    "owner": "secrets_custodian",
    "layer": "secrets",
-   "target": "2026-12-29"
+   "target": "2027-01-05"
   },
   {
    "control": "G2",
@@ -380,7 +372,7 @@
    "rating": "Medium",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2026-12-29"
+   "target": "2027-01-05"
   },
   {
    "control": "G5",
@@ -388,7 +380,7 @@
    "rating": "Medium",
    "owner": "supply_chain_auditor",
    "layer": "supply_chain",
-   "target": "2026-12-29"
+   "target": "2027-01-05"
   },
   {
    "control": "M2",
@@ -396,7 +388,7 @@
    "rating": "Medium",
    "owner": "data_boundary_officer",
    "layer": "data",
-   "target": "2026-12-29"
+   "target": "2027-01-05"
   },
   {
    "control": "A3",
@@ -420,6 +412,22 @@
    "rating": "Low",
    "owner": "security_lead",
    "layer": "lead",
+   "target": "next review cycle"
+  },
+  {
+   "control": "E3",
+   "finding": "Robustness / adversarial testing (prompt injection, jailbreak, evasion) (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "injection_sentinel",
+   "layer": "injection",
+   "target": "next review cycle"
+  },
+  {
+   "control": "E7",
+   "finding": "Identity & access control testing for AI agents / service accounts (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "identity_warden",
+   "layer": "identity",
    "target": "next review cycle"
   },
   {
@@ -481,28 +489,36 @@
  ],
  "layer_findings": [
   {
-   "layer": "identity",
-   "owner": "identity_warden",
+   "layer": "injection",
+   "owner": "injection_sentinel",
    "rating": "High",
-   "id": "priv:VENV-DRIFT-2-venv-s-without-a-matching",
-   "finding": "VENV DRIFT: 2 venv(s) without a matching requirements.lock: ['scrapling-venv: no requirements.lock', 'ytdlp-venv: no requirements.lock'] \u2014 `privilege_check.py --lock` after a deliberate install",
-   "target": "2026-10-30"
+   "id": "unscreened:client_agents.py",
+   "finding": "client_agents.py ingests external content AND calls Ollama directly without the tripwire (_ij_post/_ij_urlopen)",
+   "target": "2026-11-06"
+  },
+  {
+   "layer": "actions",
+   "owner": "action_gatekeeper",
+   "rating": "Medium",
+   "id": "gate-map-unverified",
+   "finding": "gate map check is stale (> 8 d) or reports gaps -- run scripts/gate_map_check.py",
+   "target": "2027-01-05"
   },
   {
    "layer": "actions",
    "owner": "action_gatekeeper",
    "rating": "Medium",
    "id": "program:D2",
-   "finding": "PROGRAM D2 (not started): Attack surface map with ownership confidence + passive recon method - write data/security/program/D2.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Allowlisted root domains/subdomains/IPs/repos/cert owners FROM OUR OWN RECORDS first; data-flow/trust-boundary diagram; forgotten subdomains, stale certs, unexpected public services (Funnel :443, Serve ports) compared with certificate transparency. Passive only - no scanning of anything, owned or no APPROVAL GATE: any active probe or scan - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2026-12-29"
+   "finding": "PROGRAM D2 (proposed): Attack surface map with ownership confidence + passive recon method - write data/security/program/D2.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Allowlisted root domains/subdomains/IPs/repos/cert owners FROM OUR OWN RECORDS first; data-flow/trust-boundary diagram; forgotten subdomains, stale certs, unexpected public services (Funnel :443, Serve ports) compared with certificate transparency. Passive only - no scanning of anything, owned or no APPROVAL GATE: any active probe or scan - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-05"
   },
   {
    "layer": "actions",
    "owner": "action_gatekeeper",
    "rating": "Medium",
    "id": "program:D3",
-   "finding": "PROGRAM D3 (not started): Censys CenQL worksheet + privacy/credit assessment - write data/security/program/D3.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Worksheet for web.hostname / host.dns.names / cert.names / host.services.cert.names, ':' vs '=' matching, nested host.services, tier/regex/API limits, cost and false-positive risk per query - documentation only. Query Assistant inputs go to OpenAI under Censys' policy: no private architecture or sec APPROVAL GATE: every credit-consuming Censys search; creating a Censys account - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2026-12-29"
+   "finding": "PROGRAM D3 (proposed): Censys CenQL worksheet + privacy/credit assessment - write data/security/program/D3.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Worksheet for web.hostname / host.dns.names / cert.names / host.services.cert.names, ':' vs '=' matching, nested host.services, tier/regex/API limits, cost and false-positive risk per query - documentation only. Query Assistant inputs go to OpenAI under Censys' policy: no private architecture or sec APPROVAL GATE: every credit-consuming Censys search; creating a Censys account - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-05"
   },
   {
    "layer": "data",
@@ -510,95 +526,7 @@
    "rating": "Medium",
    "id": "knowledge-provenance",
    "finding": "0/22 knowledge files carry provenance frontmatter",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_architecture",
-   "finding": "agent 'energy_architecture' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_assurance",
-   "finding": "agent 'energy_assurance' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_client",
-   "finding": "agent 'energy_client' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_counsel",
-   "finding": "agent 'energy_counsel' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_data_boundary",
-   "finding": "agent 'energy_data_boundary' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_data_lead",
-   "finding": "agent 'energy_data_lead' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_lead",
-   "finding": "agent 'energy_lead' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_marketing",
-   "finding": "agent 'energy_marketing' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_regulatory",
-   "finding": "agent 'energy_regulatory' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_security",
-   "finding": "agent 'energy_security' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
-  },
-  {
-   "layer": "identity",
-   "owner": "identity_warden",
-   "rating": "Medium",
-   "id": "dormant:energy_solutions",
-   "finding": "agent 'energy_solutions' holds 1 enabled cron(s) and has not run in 14 days -- live capability, nobody watching",
-   "target": "2026-12-29"
+   "target": "2027-01-05"
   },
   {
    "layer": "identity",
@@ -606,7 +534,7 @@
    "rating": "Medium",
    "id": "program:D1",
    "finding": "PROGRAM D1 (not started): Verified current-state inventory and unknowns - write data/security/program/D1.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Source-linked inventory: repos, branches, CI/CD, VM/PC/containers, domains, DNS, certs, Cloudflare, Tailscale Funnel/Serve, GitHub, third-party services, identities, secrets handling, agent/tool permissions, data stores, customer-data categories, logs, backups, incident owner. Each row: owner, autho Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2026-12-29"
+   "target": "2027-01-05"
   },
   {
    "layer": "identity",
@@ -614,23 +542,23 @@
    "rating": "Medium",
    "id": "program:D6",
    "finding": "PROGRAM D6 (not started): Agent role / skill / connector permission matrix - write data/security/program/D6.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Per bot (OpenClaw agents, Hermes, Paperclip CEO, Command Center chat): owner, scope, data access, named identity, least-privilege credential, allowed/forbidden tools, isolation, approval gate, logging, escalation, disable switch, and a test that the boundary holds. External MCP servers, ClawHub/thir Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2026-12-29"
+   "target": "2027-01-05"
   },
   {
    "layer": "incident",
    "owner": "incident_responder",
    "rating": "Medium",
    "id": "program:D10",
-   "finding": "PROGRAM D10 (not started): Monitoring / incident runbooks + human tester rules of engagement - write data/security/program/D10.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Runbooks with a real escalation owner, retention and false-positive handling; backup/restore verification (open Critical: last restore drill failed - no archives on the remote); tabletop; draft ROE: named testers, exact assets/dates, forbidden methods, stop conditions, evidence custody, retest. APPROVAL GATE: any live human red-team exercise - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2026-12-29"
+   "finding": "PROGRAM D10 (verified-gap): Monitoring / incident runbooks + human tester rules of engagement - write data/security/program/D10.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Runbooks with a real escalation owner, retention and false-positive handling; backup/restore verification (open Critical: last restore drill failed - no archives on the remote); tabletop; draft ROE: named testers, exact assets/dates, forbidden methods, stop conditions, evidence custody, retest. APPROVAL GATE: any live human red-team exercise - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-05"
   },
   {
    "layer": "injection",
    "owner": "injection_sentinel",
    "rating": "Medium",
    "id": "program:D4",
-   "finding": "PROGRAM D4 (not started): ANY.RUN applicability, privacy and cost decision - write data/security/program/D4.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Decide from OUR ingestion surfaces (Command Center uploads, bug-desk attachments/recordings, video intake, email): hash/public-report research first; public/community tasks are public - never submit private builds, keys, customer files or tokenised URLs; private tier or self-hosted sandbox before an APPROVAL GATE: any sample or URL submission; any paid plan - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2026-12-29"
+   "finding": "PROGRAM D4 (proposed): ANY.RUN applicability, privacy and cost decision - write data/security/program/D4.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Decide from OUR ingestion surfaces (Command Center uploads, bug-desk attachments/recordings, video intake, email): hash/public-report research first; public/community tasks are public - never submit private builds, keys, customer files or tokenised URLs; private tier or self-hosted sandbox before an APPROVAL GATE: any sample or URL submission; any paid plan - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-05"
   },
   {
    "layer": "secrets",
@@ -638,7 +566,7 @@
    "rating": "Medium",
    "id": "program:D9",
    "finding": "PROGRAM D9 (not started): Isolated-branch changes with real test evidence - write data/security/program/D9.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Proposed changes on an isolated branch/worktree with reproducible test output (not claims); synthetic adversarial fixtures with expected secure response and a regression owner. Starts with the open High: pre-commit/pre-push secret hooks not installed. APPROVAL GATE: any write to main; any merge - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2026-12-29"
+   "target": "2027-01-05"
   },
   {
    "layer": "supply_chain",
@@ -646,7 +574,7 @@
    "rating": "Medium",
    "id": "program:D7",
    "finding": "PROGRAM D7 (not started): Tool and repository decision matrix (adopt / defer / reject) - write data/security/program/D7.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Gitleaks, Semgrep, Trivy, Syft, OpenSSF Scorecard, OWASP ZAP (staging only), Promptfoo/garak, Wazuh, GitHub Dependabot/review gates, Cloudflare edge controls: official repo, licence, maintenance evidence, egress, cost, false positives, asset, operator, acceptance test, decision. Prefer deterministic APPROVAL GATE: installing any tool; enabling any paid feature - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2026-12-29"
+   "target": "2027-01-05"
   },
   {
    "layer": "supply_chain",
@@ -786,13 +714,13 @@
   }
  ],
  "layers_measured": {
-  "actions": "2026-09-30T04:05:16+00:00",
-  "data": "2026-09-30T04:05:16+00:00",
-  "identity": "2026-09-30T04:05:00+00:00",
-  "incident": "2026-09-30T04:05:16+00:00",
-  "injection": "2026-09-30T04:05:00+00:00",
-  "secrets": "2026-09-30T04:05:00+00:00",
-  "supply_chain": "2026-09-30T04:05:05+00:00"
+  "actions": "2026-10-07T04:05:20+00:00",
+  "data": "2026-10-07T04:05:20+00:00",
+  "identity": "2026-10-07T04:05:00+00:00",
+  "incident": "2026-10-07T04:05:20+00:00",
+  "injection": "2026-10-07T04:05:00+00:00",
+  "secrets": "2026-10-07T04:05:00+00:00",
+  "supply_chain": "2026-10-07T04:05:06+00:00"
  },
  "layers_missing": []
 }
