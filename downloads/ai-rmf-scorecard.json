@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-21T06:30:00+00:00",
+ "generated_at": "2026-10-28T06:30:00+00:00",
  "framework": "NIST AI RMF 1.0 (Govern/Map/Measure/Manage)",
  "system": "SteelWorks Intelligence / OpenClaw agent fleet",
  "audit_type": "Periodic (weekly, automated measurement)",
  "risk_tier": "High (agentic, tool-using, customer-facing, PII in leads DB)",
- "overall_maturity_pct": 56.7,
+ "overall_maturity_pct": 54.5,
  "rating": "Developing",
  "functions": {
   "GOVERN": {
@@ -37,9 +37,9 @@
      "id": "G3",
      "control": "AI system inventory maintained, including shadow AI discovery",
      "weight_pct": 3.5,
-     "score": 4,
-     "maturity": "Defined",
-     "evidence": "config entries 70, agent dirs 70, dept names unmatched 0, dirs unmatched 0",
+     "score": 2,
+     "maturity": "Initial",
+     "evidence": "config entries 70, agent dirs 71, dept names unmatched 0, dirs unmatched 1",
      "source": "openclaw.json + ~/.openclaw/agents + departments.json",
      "no_evidence": false,
      "layer": "identity",
@@ -52,7 +52,7 @@
      "score": 3,
      "maturity": "Developing",
      "evidence": "departments.json with named lanes and owners; legal/security/data/business split is by department, not a RACI",
-     "source": "data/org/departments.json",
+     "source": "[internal file]",
      "no_evidence": false,
      "layer": "lead",
      "owner": "security_lead"
@@ -64,7 +64,7 @@
      "score": 2,
      "maturity": "Initial",
      "evidence": "vendor AI inventory written (13 providers, 0 local models); per-vendor terms review not yet recorded",
-     "source": "data/security/vendor-ai-inventory.json",
+     "source": "[internal file]",
      "no_evidence": false,
      "layer": "supply_chain",
      "owner": "supply_chain_auditor"
@@ -76,16 +76,16 @@
      "score": 3,
      "maturity": "Developing",
      "evidence": "crosswalk on file: 6 regimes, 6 declared gaps, draft-labelled, awaiting counsel review",
-     "source": "data/security/regulatory-crosswalk.md",
+     "source": "[internal file]",
      "no_evidence": false,
      "layer": "lead",
      "owner": "security_lead"
     }
    ],
-   "avg_score": 2.83,
-   "maturity_pct": 56.7,
+   "avg_score": 2.5,
+   "maturity_pct": 50.0,
    "weight": 0.2,
-   "weighted": 11.34
+   "weighted": 10.0
   },
   "MAP": {
    "controls": [
@@ -107,7 +107,7 @@
      "weight_pct": 3.5,
      "score": 2,
      "maturity": "Initial",
-     "evidence": "0/22 knowledge files with provenance; doctrine_guard present; backup restore verified",
+     "evidence": "0/22 knowledge files with provenance; doctrine_guard present; backup restore NOT verified",
      "source": "data/knowledge frontmatter + doctrine_guard + backup-verify-verdict",
      "no_evidence": false,
      "layer": "data",
@@ -132,7 +132,7 @@
      "score": 3,
      "maturity": "Developing",
      "evidence": "impact analysis on file: 11 affected-party entries",
-     "source": "data/security/impact-analysis.md",
+     "source": "[internal file]",
      "no_evidence": false,
      "layer": "lead",
      "owner": "security_lead"
@@ -176,7 +176,7 @@
      "score": 4,
      "maturity": "Defined",
      "evidence": "test integrity: 8 catch, 0 blind",
-     "source": "data/ops/test-integrity.jsonl",
+     "source": "[internal file]",
      "no_evidence": false,
      "layer": "actions",
      "owner": "action_gatekeeper"
@@ -187,7 +187,7 @@
      "weight_pct": 5.0,
      "score": 3,
      "maturity": "Developing",
-     "evidence": "1183 bias/fairness test artefact(s) on file",
+     "evidence": "1347 bias/fairness test artefact(s) on file",
      "source": "data/security/bias-tests/",
      "no_evidence": false,
      "layer": "lead",
@@ -199,7 +199,7 @@
      "weight_pct": 5.0,
      "score": 3,
      "maturity": "Developing",
-     "evidence": "screen present; sweep 6/0; fixtures 55 (all pass); chokepoints router=True bridge=True fp=True; direct callers 10 covered / 2 not; 64 events/7d (0 unresolved); SANITISE+action-gate",
+     "evidence": "screen present; sweep 6/0; fixtures 55 (all pass); chokepoints router=True bridge=True fp=True; direct callers 10 covered / 2 not; 283 events/7d (0 unresolved); SANITISE+action-gate",
      "source": "injection_screen.py --fixtures + api_router/llm_bridge chokepoints + tripwire on direct callers + injection-events.jsonl",
      "no_evidence": false,
      "layer": "injection",
@@ -211,7 +211,7 @@
      "weight_pct": 5.0,
      "score": 2,
      "maturity": "Initial",
-     "evidence": "exposure audit: SECRET IN LOGS: 2 log file(s) carry token shapes/live values \u2014 [('/srv/steelworks/home/.openclaw/agents/web/agent/openclaw-agent.sqlite.pre-startup-migration-71; hooks installed; rotation overdue 0",
+     "evidence": "exposure audit: TOKEN SHAPE IN GIT: 2 tracked file(s) contain token-shaped strings \u2014 [('[internal file]', ['bearer']), ('[internal file]', ['bearer'])] \u2014 untrack, redact, rotate if live; SECRET IN LOGS: 2 log file(s) carry token shapes/live values \u2014 [('[internal path]', ['[credential]', '[credential]', '[credential]', '[credential]', '[credential]', '[credential]', '[credential]', '[credential]', '[credential]']), ('[internal path]', ['[credential]', '[credential]', '[credential]', '[credential]'])] \u2014 run secret_exposure_audit.py --scrub and fix the writer; hooks installed; rotation overdue UNKNOWN: ledger MISSING",
      "source": "secret_exposure_audit + git hooks + rotation ledger",
      "no_evidence": false,
      "layer": "secrets",
@@ -224,7 +224,7 @@
      "score": 4,
      "maturity": "Defined",
      "evidence": "3/3 decision trails fresh (<48h): task ledger, cron receipts, routing log",
-     "source": "task-ledger.sqlite + openclaw.sqlite + routing-log.jsonl",
+     "source": "[internal file] + [internal file] + routing-log.jsonl",
      "no_evidence": false,
      "layer": "data",
      "owner": "data_boundary_officer"
@@ -248,7 +248,7 @@
      "score": 3,
      "maturity": "Developing",
      "evidence": "privilege_check clean: root grants, sudo, rotation debt, venv drift all within policy; no recertification cadence yet",
-     "source": "scripts/privilege_check.py",
+     "source": "[internal file]",
      "no_evidence": false,
      "layer": "identity",
      "owner": "identity_warden"
@@ -268,7 +268,7 @@
      "score": 4,
      "maturity": "Defined",
      "evidence": "legality gate present, ToS register present, 0 standing allows (0 consequential), 0/0 public workers guarded (0 unverified), gate map unverified/missing (19 gates)",
-     "source": "external_action_guard + platform-tos + prompt-approvals + workers/ + data/org/gate-map.json",
+     "source": "external_action_guard + platform-tos + prompt-approvals + workers/ + [internal file]",
      "no_evidence": false,
      "layer": "actions",
      "owner": "action_gatekeeper"
@@ -277,9 +277,9 @@
      "id": "A2",
      "control": "AI-specific incident response plan (hallucination, bias, breach)",
      "weight_pct": 4.5,
-     "score": 4,
-     "maturity": "Defined",
-     "evidence": "runbook present; switches present 5/5; drill passed <35d; 2 incident records; 0 panics/14d, 0 post-mortems",
+     "score": 3,
+     "maturity": "Developing",
+     "evidence": "runbook present; switches present 5/5; drill none/failed; 2 incident records; 0 panics/14d, 0 post-mortems",
      "source": "incident-runbook + kill switches + mast-incidents + panic logs",
      "no_evidence": false,
      "layer": "incident",
@@ -291,7 +291,7 @@
      "weight_pct": 4.0,
      "score": 3,
      "maturity": "Developing",
-     "evidence": "blessed-hashes present; core behind: openclaw 2026.9.9 -> 2026.10.5; CVEs: 0",
+     "evidence": "blessed-hashes present; core behind: openclaw 2026.10.5 -> 2026.10.7; CVEs: 20",
      "source": "blessed-hashes.json + dependency_cve_scan + core-behind alerts",
      "no_evidence": false,
      "layer": "supply_chain",
@@ -328,16 +328,16 @@
      "score": 0,
      "maturity": "Absent",
      "evidence": "0 operator FINAL risk-acceptance decisions recorded",
-     "source": "data/org/security-register.md",
+     "source": "[internal file]",
      "no_evidence": false,
      "layer": "lead",
      "owner": "security_lead"
     }
    ],
-   "avg_score": 3.0,
-   "maturity_pct": 60.0,
+   "avg_score": 2.83,
+   "maturity_pct": 56.7,
    "weight": 0.25,
-   "weighted": 15.0
+   "weighted": 14.18
   }
  },
  "no_evidence_controls": [],
@@ -348,7 +348,7 @@
    "rating": "High",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2026-11-20"
+   "target": "2026-11-27"
   },
   {
    "control": "M6",
@@ -356,7 +356,7 @@
    "rating": "High",
    "owner": "identity_warden",
    "layer": "identity",
-   "target": "2026-11-20"
+   "target": "2026-11-27"
   },
   {
    "control": "E4",
@@ -364,7 +364,7 @@
    "rating": "Medium",
    "owner": "secrets_custodian",
    "layer": "secrets",
-   "target": "2027-01-19"
+   "target": "2027-01-26"
   },
   {
    "control": "E6",
@@ -372,7 +372,7 @@
    "rating": "Medium",
    "owner": "secrets_custodian",
    "layer": "secrets",
-   "target": "2027-01-19"
+   "target": "2027-01-26"
   },
   {
    "control": "G2",
@@ -380,7 +380,15 @@
    "rating": "Medium",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2027-01-19"
+   "target": "2027-01-26"
+  },
+  {
+   "control": "G3",
+   "finding": "AI system inventory maintained, including shadow AI discovery (scored 2, Initial)",
+   "rating": "Medium",
+   "owner": "identity_warden",
+   "layer": "identity",
+   "target": "2027-01-26"
   },
   {
    "control": "G5",
@@ -388,7 +396,7 @@
    "rating": "Medium",
    "owner": "supply_chain_auditor",
    "layer": "supply_chain",
-   "target": "2027-01-19"
+   "target": "2027-01-26"
   },
   {
    "control": "M1",
@@ -396,7 +404,7 @@
    "rating": "Medium",
    "owner": "security_lead",
    "layer": "lead",
-   "target": "2027-01-19"
+   "target": "2027-01-26"
   },
   {
    "control": "M2",
@@ -404,7 +412,15 @@
    "rating": "Medium",
    "owner": "data_boundary_officer",
    "layer": "data",
-   "target": "2027-01-19"
+   "target": "2027-01-26"
+  },
+  {
+   "control": "A2",
+   "finding": "AI-specific incident response plan (hallucination, bias, breach) (scored 3, Developing)",
+   "rating": "Low",
+   "owner": "incident_responder",
+   "layer": "incident",
+   "target": "next review cycle"
   },
   {
    "control": "A3",
@@ -497,12 +513,28 @@
  ],
  "layer_findings": [
   {
+   "layer": "data",
+   "owner": "data_boundary_officer",
+   "rating": "Critical",
+   "id": "backup-fails",
+   "finding": "last backup restore drill did not pass: [internal record withheld from the public card]",
+   "target": "2026-11-04"
+  },
+  {
+   "layer": "secrets",
+   "owner": "secrets_custodian",
+   "rating": "Critical",
+   "id": "sea:TOKEN-SHAPE-IN-GIT-2-tracked-file-s-co",
+   "finding": "TOKEN SHAPE IN GIT: 2 tracked file(s) contain token-shaped strings \u2014 [('[internal file]', ['bearer']), ('[internal file]', ['bearer'])] \u2014 untrack, redact, rotate if live",
+   "target": "2026-11-04"
+  },
+  {
    "layer": "secrets",
    "owner": "secrets_custodian",
    "rating": "Critical",
    "id": "sea:SECRET-IN-LOGS-2-log-file-s-carry-toke",
-   "finding": "SECRET IN LOGS: 2 log file(s) carry token shapes/live values \u2014 [('/srv/steelworks/home/.openclaw/agents/web/agent/openclaw-agent.sqlite.pre-startup-migration-71db093c-7c47-88c9-8758-7b1cf4ddeea9.bak', ['LIVE:CF_API_TOKEN', 'LIVE:CF_WORKERS_TOKEN', 'LIVE:DASHSCOPE_API_KEY', 'LIVE:M365_CLIENT_SECRET', 'LIVE:OLLAMA_API_KEY', 'LIVE:VENTURE_LEADS_TOKEN', 'azure_client_secret', 'cloudflare_token', 'ollama_key']), ('/srv/steelworks/home/.openclaw/agents/lead/agent/openclaw-agent.sqlite.pre-startup-migration-71db093c-7c47-88c9-8758-7b1cf4ddeea9.bak', ['LIVE:CF_API_TOKEN', 'LIVE:CF_WORKERS_TOKEN', 'LIVE:VENTURE_LEADS_TOKEN', 'cloudflare_token'])] \u2014 run secret_exposure_audit.py --scrub and fix the writer",
-   "target": "2026-10-28"
+   "finding": "SECRET IN LOGS: 2 log file(s) carry token shapes/live values \u2014 [('[internal path]', ['[credential]', '[credential]', '[credential]', '[credential]', '[credential]', '[credential]', '[credential]', '[credential]', '[credential]']), ('[internal path]', ['[credential]', '[credential]', '[credential]', '[credential]'])] \u2014 run secret_exposure_audit.py --scrub and fix the writer",
+   "target": "2026-11-04"
   },
   {
    "layer": "injection",
@@ -510,7 +542,7 @@
    "rating": "High",
    "id": "unscreened:client_agents.py",
    "finding": "client_agents.py ingests external content AND calls Ollama directly without the tripwire (_ij_post/_ij_urlopen)",
-   "target": "2026-11-20"
+   "target": "2026-11-27"
   },
   {
    "layer": "injection",
@@ -518,31 +550,39 @@
    "rating": "High",
    "id": "unscreened:openclaw_state_brief.py",
    "finding": "openclaw_state_brief.py ingests external content AND calls Ollama directly without the tripwire (_ij_post/_ij_urlopen)",
-   "target": "2026-11-20"
+   "target": "2026-11-27"
+  },
+  {
+   "layer": "supply_chain",
+   "owner": "supply_chain_auditor",
+   "rating": "High",
+   "id": "cves",
+   "finding": "20 known vulnerabilities across npm/python dependency surfaces",
+   "target": "2026-11-27"
   },
   {
    "layer": "actions",
    "owner": "action_gatekeeper",
    "rating": "Medium",
    "id": "gate-map-unverified",
-   "finding": "gate map check is stale (> 8 d) or reports gaps -- run scripts/gate_map_check.py",
-   "target": "2027-01-19"
+   "finding": "gate map check is stale (> 8 d) or reports gaps -- run [internal file]",
+   "target": "2027-01-26"
   },
   {
    "layer": "actions",
    "owner": "action_gatekeeper",
    "rating": "Medium",
    "id": "program:D2",
-   "finding": "PROGRAM D2 (proposed): Attack surface map with ownership confidence + passive recon method - write data/security/program/D2.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Allowlisted root domains/subdomains/IPs/repos/cert owners FROM OUR OWN RECORDS first; data-flow/trust-boundary diagram; forgotten subdomains, stale certs, unexpected public services (Funnel :443, Serve ports) compared with certificate transparency. Passive only - no scanning of anything, owned or not, without approval. APPROVAL GATE: any active probe or scan - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2027-01-19"
+   "finding": "PROGRAM D2 (proposed): Attack surface map with ownership confidence + passive recon method - write [internal file] with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Allowlisted root domains/subdomains/IPs/repos/cert owners FROM OUR OWN RECORDS first; data-flow/trust-boundary diagram; forgotten subdomains, stale certs, unexpected public services (Funnel :443, Serve ports) compared with certificate transparency. Passive only - no scanning of anything, owned or not, without approval. APPROVAL GATE: any active probe or scan - request it with [internal file] request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with [internal file] prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-26"
   },
   {
    "layer": "actions",
    "owner": "action_gatekeeper",
    "rating": "Medium",
    "id": "program:D3",
-   "finding": "PROGRAM D3 (proposed): Censys CenQL worksheet + privacy/credit assessment - write data/security/program/D3.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Worksheet for web.hostname / host.dns.names / cert.names / host.services.cert.names, ':' vs '=' matching, nested host.services, tier/regex/API limits, cost and false-positive risk per query - documentation only. Query Assistant inputs go to OpenAI under Censys' policy: no private architecture or secrets in them. APPROVAL GATE: every credit-consuming Censys search; creating a Censys account - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2027-01-19"
+   "finding": "PROGRAM D3 (proposed): Censys CenQL worksheet + privacy/credit assessment - write [internal file] with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Worksheet for web.hostname / host.dns.names / cert.names / host.services.cert.names, ':' vs '=' matching, nested host.services, tier/regex/API limits, cost and false-positive risk per query - documentation only. Query Assistant inputs go to OpenAI under Censys' policy: no private architecture or secrets in them. APPROVAL GATE: every credit-consuming Censys search; creating a Censys account - request it with [internal file] request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with [internal file] prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-26"
   },
   {
    "layer": "data",
@@ -550,62 +590,78 @@
    "rating": "Medium",
    "id": "knowledge-provenance",
    "finding": "0/22 knowledge files carry provenance frontmatter",
-   "target": "2027-01-19"
+   "target": "2027-01-26"
+  },
+  {
+   "layer": "identity",
+   "owner": "identity_warden",
+   "rating": "Medium",
+   "id": "phantom-dir:_backups",
+   "finding": "agent directory '_backups' has no config entry -- a body with no name on the chart",
+   "target": "2027-01-26"
   },
   {
    "layer": "identity",
    "owner": "identity_warden",
    "rating": "Medium",
    "id": "program:D1",
-   "finding": "PROGRAM D1 (not started): Verified current-state inventory and unknowns - write data/security/program/D1.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Source-linked inventory: repos, branches, CI/CD, VM/PC/containers, domains, DNS, certs, Cloudflare, Tailscale Funnel/Serve, GitHub, third-party services, identities, secrets handling, agent/tool permissions, data stores, customer-data categories, logs, backups, incident owner. Each row: owner, authorization, environment, host, trust boundary, sensitive data, exposure, confidence. Unknowns and access blockers listed plainly. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2027-01-19"
+   "finding": "PROGRAM D1 (not started): Verified current-state inventory and unknowns - write [internal file] with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Source-linked inventory: repos, branches, CI/CD, VM/PC/containers, domains, DNS, certs, Cloudflare, Tailscale Funnel/Serve, GitHub, third-party services, identities, secrets handling, agent/tool permissions, data stores, customer-data categories, logs, backups, incident owner. Each row: owner, authorization, environment, host, trust boundary, sensitive data, exposure, confidence. Unknowns and access blockers listed plainly. Any fix: write it under data/security/fixes/<id>/, prove it with [internal file] prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-26"
   },
   {
    "layer": "identity",
    "owner": "identity_warden",
    "rating": "Medium",
    "id": "program:D6",
-   "finding": "PROGRAM D6 (not started): Agent role / skill / connector permission matrix - write data/security/program/D6.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Per bot (OpenClaw agents, Hermes, Paperclip CEO, Command Center chat): owner, scope, data access, named identity, least-privilege credential, allowed/forbidden tools, isolation, approval gate, logging, escalation, disable switch, and a test that the boundary holds. External MCP servers, ClawHub/third-party skills = supply-chain risk. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2027-01-19"
+   "finding": "PROGRAM D6 (not started): Agent role / skill / connector permission matrix - write [internal file] with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Per bot (OpenClaw agents, Hermes, Paperclip CEO, Command Center chat): owner, scope, data access, named identity, least-privilege credential, allowed/forbidden tools, isolation, approval gate, logging, escalation, disable switch, and a test that the boundary holds. External MCP servers, ClawHub/third-party skills = supply-chain risk. Any fix: write it under data/security/fixes/<id>/, prove it with [internal file] prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-26"
   },
   {
    "layer": "incident",
    "owner": "incident_responder",
    "rating": "Medium",
    "id": "program:D10",
-   "finding": "PROGRAM D10 (verified-gap): Monitoring / incident runbooks + human tester rules of engagement - write data/security/program/D10.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Runbooks with a real escalation owner, retention and false-positive handling; backup/restore verification (open Critical: last restore drill failed - no archives on the remote); tabletop; draft ROE: named testers, exact assets/dates, forbidden methods, stop conditions, evidence custody, retest. APPROVAL GATE: any live human red-team exercise - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2027-01-19"
+   "finding": "PROGRAM D10 (verified-gap): Monitoring / incident runbooks + human tester rules of engagement - write [internal file] with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Runbooks with a real escalation owner, retention and false-positive handling; backup/restore verification (open Critical: last restore drill failed - no archives on the remote); tabletop; draft ROE: named testers, exact assets/dates, forbidden methods, stop conditions, evidence custody, retest. APPROVAL GATE: any live human red-team exercise - request it with [internal file] request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with [internal file] prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-26"
   },
   {
    "layer": "injection",
    "owner": "injection_sentinel",
    "rating": "Medium",
    "id": "program:D4",
-   "finding": "PROGRAM D4 (proposed): ANY.RUN applicability, privacy and cost decision - write data/security/program/D4.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Decide from OUR ingestion surfaces (Command Center uploads, bug-desk attachments/recordings, video intake, email): hash/public-report research first; public/community tasks are public - never submit private builds, keys, customer files or tokenised URLs; private tier or self-hosted sandbox before any sensitive sample. Adopt/defer/reject with reason. APPROVAL GATE: any sample or URL submission; any paid plan - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2027-01-19"
+   "finding": "PROGRAM D4 (proposed): ANY.RUN applicability, privacy and cost decision - write [internal file] with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Decide from OUR ingestion surfaces (Command Center uploads, bug-desk attachments/recordings, video intake, email): hash/public-report research first; public/community tasks are public - never submit private builds, keys, customer files or tokenised URLs; private tier or self-hosted sandbox before any sensitive sample. Adopt/defer/reject with reason. APPROVAL GATE: any sample or URL submission; any paid plan - request it with [internal file] request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with [internal file] prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-26"
+  },
+  {
+   "layer": "secrets",
+   "owner": "secrets_custodian",
+   "rating": "Medium",
+   "id": "rotation-ledger-unreadable",
+   "finding": "[internal file] MISSING -- overdue credential rotations cannot be checked",
+   "target": "2027-01-26"
   },
   {
    "layer": "secrets",
    "owner": "secrets_custodian",
    "rating": "Medium",
    "id": "program:D9",
-   "finding": "PROGRAM D9 (draft): Isolated-branch changes with real test evidence - write data/security/program/D9.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Proposed changes on an isolated branch/worktree with reproducible test output (not claims); synthetic adversarial fixtures with expected secure response and a regression owner. Starts with the open High: pre-commit/pre-push secret hooks not installed. APPROVAL GATE: any write to main; any merge - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2027-01-19"
+   "finding": "PROGRAM D9 (draft): Isolated-branch changes with real test evidence - write [internal file] with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Proposed changes on an isolated branch/worktree with reproducible test output (not claims); synthetic adversarial fixtures with expected secure response and a regression owner. Starts with the open High: pre-commit/pre-push secret hooks not installed. APPROVAL GATE: any write to main; any merge - request it with [internal file] request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with [internal file] prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-26"
   },
   {
    "layer": "supply_chain",
    "owner": "supply_chain_auditor",
    "rating": "Medium",
    "id": "program:D7",
-   "finding": "PROGRAM D7 (not started): Tool and repository decision matrix (adopt / defer / reject) - write data/security/program/D7.md with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Gitleaks, Semgrep, Trivy, Syft, OpenSSF Scorecard, OWASP ZAP (staging only), Promptfoo/garak, Wazuh, GitHub Dependabot/review gates, Cloudflare edge controls: official repo, licence, maintenance evidence, egress, cost, false positives, asset, operator, acceptance test, decision. Prefer deterministic CI checks over an LLM. APPROVAL GATE: installing any tool; enabling any paid feature - request it with scripts/security_program.py request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with scripts/prove_fix.py prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
-   "target": "2027-01-19"
+   "finding": "PROGRAM D7 (not started): Tool and repository decision matrix (adopt / defer / reject) - write [internal file] with a 'status:' line (verified-existing/verified-gap/proposed/implemented/tested/deployed) and, once implemented/tested, an 'evidence:' line. Done when: Gitleaks, Semgrep, Trivy, Syft, OpenSSF Scorecard, OWASP ZAP (staging only), Promptfoo/garak, Wazuh, GitHub Dependabot/review gates, Cloudflare edge controls: official repo, licence, maintenance evidence, egress, cost, false positives, asset, operator, acceptance test, decision. Prefer deterministic CI checks over an LLM. APPROVAL GATE: installing any tool; enabling any paid feature - request it with [internal file] request, never do it. Any fix: write it under data/security/fixes/<id>/, prove it with [internal file] prove <id> (sandbox), then prove_fix.py request <id>; the owner's approval applies it.",
+   "target": "2027-01-26"
   },
   {
    "layer": "supply_chain",
    "owner": "supply_chain_auditor",
    "rating": "Low",
    "id": "behind:openclaw",
-   "finding": "core component behind its release: openclaw 2026.9.9 -> 2026.10.5 (install is operator sign-off)",
+   "finding": "core component behind its release: openclaw 2026.10.5 -> 2026.10.7 (install is operator sign-off)",
    "target": "next review cycle"
   },
   {
@@ -714,13 +770,14 @@
   }
  ],
  "layers_measured": {
-  "actions": "2026-10-21T04:07:01+00:00",
-  "data": "2026-10-21T04:07:01+00:00",
-  "identity": "2026-10-21T04:05:00+00:00",
-  "incident": "2026-10-21T04:07:01+00:00",
-  "injection": "2026-10-21T04:05:00+00:00",
-  "secrets": "2026-10-21T04:05:00+00:00",
-  "supply_chain": "2026-10-21T04:06:45+00:00"
+  "actions": "2026-10-28T04:07:08+00:00",
+  "data": "2026-10-28T04:07:08+00:00",
+  "identity": "2026-10-28T04:05:00+00:00",
+  "incident": "2026-10-28T04:07:08+00:00",
+  "injection": "2026-10-28T04:05:00+00:00",
+  "secrets": "2026-10-28T04:05:00+00:00",
+  "supply_chain": "2026-10-28T04:06:44+00:00"
  },
- "layers_missing": []
+ "layers_missing": [],
+ "layers_unreadable": {}
 }
