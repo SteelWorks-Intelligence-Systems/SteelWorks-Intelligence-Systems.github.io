@@ -150,20 +150,20 @@ Skip to content</a>
  <figure class="flush"><img src="/assets/img/brand/readiness-scorecard.svg" alt="Four real AI Search Readiness audit scores, drawn from the audit log" loading="lazy" width="1200" height="750"><figcaption class="fine">The same ten checks, run on real sites. Redrawn from the audit log on every deploy.</figcaption></figure></section>
 
 <script>
-(function  {
+(function () {
  var WORKER = "https://readiness.steelworksintelligence.com";
  var form = document.getElementById("checkform"), status = document.getElementById("status");
  var result = document.getElementById("result");
  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
  function row(k, v) { return "<tr><th>" + esc(k) + "</th><td>" + esc(v) + "</td></tr>"; }
  form.addEventListener("submit", function (ev) {
- ev.preventDefault;
- var url = document.getElementById("url").value.trim;
+ ev.preventDefault();
+ var url = document.getElementById("url").value.trim();
  if (!url) return;
  status.textContent = "Fetching and scoring…";
  result.hidden = true;
- var ctrl = new AbortController; var t = setTimeout(function  { ctrl.abort; }, 20000);
- fetch(WORKER + "/score?url=" + encodeURIComponent(url), { signal: ctrl.signal }).then(function (r) { return r.json.then(function (j) { return [r.status, j]; }); }).then(function (pair) {
+ var ctrl = new AbortController(); var t = setTimeout(function () { ctrl.abort(); }, 20000);
+ fetch(WORKER + "/score?url=" + encodeURIComponent(url), { signal: ctrl.signal }).then(function (r) { return r.json().then(function (j) { return [r.status, j]; }); }).then(function (pair) {
  clearTimeout(t);
  var st = pair[0], j = pair[1];
  if (st !== 200 || j.error) { status.textContent = "Could not score that page: " + (j.error || ("HTTP " + st)); return; }
@@ -186,7 +186,7 @@ Skip to content</a>
  "The checker backend is not reachable from here (" + WORKER + "). If this is the demo before deploy, that is expected — the page says so rather than inventing a score.";
  });
  });
-});</script></main>
+})();</script></main>
 <!-- steelworks:footer -->
 <footer class="site-footer">
  <div class="shell">
